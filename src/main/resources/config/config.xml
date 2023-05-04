@@ -25,6 +25,9 @@
         </environment>
     </environments>
     <mappers>
-        <!-- <mapper resource="sqlmapper/board.xml"/> -->
+        <mapper resource="sqlmapper/consumptionAmount.xml"/>
+        <mapper resource="sqlmapper/consumptionAmountForeigner.xml"/>
+        <mapper resource="sqlmapper/consumptionAmountOutsider.xml"/>
+        <mapper resource="sqlmapper/dailyFloatingPopulation.xml"/>
     </mappers>
 </configuration>

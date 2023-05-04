@@ -4,18 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.CAMapper">
-    <resultMap id="result" type="DB.DTO.ConsumptionAmountDTO">
-        <result property="id" column="id"/>
-        <result property="year" column="year"/>
-        <result property="dongCode" column="dong_code"/>
-        <result property="dongName" column="dong_name"/>
-        <result property="industryCode" column="industry_code"/>
-        <result property="industryName" column="industry_name"/>
-        <result property="amount" column="amount"/>
-    </resultMap>
-
-    <select id="selectAll" resultMap="result">
+    <select id="selectAll" resultType="DB.DTO.ConsumptionAmountDTO">
         SELECT *
         FROM consumption_amount
     </select>
+
+    <insert id="insertAll" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO consumption_amount(year, dong_code, dong_name, industry_code, industry_name, amount)
+        VALUES (#{year}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{amount})
+    </insert>
 </mapper>

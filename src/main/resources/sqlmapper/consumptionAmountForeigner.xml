@@ -4,25 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.CAFMapper">
-    <resultMap id="result" type="DB.DTO.ConsumptionAmountForeignerDTO">
-        <result property="id" column="id"/>
-        <result property="year" column="year"/>
-        <result property="month" column="month"/>
-        <result property="metropolitanCode" column="metropolitan_code"/>
-        <result property="cityCode" column="city_code"/>
-        <result property="dongCode" column="dong_code"/>
-        <result property="dongName" column="dong_name"/>
-        <result property="industryCode" column="industry_code"/>
-        <result property="industryName" column="industry_name"/>
-        <result property="nationality" column="nationality"/>
-        <result property="period" column="period"/>
-        <result property="count" column="count"/>
-        <result property="amount" column="amount"/>
-        <result property="consumptionAmountForeigner" column="consumption_amount_foreigner"/>
-    </resultMap>
-
-    <select id="selectAll" resultMap="result">
+    <select id="selectAll" resultType="DB.DTO.ConsumptionAmountForeignerDTO">
         SELECT *
         FROM consumption_amount_foreigner
     </select>
+
+    <insert id="insertAll" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.ConsumptionAmountForeignerDTO">
+        INSERT INTO consumption_amount(year, month, metropolitan_code, city_code, dong_code, dong_name, industry_code, industry_name, natinality, period, amount, consumption_amount_foreigner)
+        VALUES (#{year}, #{month}, #{metropolitan_code}, #{city_code}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{nationality}, #{period}, #{count}, #{amount}, #{consumptionAmountForeigner})
+    </insert>
 </mapper>

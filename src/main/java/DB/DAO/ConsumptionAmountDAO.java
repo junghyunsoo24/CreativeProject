@@ -1,13 +1,12 @@
 package DB.DAO;
 
 import DB.DTO.ConsumptionAmountDTO;
-import DB.DTO.DTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class ConsumptionAmountDAO implements DAO {
+public class ConsumptionAmountDAO implements DAO<ConsumptionAmountDTO> {
     private final SqlSessionFactory sqlSessionFactory;
 
     public ConsumptionAmountDAO(SqlSessionFactory sqlSessionFactory) {
@@ -15,7 +14,27 @@ public class ConsumptionAmountDAO implements DAO {
     }
 
     @Override
-    public List<DTO> selectAll() {
-        return null;
+    public List<ConsumptionAmountDTO> selectAll() {
+        List<ConsumptionAmountDTO> list;
+
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            list = session.selectList("mapper.CAMapper.selectAll");
+        }
+
+        return list;
+    }
+
+    @Override
+    public void insertAll(List<ConsumptionAmountDTO> list) {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            for (ConsumptionAmountDTO element : list) {
+                session.insert("mapper.CAMapper.insertAll", element);
+            }
+        } finally {
+            session.commit();
+            session.close();
+        }
     }
 }
