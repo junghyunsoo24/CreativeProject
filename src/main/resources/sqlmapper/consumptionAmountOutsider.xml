@@ -9,7 +9,7 @@
         FROM consumption_amount_outsider
     </select>
 
-    <insert id="insertAll" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.ConsumptionAmountOutsiderDTO">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.ConsumptionAmountOutsiderDTO">
         INSERT INTO consumption_amount(year, month, dong_code, dong_name, industry_code, industry_name, residential_city, amount)
         VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{residential_city}, #{amount})
     </insert>

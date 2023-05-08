@@ -30,8 +30,20 @@ public class ConsumptionAmountOutsiderDAO implements DAO<ConsumptionAmountOutsid
 
         try {
             for (ConsumptionAmountOutsiderDTO element : list) {
-                session.insert("mapper.CAOMapper.insertAll", element);
+                session.insert("mapper.CAOMapper.insert", element);
             }
+        } finally {
+            session.commit();
+            session.close();
+        }
+    }
+
+    @Override
+    public void insertOne(ConsumptionAmountOutsiderDTO element) {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            session.insert("mapper.CAOMapper.insert", element);
         } finally {
             session.commit();
             session.close();

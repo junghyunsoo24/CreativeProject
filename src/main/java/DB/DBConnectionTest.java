@@ -1,27 +1,19 @@
 package DB;
 
+import Control.DBUpdateControl;
 import DB.DAO.ConsumptionAmountDAO;
 import DB.DTO.ConsumptionAmountDTO;
+import com.opencsv.exceptions.CsvException;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBConnectionTest {
-    public static void main(String[] args) {
-        ConsumptionAmountDAO CADAO = new ConsumptionAmountDAO(MyBatisConnectionFactory.getSqlSessionFactory());
-//        ConsumptionAmountDTO CADTO = ConsumptionAmountDTO.builder()
-//                .year(2020)
-//                .dong_code("F")
-//                .dong_name("구암동")
-//                .industry_code("F")
-//                .industry_name("건설업(41~42)")
-//                .amount(14850400)
-//                .build();
-//
-//        List<ConsumptionAmountDTO> list = new ArrayList<>();
-//        list.add(CADTO);
-//        CADAO.insertAll(list);
-        System.out.println(CADAO.selectAll().get(0).toString());
+    public static void main(String[] args) throws IOException, CsvException {
+        DBUpdateControl control = new DBUpdateControl();
+        control.DBUpdateRequest(new File("C:\\Users\\Han SeongMin\\IdeaProjects\\CreativeProject\\src\\main\\java\\Control\\유성구_법정동별 소비금액 데이터_2020.csv"));
     }
 }

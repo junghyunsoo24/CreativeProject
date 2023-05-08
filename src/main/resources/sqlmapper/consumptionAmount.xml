@@ -9,8 +9,8 @@
         FROM consumption_amount
     </select>
 
-    <insert id="insertAll" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO consumption_amount(year, dong_code, dong_name, industry_code, industry_name, amount)
-        VALUES (#{year}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{amount})
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO consumption_amount(year, month, dong_code, dong_name, industry_code, industry_name, amount)
+        VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{amount})
     </insert>
 </mapper>

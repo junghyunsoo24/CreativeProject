@@ -1,15 +1,16 @@
 package DB.DTO;
 
-import lombok.Builder;
+import com.opencsv.exceptions.CsvException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.IOException;
+
 @Getter
 @Setter
 @ToString
-@Builder
-public class ConsumptionAmountForeignerDTO implements DTO {
+public class ConsumptionAmountForeignerDTO extends DTO {
     private int id;
     private int year;
     private int month;
@@ -22,6 +23,10 @@ public class ConsumptionAmountForeignerDTO implements DTO {
     private String nationality;
     private String period;
     private int count;
-    private int amount;
-    private int consumption_amount_foreigner;
+    private double amount;
+    private String consumption_amount_foreigner;
+
+    public ConsumptionAmountForeignerDTO(String[] line) throws IOException, CsvException {
+        super(line);
+    }
 }

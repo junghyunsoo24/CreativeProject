@@ -30,8 +30,20 @@ public class ConsumptionAmountForeignerDAO implements DAO<ConsumptionAmountForei
 
         try {
             for (ConsumptionAmountForeignerDTO element : list) {
-                session.insert("mapper.CAFMapper.insertAll", element);
+                session.insert("mapper.CAFMapper.insert", element);
             }
+        } finally {
+            session.commit();
+            session.close();
+        }
+    }
+
+    @Override
+    public void insertOne(ConsumptionAmountForeignerDTO element) {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            session.insert("mapper.CAFMapper.insert", element);
         } finally {
             session.commit();
             session.close();

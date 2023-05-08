@@ -31,8 +31,20 @@ public class DailyFloatingPopulationDAO implements DAO<DailyFloatingPopulationDT
 
         try {
             for (DailyFloatingPopulationDTO element : list) {
-                session.insert("mapper.DFPMapper.insertAll", element);
+                session.insert("mapper.DFPMapper.insert", element);
             }
+        } finally {
+            session.commit();
+            session.close();
+        }
+    }
+
+    @Override
+    public void insertOne(DailyFloatingPopulationDTO element) {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            session.insert("mapper.DFPMapper.insert", element);
         } finally {
             session.commit();
             session.close();

@@ -4,6 +4,8 @@ import DB.DTO.ConsumptionAmountDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.List;
 
 public class ConsumptionAmountDAO implements DAO<ConsumptionAmountDTO> {
@@ -30,8 +32,20 @@ public class ConsumptionAmountDAO implements DAO<ConsumptionAmountDTO> {
 
         try {
             for (ConsumptionAmountDTO element : list) {
-                session.insert("mapper.CAMapper.insertAll", element);
+                session.insert("mapper.CAMapper.insert", element);
             }
+        } finally {
+            session.commit();
+            session.close();
+        }
+    }
+
+    @Override
+    public void insertOne(ConsumptionAmountDTO element) {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            session.insert("mapper.CAMapper.insert", element);
         } finally {
             session.commit();
             session.close();

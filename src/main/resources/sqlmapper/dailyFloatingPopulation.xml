@@ -9,7 +9,7 @@
         FROM daily_floating_population
     </select>
 
-    <insert id="insertAll" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.DailyFloatingPopulationDTO">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.DailyFloatingPopulationDTO">
         INSERT INTO consumption_amount(year, month, dong_code, dong_name, time, daily_floating_population)
         VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{time}, #{daily_floating_population})
     </insert>

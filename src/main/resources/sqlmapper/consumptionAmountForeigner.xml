@@ -9,7 +9,7 @@
         FROM consumption_amount_foreigner
     </select>
 
-    <insert id="insertAll" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.ConsumptionAmountForeignerDTO">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.ConsumptionAmountForeignerDTO">
         INSERT INTO consumption_amount(year, month, metropolitan_code, city_code, dong_code, dong_name, industry_code, industry_name, natinality, period, amount, consumption_amount_foreigner)
         VALUES (#{year}, #{month}, #{metropolitan_code}, #{city_code}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{nationality}, #{period}, #{count}, #{amount}, #{consumptionAmountForeigner})
     </insert>
