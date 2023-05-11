@@ -1,7 +1,8 @@
-package persistence.DTO;
+package persistence;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import persistence.DTO.*;
 
 import java.io.*;
 import java.nio.file.Files;
