@@ -1,36 +1,36 @@
-package DB.DAO;
+package persistence.DAO;
 
-import DB.DTO.ConsumptionAmountOutsiderDTO;
+import persistence.DTO.ConsumptionAmountDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class ConsumptionAmountOutsiderDAO implements DAO<ConsumptionAmountOutsiderDTO> {
+public class ConsumptionAmountDAO implements DAO<ConsumptionAmountDTO> {
     private final SqlSessionFactory sqlSessionFactory;
 
-    public ConsumptionAmountOutsiderDAO(SqlSessionFactory sqlSessionFactory) {
+    public ConsumptionAmountDAO(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
     @Override
-    public List<ConsumptionAmountOutsiderDTO> selectAll() {
-        List<ConsumptionAmountOutsiderDTO> list;
+    public List<ConsumptionAmountDTO> selectAll() {
+        List<ConsumptionAmountDTO> list;
 
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            list = session.selectList("mapper.CAOMapper.selectAll");
+            list = session.selectList("mapper.CAMapper.selectAll");
         }
 
         return list;
     }
 
     @Override
-    public void insertAll(List<ConsumptionAmountOutsiderDTO> list) {
+    public void insertAll(List<ConsumptionAmountDTO> list) {
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            for (ConsumptionAmountOutsiderDTO element : list) {
-                session.insert("mapper.CAOMapper.insert", element);
+            for (ConsumptionAmountDTO element : list) {
+                session.insert("mapper.CAMapper.insert", element);
             }
         } finally {
             session.commit();
@@ -39,11 +39,11 @@ public class ConsumptionAmountOutsiderDAO implements DAO<ConsumptionAmountOutsid
     }
 
     @Override
-    public void insertOne(ConsumptionAmountOutsiderDTO element) {
+    public void insertOne(ConsumptionAmountDTO element) {
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            session.insert("mapper.CAOMapper.insert", element);
+            session.insert("mapper.CAMapper.insert", element);
         } finally {
             session.commit();
             session.close();

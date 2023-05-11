@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.CAOMapper">
-    <select id="selectAll" resultType="DB.DTO.ConsumptionAmountOutsiderDTO">
+    <select id="selectAll" resultType="persistence.DTO.ConsumptionAmountOutsiderDTO">
         SELECT *
         FROM consumption_amount_outsider
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="DB.DTO.ConsumptionAmountOutsiderDTO">
-        INSERT INTO consumption_amount(year, month, dong_code, dong_name, industry_code, industry_name, residential_city, amount)
-        VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{residential_city}, #{amount})
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="persistence.DTO.ConsumptionAmountOutsiderDTO">
+        INSERT INTO consumption_amount_outsider(year, month, dong_code, dong_name, industry_code, industry_name, residential_city_code, residential_city_name, amount)
+        VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{residential_city_code}, #{residential_city_name}, #{amount})
     </insert>
 </mapper>

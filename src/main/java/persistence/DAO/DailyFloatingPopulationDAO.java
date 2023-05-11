@@ -1,36 +1,37 @@
-package DB.DAO;
+package persistence.DAO;
 
-import DB.DTO.ConsumptionAmountForeignerDTO;
+import persistence.DTO.DailyFloatingPopulationDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class ConsumptionAmountForeignerDAO implements DAO<ConsumptionAmountForeignerDTO> {
+public class DailyFloatingPopulationDAO implements DAO<DailyFloatingPopulationDTO> {
     private final SqlSessionFactory sqlSessionFactory;
 
-    public ConsumptionAmountForeignerDAO(SqlSessionFactory sqlSessionFactory) {
+    public DailyFloatingPopulationDAO(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
+
     @Override
-    public List<ConsumptionAmountForeignerDTO> selectAll() {
-        List<ConsumptionAmountForeignerDTO> list;
+    public List<DailyFloatingPopulationDTO> selectAll() {
+        List<DailyFloatingPopulationDTO> list;
 
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            list = session.selectList("mapper.CAFMapper.selectAll");
+            list = session.selectList("mapper.DFPMapper.selectAll");
         }
 
         return list;
     }
 
     @Override
-    public void insertAll(List<ConsumptionAmountForeignerDTO> list) {
+    public void insertAll(List<DailyFloatingPopulationDTO> list) {
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            for (ConsumptionAmountForeignerDTO element : list) {
-                session.insert("mapper.CAFMapper.insert", element);
+            for (DailyFloatingPopulationDTO element : list) {
+                session.insert("mapper.DFPMapper.insert", element);
             }
         } finally {
             session.commit();
@@ -39,11 +40,11 @@ public class ConsumptionAmountForeignerDAO implements DAO<ConsumptionAmountForei
     }
 
     @Override
-    public void insertOne(ConsumptionAmountForeignerDTO element) {
+    public void insertOne(DailyFloatingPopulationDTO element) {
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
-            session.insert("mapper.CAFMapper.insert", element);
+            session.insert("mapper.DFPMapper.insert", element);
         } finally {
             session.commit();
             session.close();

@@ -1,4 +1,4 @@
-package DB.DTO;
+package persistence.DTO;
 
 import com.opencsv.exceptions.CsvException;
 
