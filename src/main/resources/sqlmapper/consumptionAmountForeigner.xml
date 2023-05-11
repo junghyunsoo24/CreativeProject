@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.CAFMapper">
+    <select id="selectAll" resultType="persistence.DTO.ConsumptionAmountForeignerDTO">
+        SELECT *
+        FROM consumption_amount_foreigner
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO consumption_amount_foreigner(year, month, metropolitan_code, metropolitan_name, city_code, city_name, dong_code, dong_name, industry_code, industry_name, nationality, period, count, amount)
+        VALUES (#{year}, #{month}, #{metropolitan_code}, #{metropolitan_name}, #{city_code}, #{city_name}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{nationality}, #{period}, #{count}, #{amount})
+    </insert>
+</mapper>

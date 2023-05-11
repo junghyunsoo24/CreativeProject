@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.DFPMapper">
+    <select id="selectAll" resultType="persistence.DTO.DailyFloatingPopulationDTO">
+        SELECT *
+        FROM daily_floating_population
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="persistence.DTO.DailyFloatingPopulationDTO">
+        INSERT INTO daily_floating_population(year, month, dong_code, dong_name, time, daily_floating_population)
+        VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{time}, #{daily_floating_population})
+    </insert>
+</mapper>

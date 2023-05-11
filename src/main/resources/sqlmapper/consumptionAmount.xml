@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.CAMapper">
+    <select id="selectAll" resultType="persistence.DTO.ConsumptionAmountDTO">
+        SELECT *
+        FROM consumption_amount
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO consumption_amount(year, month, dong_code, dong_name, industry_code, industry_name, amount)
+        VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{amount})
+    </insert>
+</mapper>
