@@ -9,6 +9,30 @@
         FROM consumption_amount_outsider
     </select>
 
+    <select id="selectOrderByMonth" resultType="persistence.DTO.ConsumptionAmountOutsiderDTO">
+        SELECT *
+        FROM consumption_amount_outsider
+        ORDER BY month
+    </select>
+
+    <select id="selectOrderByDongName" resultType="persistence.DTO.ConsumptionAmountOutsiderDTO">
+        SELECT *
+        FROM consumption_amount_outsider
+        ORDER BY dong_name
+    </select>
+
+    <select id="selectOrderByIndustryCode" resultType="persistence.DTO.ConsumptionAmountOutsiderDTO">
+        SELECT *
+        FROM consumption_amount_outsider
+        ORDER BY industry_code
+    </select>
+
+    <select id="selectOrderByAmount" resultType="persistence.DTO.ConsumptionAmountOutsiderDTO">
+        SELECT *
+        FROM consumption_amount_outsider
+        ORDER BY amount
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="persistence.DTO.ConsumptionAmountOutsiderDTO">
         INSERT INTO consumption_amount_outsider(year, month, dong_code, dong_name, industry_code, industry_name, residential_city_code, residential_city_name, amount)
         VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{residential_city_code}, #{residential_city_name}, #{amount})

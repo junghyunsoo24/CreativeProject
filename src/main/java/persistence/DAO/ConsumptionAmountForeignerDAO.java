@@ -6,47 +6,41 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class ConsumptionAmountForeignerDAO implements DAO<ConsumptionAmountForeignerDTO> {
-    private final SqlSessionFactory sqlSessionFactory;
-
+public class ConsumptionAmountForeignerDAO extends DAO<ConsumptionAmountForeignerDTO> {
     public ConsumptionAmountForeignerDAO(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
+        super(sqlSessionFactory);
     }
 
     @Override
     public List<ConsumptionAmountForeignerDTO> selectAll() {
-        List<ConsumptionAmountForeignerDTO> list;
+        return select("mapper.CAFMapper.selectAll");
+    }
 
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            list = session.selectList("mapper.CAFMapper.selectAll");
-        }
+    @Override
+    public List<ConsumptionAmountForeignerDTO> selectOrderByMonth() {
+        return select("mapper.CAFMapper.selectOrderByMonth");
+    }
 
-        return list;
+    @Override
+    public List<ConsumptionAmountForeignerDTO> selectOrderByDongName() {
+        return select("mapper.CAFMapper.selectOrderByDongName");
+    }
+
+    public List<ConsumptionAmountForeignerDTO> selectOrderByIndustryCode() {
+        return select("mapper.CAFMapper.selectOrderByIndustryCode");
+    }
+
+    public List<ConsumptionAmountForeignerDTO> selectOrderByAmount() {
+        return select("mapper.CAFMapper.selectOrderByAmount");
     }
 
     @Override
     public void insertAll(List<ConsumptionAmountForeignerDTO> list) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            for (ConsumptionAmountForeignerDTO element : list) {
-                session.insert("mapper.CAFMapper.insert", element);
-            }
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.CAFMapper.insert", list);
     }
 
     @Override
     public void insertOne(ConsumptionAmountForeignerDTO element) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            session.insert("mapper.CAFMapper.insert", element);
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.CAFMapper.insert", element);
     }
 }

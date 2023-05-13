@@ -6,48 +6,37 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class DailyFloatingPopulationDAO implements DAO<DailyFloatingPopulationDTO> {
-    private final SqlSessionFactory sqlSessionFactory;
-
+public class DailyFloatingPopulationDAO extends DAO<DailyFloatingPopulationDTO> {
     public DailyFloatingPopulationDAO(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
+        super(sqlSessionFactory);
     }
 
 
     @Override
     public List<DailyFloatingPopulationDTO> selectAll() {
-        List<DailyFloatingPopulationDTO> list;
+        return select("mapper.DFPMapper.selectAll");
+    }
 
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            list = session.selectList("mapper.DFPMapper.selectAll");
-        }
+    @Override
+    public List<DailyFloatingPopulationDTO> selectOrderByMonth() {
+        return select("mapper.DFPMapper.selectOrderByMonth");
+    }
 
-        return list;
+    @Override
+    public List<DailyFloatingPopulationDTO> selectOrderByDongName() {
+        return select("mapper.DFPMapper.selectOrderByDongName");
+    }
+    public List<DailyFloatingPopulationDTO> selectOrderByDFP() {
+        return select("mapper.DFPMapper.selectOrderByDFP");
     }
 
     @Override
     public void insertAll(List<DailyFloatingPopulationDTO> list) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            for (DailyFloatingPopulationDTO element : list) {
-                session.insert("mapper.DFPMapper.insert", element);
-            }
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.DFPMapper.insert", list);
     }
 
     @Override
     public void insertOne(DailyFloatingPopulationDTO element) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            session.insert("mapper.DFPMapper.insert", element);
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.DFPMapper.insert", element);
     }
 }

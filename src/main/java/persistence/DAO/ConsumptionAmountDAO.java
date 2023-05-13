@@ -6,47 +6,41 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class ConsumptionAmountDAO implements DAO<ConsumptionAmountDTO> {
-    private final SqlSessionFactory sqlSessionFactory;
-
+public class ConsumptionAmountDAO extends DAO<ConsumptionAmountDTO>{
     public ConsumptionAmountDAO(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
+        super(sqlSessionFactory);
     }
 
     @Override
     public List<ConsumptionAmountDTO> selectAll() {
-        List<ConsumptionAmountDTO> list;
+        return select("mapper.CAMapper.selectAll");
+    }
 
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            list = session.selectList("mapper.CAMapper.selectAll");
-        }
+    @Override
+    public List<ConsumptionAmountDTO> selectOrderByMonth() {
+        return select("mapper.CAMapper.selectOrderByMonth");
+    }
 
-        return list;
+    @Override
+    public List<ConsumptionAmountDTO> selectOrderByDongName() {
+        return select("mapper.CAMapper.selectOrderByDongName");
+    }
+
+    public List<ConsumptionAmountDTO> selectOrderByIndustryCode() {
+        return select("mapper.CAMapper.selectOrderByIndustryCode");
+    }
+
+    public List<ConsumptionAmountDTO> selectOrderByAmount() {
+        return select("mapper.CAMapper.selectOrderByAmount");
     }
 
     @Override
     public void insertAll(List<ConsumptionAmountDTO> list) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            for (ConsumptionAmountDTO element : list) {
-                session.insert("mapper.CAMapper.insert", element);
-            }
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.CAMapper.insert", list);
     }
 
     @Override
     public void insertOne(ConsumptionAmountDTO element) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            session.insert("mapper.CAMapper.insert", element);
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.CAMapper.insert", element);
     }
 }

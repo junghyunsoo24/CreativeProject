@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 
 public abstract class DTO {
+
+    public DTO() {}
     public DTO(String[] line) throws IOException, CsvException {
         Class<?> dtoClass = this.getClass();
 
