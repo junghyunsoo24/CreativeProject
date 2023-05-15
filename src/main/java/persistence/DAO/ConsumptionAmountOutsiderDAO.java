@@ -6,47 +6,41 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class ConsumptionAmountOutsiderDAO implements DAO<ConsumptionAmountOutsiderDTO> {
-    private final SqlSessionFactory sqlSessionFactory;
-
+public class ConsumptionAmountOutsiderDAO extends DAO<ConsumptionAmountOutsiderDTO> {
     public ConsumptionAmountOutsiderDAO(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
+        super(sqlSessionFactory);
     }
 
     @Override
     public List<ConsumptionAmountOutsiderDTO> selectAll() {
-        List<ConsumptionAmountOutsiderDTO> list;
+        return select("mapper.CAOMapper.selectAll");
+    }
 
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            list = session.selectList("mapper.CAOMapper.selectAll");
-        }
+    @Override
+    public List<ConsumptionAmountOutsiderDTO> selectOrderByMonth() {
+        return select("mapper.CAOMapper.selectOrderByMonth");
+    }
 
-        return list;
+    @Override
+    public List<ConsumptionAmountOutsiderDTO> selectOrderByDongName() {
+        return select("mapper.CAOMapper.selectDongName");
+    }
+
+    public List<ConsumptionAmountOutsiderDTO> selectOrderByIndustryCode() {
+        return select("mapper.CAOMapper.selectIndustryCode");
+    }
+
+    public List<ConsumptionAmountOutsiderDTO> selectOrderByAmount() {
+        return select("mapper.CAOMapper.selectOrderByAmount");
     }
 
     @Override
     public void insertAll(List<ConsumptionAmountOutsiderDTO> list) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            for (ConsumptionAmountOutsiderDTO element : list) {
-                session.insert("mapper.CAOMapper.insert", element);
-            }
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.CAOMapper.insert", list);
     }
 
     @Override
     public void insertOne(ConsumptionAmountOutsiderDTO element) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            session.insert("mapper.CAOMapper.insert", element);
-        } finally {
-            session.commit();
-            session.close();
-        }
+        insert("mapper.CAOMapper.insert", element);
     }
 }

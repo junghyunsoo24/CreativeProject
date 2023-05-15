@@ -20,6 +20,17 @@ public class ConsumptionAmountDTO extends DTO {
     private String industry_name;
     private double amount;
 
+    public ConsumptionAmountDTO(int id, int year, int month, String dong_code, String dong_name, String industry_code, String industry_name, double amount) {
+        this.id = id;
+        this.year = year;
+        this.month = month;
+        this.dong_code = dong_code;
+        this.dong_name = dong_name;
+        this.industry_code = industry_code;
+        this.industry_name = industry_name;
+        this.amount = amount;
+    }
+
     public ConsumptionAmountDTO(String[] line) throws IOException, CsvException {
         super(line);
     }

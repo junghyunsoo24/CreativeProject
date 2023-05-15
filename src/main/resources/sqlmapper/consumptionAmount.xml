@@ -9,6 +9,30 @@
         FROM consumption_amount
     </select>
 
+    <select id="selectOrderByMonth" resultType="persistence.DTO.ConsumptionAmountDTO">
+        SELECT *
+        FROM consumption_amount
+        ORDER BY month
+    </select>
+
+    <select id="selectOrderByDongName" resultType="persistence.DTO.ConsumptionAmountDTO">
+        SELECT *
+        FROM consumption_amount
+        ORDER BY dong_name
+    </select>
+
+    <select id="selectOrderByIndustryCode" resultType="persistence.DTO.ConsumptionAmountDTO">
+        SELECT *
+        FROM consumption_amount
+        ORDER BY industry_code
+    </select>
+
+    <select id="selectOrderByAmount" resultType="persistence.DTO.ConsumptionAmountDTO">
+        SELECT *
+        FROM consumption_amount
+        ORDER BY amount
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO consumption_amount(year, month, dong_code, dong_name, industry_code, industry_name, amount)
         VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{amount})
