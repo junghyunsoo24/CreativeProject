@@ -1,21 +1,14 @@
 package persistence;
 
-import Control.DBUpdateControl;
+import Control.DBControl;
 import com.opencsv.exceptions.CsvException;
-import persistence.DAO.ConsumptionAmountDAO;
-import persistence.DTO.ConsumptionAmountDTO;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class DBConnectionTest {
     public static void main(String[] args) throws IOException, CsvException, InvalidNameFormatException {
-        ConsumptionAmountDAO dao = new ConsumptionAmountDAO(MyBatisConnectionFactory.getSqlSessionFactory());
-        List<ConsumptionAmountDTO> list = dao.selectOrderByAmount();
-
-        for (ConsumptionAmountDTO element : list) {
-            System.out.println(element.toString());
-        }
+        DBControl db = new DBControl();
+        db.DBUpdateRequest(new File("src/main/java/법정동별 일평균 유동인구 데이터_202001.csv"));
     }
 }

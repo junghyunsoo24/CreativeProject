@@ -1,46 +1,46 @@
 package persistence.DAO;
 
-import persistence.DTO.ConsumptionAmountOutsiderDTO;
+import persistence.DTO.DTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-public class ConsumptionAmountOutsiderDAO extends DAO<ConsumptionAmountOutsiderDTO> {
+public class ConsumptionAmountOutsiderDAO extends DAO<DTO> {
     public ConsumptionAmountOutsiderDAO(SqlSessionFactory sqlSessionFactory) {
         super(sqlSessionFactory);
     }
 
     @Override
-    public List<ConsumptionAmountOutsiderDTO> selectAll() {
+    public List<DTO> selectAll() {
         return select("mapper.CAOMapper.selectAll");
     }
 
     @Override
-    public List<ConsumptionAmountOutsiderDTO> selectOrderByMonth() {
+    public List<DTO> selectOrderByMonth() {
         return select("mapper.CAOMapper.selectOrderByMonth");
     }
 
     @Override
-    public List<ConsumptionAmountOutsiderDTO> selectOrderByDongName() {
+    public List<DTO> selectOrderByDongName() {
         return select("mapper.CAOMapper.selectDongName");
     }
 
-    public List<ConsumptionAmountOutsiderDTO> selectOrderByIndustryCode() {
+    public List<DTO> selectOrderByIndustryCode() {
         return select("mapper.CAOMapper.selectIndustryCode");
     }
 
-    public List<ConsumptionAmountOutsiderDTO> selectOrderByAmount() {
+    public List<DTO> selectOrderByAmount() {
         return select("mapper.CAOMapper.selectOrderByAmount");
     }
 
     @Override
-    public void insertAll(List<ConsumptionAmountOutsiderDTO> list) {
+    public void insertAll(List<DTO> list) {
         insert("mapper.CAOMapper.insert", list);
     }
 
     @Override
-    public void insertOne(ConsumptionAmountOutsiderDTO element) {
+    public void insertOne(DTO element) {
         insert("mapper.CAOMapper.insert", element);
     }
 }
