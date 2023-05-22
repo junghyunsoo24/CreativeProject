@@ -6,6 +6,7 @@ import persistence.DTO.DTO;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.List;
 
 public class DBServerThread implements Runnable {
@@ -16,8 +17,8 @@ public class DBServerThread implements Runnable {
     public DBServerThread(Socket socket) {
         this.socket = socket;
         try {
-            ois = new ObjectInputStream(this.socket.getInputStream());
             oos = new ObjectOutputStream(this.socket.getOutputStream());
+            ois = new ObjectInputStream(this.socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,18 +28,20 @@ public class DBServerThread implements Runnable {
     public void run() {
         Protocol<File> protocol;
 
-        while(true) {
-            try {
+        try {
+            while(true) {
                 protocol = (Protocol<File>) ois.readObject();
                 execute(protocol);
-            } catch (IOException | ClassNotFoundException | ProtocolQueryException | InvalidNameFormatException |
-                     CsvException e) {
-                e.printStackTrace();
             }
+        } catch (SocketException e) {
+            //pass
+        } catch (IOException | ClassNotFoundException | InvalidNameFormatException | CsvException e) {
+            e.printStackTrace();
         }
+
     }
 
-    private void execute(Protocol<File> protocol) throws ProtocolQueryException, InvalidNameFormatException, IOException, CsvException {
+    private void execute(Protocol<File> protocol) throws InvalidNameFormatException, IOException, CsvException {
         DBControl control = new DBControl();
 
         if (protocol.getQUERY() == ProtocolQuery.insert) {
@@ -59,8 +62,6 @@ public class DBServerThread implements Runnable {
                 data = control.selectOrderByAmountRequest(protocol);
             } else if (protocol.getQUERY() == ProtocolQuery.selectOrderByDFP) {
                 data = control.selectOrderByDFPRequest();
-            } else if (protocol.getQUERY() == ProtocolQuery.response) {
-                throw new ProtocolQueryException("[치명적 오류] 클라이언트는 응답 쿼리를 보낼 수 없습니다.");
             }
 
             responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, data);

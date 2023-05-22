@@ -6,11 +6,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @ToString
-public class DailyFloatingPopulationDTO extends DTO {
+public class DailyFloatingPopulationDTO extends DTO implements Serializable {
     private int id;
     private int year;
     private int month;

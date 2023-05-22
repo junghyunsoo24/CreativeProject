@@ -1,6 +1,9 @@
 package persistence;
 
-public enum ProtocolType {
+import java.io.Serializable;
+
+public enum ProtocolType implements Serializable {
+    insert,
     CA,
     CAF,
     CAO,

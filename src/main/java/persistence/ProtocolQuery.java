@@ -1,6 +1,8 @@
 package persistence;
 
-public enum ProtocolQuery {
+import java.io.Serializable;
+
+public enum ProtocolQuery implements Serializable {
     insert,
     selectAll,
     selectOrderByMonth,
