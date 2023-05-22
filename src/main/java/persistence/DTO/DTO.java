@@ -3,9 +3,10 @@ package persistence.DTO;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
-public abstract class DTO {
+public abstract class DTO implements Serializable {
 
     public DTO() {}
     public DTO(String[] line) throws IOException, CsvException {

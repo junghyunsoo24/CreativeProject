@@ -6,11 +6,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @ToString
-public class ConsumptionAmountForeignerDTO extends DTO {
+public class ConsumptionAmountForeignerDTO extends DTO implements Serializable {
     private int id;
     private int year;
     private int month;
