@@ -3,44 +3,45 @@ package persistence.DAO;
 import persistence.DTO.ConsumptionAmountDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import persistence.DTO.DTO;
 
 import java.util.List;
 
-public class ConsumptionAmountDAO extends DAO<ConsumptionAmountDTO>{
+public class ConsumptionAmountDAO extends DAO<DTO>{
     public ConsumptionAmountDAO(SqlSessionFactory sqlSessionFactory) {
         super(sqlSessionFactory);
     }
 
     @Override
-    public List<ConsumptionAmountDTO> selectAll() {
+    public List<DTO> selectAll() {
         return select("mapper.CAMapper.selectAll");
     }
 
     @Override
-    public List<ConsumptionAmountDTO> selectOrderByMonth() {
+    public List<DTO> selectOrderByMonth() {
         return select("mapper.CAMapper.selectOrderByMonth");
     }
 
     @Override
-    public List<ConsumptionAmountDTO> selectOrderByDongName() {
+    public List<DTO> selectOrderByDongName() {
         return select("mapper.CAMapper.selectOrderByDongName");
     }
 
-    public List<ConsumptionAmountDTO> selectOrderByIndustryCode() {
+    public List<DTO> selectOrderByIndustryCode() {
         return select("mapper.CAMapper.selectOrderByIndustryCode");
     }
 
-    public List<ConsumptionAmountDTO> selectOrderByAmount() {
+    public List<DTO> selectOrderByAmount() {
         return select("mapper.CAMapper.selectOrderByAmount");
     }
 
     @Override
-    public void insertAll(List<ConsumptionAmountDTO> list) {
+    public void insertAll(List<DTO> list) {
         insert("mapper.CAMapper.insert", list);
     }
 
     @Override
-    public void insertOne(ConsumptionAmountDTO element) {
+    public void insertOne(DTO element) {
         insert("mapper.CAMapper.insert", element);
     }
 }
