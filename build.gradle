@@ -24,6 +24,10 @@ dependencies {
     implementation 'org.apache.poi:poi:5.0.0'
     implementation 'org.apache.poi:poi-ooxml:5.0.0'
     implementation 'org.jfree:jfreechart:1.5.2'
+
+    //javafx
+    implementation 'org.openjfx:javafx-controls:16'
+
 }
 
 test {
