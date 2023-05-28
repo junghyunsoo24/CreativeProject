@@ -19,14 +19,18 @@ import java.io.IOException;
 public class MainPageController {
     @FXML
     private ChoiceBox<String> townChoiceBox;
+    @FXML
     private ChoiceBox<String> villageChoiceBox;
+    @FXML
     private ChoiceBox<String> sectorsChoiceBox;
 
     private String choosedTown;
     private String choosedVillage;
     private String choosedSectors;
 
+    @FXML
     private Button startBtn;
+    @FXML
     private Button loginBtn;
     public void initialize() {
         initChoiceBox();
@@ -65,6 +69,7 @@ public class MainPageController {
         });
     }
 
+    @FXML
     private void handleStartBtn() throws IOException
     {
         Parent otherPage = FXMLLoader.load(getClass().getResource("ChoosePage.fxml"));
@@ -76,8 +81,10 @@ public class MainPageController {
         primaryStage.setTitle("Choose Page");
         primaryStage.setWidth(800);
         primaryStage.setHeight(600);
-        //choosePageController.initialize();
+        //choosePageController.initialize(choosedTown,choosedVillage, choosedSectors );
     }
+
+    @FXML
     private void handleLoginBtn() throws IOException
     {
         Parent otherPage = FXMLLoader.load(getClass().getResource("ManagerLoginPage.fxml"));
