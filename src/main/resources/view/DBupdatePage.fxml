@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.DBUpdateController">
+
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <left>
+         <Pane prefHeight="212.0" prefWidth="151.0" BorderPane.alignment="CENTER" />
+      </left>
+      <right>
+         <Pane prefHeight="212.0" prefWidth="151.0" BorderPane.alignment="CENTER" />
+      </right>
+      <bottom>
+         <Pane prefHeight="156.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+               <Button fx:id="updateBtn" onAction="#handleUpdateBtn" layoutX="183.0" layoutY="42.0" mnemonicParsing="false" text="업데이트" />
+               <Button fx:id="backBtn" onAction="#handleBackBtn" layoutX="355.0" layoutY="42.0" mnemonicParsing="false" text="뒤로" />
+            </children>
+         </Pane>
+      </bottom>
+      <top>
+         <TextField alignment="CENTER" prefHeight="59.0" prefWidth="600.0" text="DB Update" BorderPane.alignment="CENTER" />
+      </top>
+      <center>
+         <Pane prefHeight="212.0" prefWidth="231.0" BorderPane.alignment="CENTER">
+            <children>
+               <Text layoutX="14.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="파일 주소">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="input_filePath" layoutX="116.0" layoutY="95.0" />
+            </children>
+         </Pane>
+      </center>
+   </BorderPane>
+</VBox>
+
+

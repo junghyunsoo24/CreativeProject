@@ -1,4 +1,8 @@
 package Enum;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //동
 public enum Village {
     초기화값("0",""),
@@ -69,5 +73,13 @@ public enum Village {
 
     public String getName() {
         return name;
+    }
+
+    public static List<Village> getList(){
+        List<Village> villageList = new ArrayList<Village>();
+        for(Village village : values()){
+            villageList.add(village);
+        }
+        return villageList;
     }
 }

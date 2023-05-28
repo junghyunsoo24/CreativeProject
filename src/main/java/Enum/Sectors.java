@@ -1,4 +1,8 @@
 package Enum;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //업종별
 public enum Sectors {
     제조업("C","제조업"),
@@ -30,5 +34,13 @@ public enum Sectors {
 
     public String getIndustry() {
         return industry;
+    }
+
+    public static List<Sectors> getList(){
+        List<Sectors> sectorsList = new ArrayList<Sectors>();
+        for(Sectors sectors : values()){
+            sectorsList.add(sectors);
+        }
+        return sectorsList;
     }
 }

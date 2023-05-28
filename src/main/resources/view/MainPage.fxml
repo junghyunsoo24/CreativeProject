@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.MainPageController">
+
+    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <center>
+            <GridPane prefHeight="490.0" prefWidth="751.0" BorderPane.alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="201.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="399.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시" />
+                    <ChoiceBox fx:id = "townChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="법정동명" GridPane.rowIndex="1" />
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="업종명" GridPane.rowIndex="2" />
+                    <ChoiceBox fx:id = "villageChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <ChoiceBox fx:id = "sectorsChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                </children>
+            </GridPane>
+        </center>
+        <left>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        </left>
+        <right>
+            <Pane prefHeight="279.0" prefWidth="154.0" BorderPane.alignment="CENTER" />
+        </right>
+        <top>
+            <TextField alignment="CENTER" prefHeight="48.0" prefWidth="698.0" text="초기 화면" BorderPane.alignment="CENTER">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </TextField>
+        </top>
+        <bottom>
+            <Pane prefHeight="133.0" prefWidth="698.0" BorderPane.alignment="CENTER">
+                <children>
+                    <Button fx:id = "startBtn" onAction="#handleStartBtn" layoutX="215.0" layoutY="51.0" mnemonicParsing="false" text="분석 및 통계" />
+                    <Button fx:id = "loginBtn" onAction="#handleLoginBtn" layoutX="368.0" layoutY="51.0" mnemonicParsing="false" text="관리자 로그인" />
+                </children>
+            </Pane>
+        </bottom>
+    </BorderPane>
+</VBox>
+
+
