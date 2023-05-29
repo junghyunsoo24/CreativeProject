@@ -53,7 +53,7 @@ public class MainPageController {
         for(Sectors sectors : Sectors.getList()){
             sectorItems.add(sectors.getIndustry());
         }
-        villageChoiceBox.setItems(villageItems);
+        sectorsChoiceBox.setItems(sectorItems);
     }
     private void choiceBoxAction()
     {
@@ -72,31 +72,27 @@ public class MainPageController {
     @FXML
     private void handleStartBtn() throws IOException
     {
-        Parent otherPage = FXMLLoader.load(getClass().getResource("ChoosePage.fxml"));
-        //ChoosePageController choosePageController = FXMLLoader.getController();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("view/ChoosePage.fxml"));
+        Parent otherPage = loader.load();
 
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Choose Page");
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
-        //choosePageController.initialize(choosedTown,choosedVillage, choosedSectors );
     }
 
     @FXML
     private void handleLoginBtn() throws IOException
     {
-        Parent otherPage = FXMLLoader.load(getClass().getResource("ManagerLoginPage.fxml"));
-        //LoginPageController choosePageController = FXMLLoader.getController();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("view/ManagerLoginPage.fxml"));
+        Parent otherPage = loader.load();
 
         Scene currentScene = loginBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Login Page");
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
-        //LoginPageController.initialize();
     }
 
 

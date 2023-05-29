@@ -26,7 +26,9 @@ public class DBUpdateController
     @FXML
     private void handleBackBtn() throws IOException
     {
-        Parent otherPage = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("view/MainPage.fxml"));
+        Parent otherPage = loader.load();
         //MainPageController mainPageController = FXMLLoader.getController();
 
         Scene currentScene = backBtn.getScene();

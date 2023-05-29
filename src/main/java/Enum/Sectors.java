@@ -37,7 +37,7 @@ public enum Sectors {
     }
 
     public static List<Sectors> getList(){
-        List<Sectors> sectorsList = new ArrayList<Sectors>();
+        List<Sectors> sectorsList = new ArrayList<>();
         for(Sectors sectors : values()){
             sectorsList.add(sectors);
         }
