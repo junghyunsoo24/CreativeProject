@@ -32,7 +32,10 @@ public class ChoosePageController
     @FXML
     private void handleAnalysisBtn() throws IOException
     {
-        Parent otherPage = FXMLLoader.load(getClass().getResource("ResultPage.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("view/ResultPage.fxml"));
+        Parent otherPage = loader.load();
+
         //ChoosePageController choosePageController = FXMLLoader.getController();
 
         Scene currentScene = analysisBtn.getScene();
@@ -47,7 +50,9 @@ public class ChoosePageController
     @FXML
     private void handleStatisticsBtn() throws IOException
     {
-        Parent otherPage = FXMLLoader.load(getClass().getResource("StatisticsPage.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
+        Parent otherPage = loader.load();
         //ChoosePageController choosePageController = FXMLLoader.getController();
 
         Scene currentScene = statisticsBtn.getScene();
@@ -61,7 +66,9 @@ public class ChoosePageController
     @FXML
     private void handleBackBtn() throws IOException
     {
-        Parent otherPage = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("view/MainPage.fxml"));
+        Parent otherPage = loader.load();
         //MainPageController mainPageController = FXMLLoader.getController();
 
         Scene currentScene = backBtn.getScene();
