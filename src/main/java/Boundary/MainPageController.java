@@ -1,5 +1,6 @@
 package Boundary;
 
+import Entity.DongDataAnalysis;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,7 +71,7 @@ public class MainPageController {
     }
 
     @FXML
-    private void handleStartBtn() throws IOException
+    private void handleStartBtn() throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/ChoosePage.fxml"));
@@ -80,6 +81,9 @@ public class MainPageController {
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Choose Page");
+
+        DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors);
+        dongAnalysis.start(primaryStage);
     }
 
     @FXML
@@ -94,6 +98,4 @@ public class MainPageController {
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Login Page");
     }
-
-
 }
