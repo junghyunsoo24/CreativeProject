@@ -20,12 +20,10 @@ import java.util.*;
 
 public class LargeCategoryDataAnalysis extends Application {
     //법정동과 이용금액을 저장
-    TreeMap<String, Double> dongAmountMap = new TreeMap<>();
+    TreeMap<String, Double> divisionAmountMap = new TreeMap<>();
 
     //이용금액 출력 포맷
     DecimalFormat decimalFormat = new DecimalFormat("#,##0");
-
-    private String dongName = ""; // 법정동명
     private String division = "" ; //대분류명
     private double amount = 0.0; // 이용금액
 
@@ -44,7 +42,11 @@ public class LargeCategoryDataAnalysis extends Application {
         nextButton.setOnAction(event -> {
             // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
             MonthDataAnalysis anotherClass = new MonthDataAnalysis();
-            anotherClass.show();
+            try {
+                anotherClass.start(primaryStage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
 
         VBox root = new VBox();
@@ -83,17 +85,17 @@ public class LargeCategoryDataAnalysis extends Application {
                 }
 
                 // 대분류명이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
-                if (dongAmountMap.containsKey(division)) {
-                    double currentAmount = dongAmountMap.get(division);
-                    dongAmountMap.put(division, currentAmount + amount);
+                if (divisionAmountMap.containsKey(division)) {
+                    double currentAmount = divisionAmountMap.get(division);
+                    divisionAmountMap.put(division, currentAmount + amount);
                 } else {
                     // 대분류명이 처음 나온 경우, 새로운 항목으로 추가
-                    dongAmountMap.put(division, amount);
+                    divisionAmountMap.put(division, amount);
                 }
             }
 
             // TreeMap의 엔트리를 순회하며 데이터셋에 값을 추가
-            for (Map.Entry<String, Double> entry : dongAmountMap.entrySet()) {
+            for (Map.Entry<String, Double> entry : divisionAmountMap.entrySet()) {
                 String division = entry.getKey();
                 double amount = entry.getValue();
 
@@ -105,13 +107,13 @@ public class LargeCategoryDataAnalysis extends Application {
             chartData.add(series);
 
             // 엔트리를 List에 저장
-            List<Map.Entry<String, Double>> entryList = new ArrayList<>(dongAmountMap.entrySet());
+            List<Map.Entry<String, Double>> entryList = new ArrayList<>(divisionAmountMap.entrySet());
 
             // 엔트리를 금액을 기준으로 내림차순 정렬
             entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
 
             // 대분류 데이터분석
-            int count = 0;
+            int count = 1;
             for (Map.Entry<String, Double> entry : entryList) {
                 String division = entry.getKey();
                 if(division.equals(checkDivision))

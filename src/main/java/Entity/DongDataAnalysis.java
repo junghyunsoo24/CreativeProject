@@ -26,7 +26,6 @@ public class DongDataAnalysis extends Application {
     DecimalFormat decimalFormat = new DecimalFormat("#,##0");
 
     private String dongName = ""; // 법정동명
-    private String division = "" ; //대분류명
     private double amount = 0.0; // 이용금액
 
     private XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -117,11 +116,13 @@ public class DongDataAnalysis extends Application {
             entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
 
             // 동 데이터분석
-            int count = 0;
+            int count = 1;
             for (Map.Entry<String, Double> entry : entryList) {
                 String dongName = entry.getKey();
                 if(dongName.equals(checkDongName))
                     break;
+                System.out.println(checkDongName);
+                System.out.println(dongName);
                 count++;
             }
             Label DongCheckLabel = new Label("선택한 동은 " + checkDongName + "이고 45번째 중에서 " + count + "째로 많이 소비합니다.");
