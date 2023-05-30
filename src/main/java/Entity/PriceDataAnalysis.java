@@ -1,92 +1,133 @@
 package Entity;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.text.Font;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.*;
 
-public class
-PriceDataAnalysis extends Application {
+public class PriceDataAnalysis extends Application {
+    //법정동과 이용금액을 저장
+    TreeMap<String, Double> monthAmountMap = new TreeMap<>();
+    //이용금액 출력 포맷
+    DecimalFormat decimalFormat = new DecimalFormat("#,##0");
+    private String maxDongName = ""; // 최대값 가지는 법정동명
+    private String minDongName = ""; // 최솟값 가지는 법정동명
+    private String maxLargeCategory = ""; // 최대값 가지는 대분류명
+    private String minLargeCategory = ""; // 최솟값 가지는 대분류명
+    private String maxMonth = ""; // 최대값 가지는 기준월
+    private String minMonth = ""; // 최솟값 가지는 기준월
+    private double amount = 0.0; // 이용금액
+    private final XYChart.Series<String, Number> series = new XYChart.Series<>();
+    private ObservableList<XYChart.Series<String, Number>> chartData;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
-    public void start(Stage stage) {
+    public void start(Stage primaryStage) throws Exception {
+        VBox root = new VBox();
+
+        // 데이터셋 생성
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        chartData = barChart.getData();
+
         // CSV 파일 로드
         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\sunni\\OneDrive\\바탕 화면\\창의프로젝트\\유성구_법정동별 소비금액 데이터_2020.csv"))) {
             String line;
             boolean isFirstLine = true;
 
-            // 최댓값, 최솟값 구함
-            double min = 100000, max = 0;
+            //최댓값,최솟값 구함
+            double min = 1000000000, max = 0;
 
-            // 데이터셋 생성
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-
-            // null 행 나올 때까지 파일 읽기
             while ((line = reader.readLine()) != null) {
-                // 첫 번째 행은 무시
+                //첫번째 행은 무시
                 if (isFirstLine) {
                     isFirstLine = false;
                     continue;
                 }
 
-                String[] valuesCheck = line.split(",");
-                String check = valuesCheck[4];
-                double value;
+                //한국표준산업분류에 ,때문에 케이스를 나눔
+                //ex 농업,임업및 어업
+                //ex 광업
+                String[] values = line.split(",");
+                String check = values[4];
+
                 if (check.equals("A") || check.equals("D") || check.equals("M") || check.equals("N") || check.equals("O") || check.equals("R") || check.equals("S")) {
-                    value = Double.parseDouble(valuesCheck[7]);
+                    amount = Double.parseDouble(values[7]);
                 } else if (check.equals("E")) {
-                    value = Double.parseDouble(valuesCheck[8]);
+                    amount = Double.parseDouble(values[8]);
                 } else {
-                    value = Double.parseDouble(valuesCheck[6]);
+                    amount = Double.parseDouble(values[6]);
                 }
 
-                String label = valuesCheck[3];
-                if (min > value)
-                    min = value;
-                if (max < value)
-                    max = value;
-
-                series.getData().add(new XYChart.Data<>(label, value));
+                //최댓값 최솟값 변경
+                if (min > amount) {
+                    min = amount;
+                    minDongName = values[3];
+                    minLargeCategory = values[5];
+                    minMonth = values[1];
+                }
+                if (max < amount) {
+                    max = amount;
+                    maxDongName = values[3];
+                    maxLargeCategory = values[5];
+                    maxMonth = values[1];
+                }
             }
 
-            // 결과 출력
-            System.out.println("가장 많이 쓴 금액은: " + max + "원");
-            System.out.println("가장 적게 쓴 금액은 " + min + "원");
+            //이용금액 출력포맷 변경
+            String formattedMaxAmount = decimalFormat.format(max);
+            String formattedMinAmount = decimalFormat.format(min);
 
-            // X축과 Y축 생성
-            CategoryAxis xAxis = new CategoryAxis();
-            NumberAxis yAxis = new NumberAxis();
+            // 최솟값을 나타내는 바 차트 데이터 생성
+            XYChart.Series<String, Number> minSeries = new XYChart.Series<>();
+            minSeries.setName("최솟값");
+            minSeries.getData().add(new XYChart.Data<>(minDongName, min));
 
-            // BarChart 생성
-            BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-            barChart.getData().add(series);
 
-            // 창 크기 및 타이틀 설정
-            stage.setTitle("CSV Graph Example");
-            stage.setWidth(500);
-            stage.setHeight(480);
+            // 최댓값을 나타내는 바 차트 데이터 생성
+            XYChart.Series<String, Number> maxSeries = new XYChart.Series<>();
+            maxSeries.setName("최댓값");
+            maxSeries.getData().add(new XYChart.Data<>(maxDongName, max));
 
-            // 창에 BarChart 추가
-            Scene scene = new Scene(barChart);
-            stage.setScene(scene);
-            stage.show();
 
+            // 데이터셋을 차트에 추가
+            chartData.addAll(minSeries, series, maxSeries);
+
+
+            //result
+
+            Label maxLabel = new Label("가장 많이 쓴 금액에 정보는: " + maxDongName + ", " + maxLargeCategory + ", " + maxMonth + "월, " + formattedMaxAmount + "원");
+            Label minLabel = new Label("가장 적게 쓴 금액에 정보는: " + minDongName + ", " + minLargeCategory + ", " + minMonth + "월, " + formattedMinAmount + "원");
+
+            // root에 컴포넌트 추가
+            root.getChildren().addAll(barChart, maxLabel, minLabel);
+
+            // Scene 생성
+            Scene scene = new Scene(root, 800, 600);
+
+            // Stage 설정
+            primaryStage.setTitle("2020년 법정동별 이용 금액");
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

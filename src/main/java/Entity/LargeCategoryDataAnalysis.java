@@ -118,6 +118,8 @@ public class LargeCategoryDataAnalysis extends Application {
                 String division = entry.getKey();
                 if(division.equals(checkDivision))
                     break;
+                System.out.println(division);
+                System.out.println(checkDivision);
                 count++;
             }
             Label dvisionCheckLabel = new Label("선택한 대분류는 " + checkDivision + "이고 21번째 중에서 " + count + "째로 많이 소비합니다.");

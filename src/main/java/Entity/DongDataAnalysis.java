@@ -121,8 +121,10 @@ public class DongDataAnalysis extends Application {
                 String dongName = entry.getKey();
                 if(dongName.equals(checkDongName))
                     break;
-                System.out.println(checkDongName);
+
                 System.out.println(dongName);
+                System.out.println(checkDongName);
+
                 count++;
             }
             Label DongCheckLabel = new Label("선택한 동은 " + checkDongName + "이고 45번째 중에서 " + count + "째로 많이 소비합니다.");
