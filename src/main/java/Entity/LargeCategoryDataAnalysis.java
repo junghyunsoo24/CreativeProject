@@ -1,43 +1,61 @@
 package Entity;
 
+import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.StandardChartTheme;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.data.category.DefaultCategoryDataset;
-
-import javax.swing.JFrame;
-import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.*;
 
-public class LargeCategoryDataAnalysis extends JFrame {
-    //대분류와 이용금액을 저장
-    TreeMap<String, Double> dongAmountMap = new TreeMap<>();
+public class LargeCategoryDataAnalysis extends Application {
+    //법정동과 이용금액을 저장
+    TreeMap<String, Double> divisionAmountMap = new TreeMap<>();
 
     //이용금액 출력 포맷
     DecimalFormat decimalFormat = new DecimalFormat("#,##0");
-
-    // 그래프 그리기 위한 데이터셋 생성
-    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-    private String largeCategory = ""; // 대분류명
+    private String division = "" ; //대분류명
     private double amount = 0.0; // 이용금액
 
-    public LargeCategoryDataAnalysis() {
-        // JFrame에 ChartPanel 추가
-        Font font = new Font("맑은 고딕", Font.BOLD, 5);
-        StandardChartTheme theme = new StandardChartTheme("Korean");
-        theme.setExtraLargeFont(font);
-        theme.setLargeFont(font);
-        theme.setRegularFont(font);
-        theme.setSmallFont(font);
-        ChartFactory.setChartTheme(theme);
+    private XYChart.Series<String, Number> series = new XYChart.Series<>();
+    private ObservableList<XYChart.Series<String, Number>> chartData;
+    private String checkDivision = "";
+
+    public LargeCategoryDataAnalysis(String division) {
+        checkDivision = division;
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // "다음" 버튼 생성
+        Button nextButton = new Button("다음");
+        nextButton.setOnAction(event -> {
+            // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
+            MonthDataAnalysis anotherClass = new MonthDataAnalysis();
+            try {
+                anotherClass.start(primaryStage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        VBox root = new VBox();
+
+        // 데이터셋 생성
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        chartData = barChart.getData();
 
         // CSV 파일 로드
         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\sunni\\OneDrive\\바탕 화면\\창의프로젝트\\유성구_법정동별 소비금액 데이터_2020.csv"))) {
@@ -56,91 +74,86 @@ public class LargeCategoryDataAnalysis extends JFrame {
                 //ex 광업
                 String[] values = line.split(",");
                 String check = values[4];
-                largeCategory = values[5]; // 대분류명
+                division = values[5]; // 대분류명
 
-                if(check.equals("A")||check.equals("D")||check.equals("M")||check.equals("N")||check.equals("O")||check.equals("R")||check.equals("S")){
+                if (check.equals("A") || check.equals("D") || check.equals("M") || check.equals("N") || check.equals("O") || check.equals("R") || check.equals("S")) {
                     amount = Double.parseDouble(values[7]);
-                }
-                else if(check.equals("E")) {
+                } else if (check.equals("E")) {
                     amount = Double.parseDouble(values[8]);
-                }
-                else {
+                } else {
                     amount = Double.parseDouble(values[6]);
                 }
 
                 // 대분류명이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
-                if (dongAmountMap.containsKey(largeCategory)) {
-                    double currentAmount = dongAmountMap.get(largeCategory);
-                    dongAmountMap.put(largeCategory, currentAmount + amount);
+                if (divisionAmountMap.containsKey(division)) {
+                    double currentAmount = divisionAmountMap.get(division);
+                    divisionAmountMap.put(division, currentAmount + amount);
                 } else {
                     // 대분류명이 처음 나온 경우, 새로운 항목으로 추가
-                    dongAmountMap.put(largeCategory, amount);
+                    divisionAmountMap.put(division, amount);
                 }
-
             }
 
             // TreeMap의 엔트리를 순회하며 데이터셋에 값을 추가
-            for (Map.Entry<String, Double> entry : dongAmountMap.entrySet()) {
-                String largeCategory = entry.getKey();
+            for (Map.Entry<String, Double> entry : divisionAmountMap.entrySet()) {
+                String division = entry.getKey();
                 double amount = entry.getValue();
 
                 // 데이터셋에 값 추가
-                dataset.setValue(amount, "2020년 대분류별 이용 금액", largeCategory);
+                series.getData().add(new XYChart.Data<>(division, amount));
             }
 
+            // 데이터셋을 차트에 추가
+            chartData.add(series);
+
             // 엔트리를 List에 저장
-            List<Map.Entry<String, Double>> entryList = new ArrayList<>(dongAmountMap.entrySet());
+            List<Map.Entry<String, Double>> entryList = new ArrayList<>(divisionAmountMap.entrySet());
 
             // 엔트리를 금액을 기준으로 내림차순 정렬
-            Collections.sort(entryList, (entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
+            entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
 
+            // 대분류 데이터분석
+            int count = 1;
+            for (Map.Entry<String, Double> entry : entryList) {
+                String division = entry.getKey();
+                if(division.equals(checkDivision))
+                    break;
+                System.out.println(division);
+                System.out.println(checkDivision);
+                count++;
+            }
+            Label dvisionCheckLabel = new Label("선택한 대분류는 " + checkDivision + "이고 21번째 중에서 " + count + "째로 많이 소비합니다.");
 
             // 최댓값 출력
             Map.Entry<String, Double> maxEntry = entryList.get(0);
-            String maxLargeCategory = maxEntry.getKey();
+            String maxDivision = maxEntry.getKey();
             double maxAmount = maxEntry.getValue();
             String formattedMaxAmount = decimalFormat.format(maxAmount);
-            System.out.println("가장 많이 소비한 대분류는 " + maxLargeCategory + "에 " + formattedMaxAmount + "원 입니다.");
+            Label maxLabel = new Label("가장 많이 소비한 대분류는 " + maxDivision + "에 " + formattedMaxAmount + "원 입니다.");
 
             // 최솟값 출력
             Map.Entry<String, Double> minEntry = entryList.get(entryList.size() - 1);
-            String minLargeCategory = minEntry.getKey();
+            String minDivision = minEntry.getKey();
             double minAmount = minEntry.getValue();
             String formattedMinAmount = decimalFormat.format(minAmount);
-            System.out.println("가장 적게 소비한 대분류는 " + minLargeCategory + "에 " + formattedMinAmount + "원 입니다.");
+            Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
 
-            // 차트 생성
-            JFreeChart chart = ChartFactory.createBarChart(
-                    "2020년 대분류별 이용 금액", // 차트 제목
-                    "대분류명", // X축 레이블
-                    "이용 금액", // Y축 레이블
-                    dataset // 데이터셋
-            );
+            // root에 컴포넌트 추가
+            root.getChildren().addAll(barChart, dvisionCheckLabel, maxLabel, minLabel, nextButton);
 
-            // X축 데이터의 라벨을 대분류명으로 설정
-            chart.getCategoryPlot().getDomainAxis().setLabelFont(new Font("맑은 고딕", Font.BOLD, 12));
+            // Scene 생성
+            Scene scene = new Scene(root, 800, 600);
 
-            // Y축 데이터의 라벨을 이용금액으로 설정
-            chart.getCategoryPlot().getRangeAxis().setLabelFont(new Font("맑은 고딕", Font.BOLD, 12));
-
-            // Y축 데이터의 레이블 포맷 설정
-            NumberAxis rangeAxis = (NumberAxis) chart.getCategoryPlot().getRangeAxis();
-            rangeAxis.setNumberFormatOverride(decimalFormat);
-
-            // ChartPanel 객체 생성 및 지정
-            ChartPanel chartPanel = new ChartPanel(chart);
-            add(chartPanel);
-            setTitle("2020년 대분류별 이용 금액");
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
-            setSize(500, 480);
-            setLocationRelativeTo(null);
-            setVisible(true);
+            // Stage 설정
+            primaryStage.setTitle("2020년 법정동별 이용 금액");
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        new LargeCategoryDataAnalysis();
+        launch(args);
     }
 }
