@@ -32,22 +32,28 @@ public class DongDataAnalysis extends Application {
     private XYChart.Series<String, Number> series = new XYChart.Series<>();
     private ObservableList<XYChart.Series<String, Number>> chartData;
     private String checkDongName = "";
+    private String checkDivision = "";
 
     public DongDataAnalysis(String dong, String division) {
         checkDongName = dong;
+        checkDivision = division;
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        VBox root = new VBox();
+
         // "다음" 버튼 생성
         Button nextButton = new Button("다음");
         nextButton.setOnAction(event -> {
             // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
-            LargeCategoryDataAnalysis anotherClass = new LargeCategoryDataAnalysis();
-            anotherClass.show();
+            LargeCategoryDataAnalysis anotherClass = new LargeCategoryDataAnalysis(checkDivision);
+            try {
+                anotherClass.start(primaryStage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
-
-        VBox root = new VBox();
 
         // 데이터셋 생성
         CategoryAxis xAxis = new CategoryAxis();
@@ -118,7 +124,7 @@ public class DongDataAnalysis extends Application {
                     break;
                 count++;
             }
-            Label DongCheckLabel = new Label("선택한 동은 " + checkDongName + "이고 45번째 중에서 " + checkDongName + "째로 많이 소비합니다.");
+            Label DongCheckLabel = new Label("선택한 동은 " + checkDongName + "이고 45번째 중에서 " + count + "째로 많이 소비합니다.");
 
             // 최댓값 출력
             Map.Entry<String, Double> maxEntry = entryList.get(0);
@@ -135,7 +141,8 @@ public class DongDataAnalysis extends Application {
             Label minLabel = new Label("가장 적게 소비한 동은 " + minDongName + "에 " + formattedMinAmount + "원 입니다.");
 
             // root에 컴포넌트 추가
-            root.getChildren().addAll(barChart, DongCheckLabel,  maxLabel, minLabel);
+            root.getChildren().addAll(barChart, DongCheckLabel,  maxLabel, minLabel, nextButton);
+
 
             // Scene 생성
             Scene scene = new Scene(root, 800, 600);
