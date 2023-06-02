@@ -58,7 +58,7 @@ public class LargeCategoryDataAnalysis extends Application {
         chartData = barChart.getData();
 
         // CSV 파일 로드
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\sunni\\OneDrive\\바탕 화면\\창의프로젝트\\유성구_법정동별 소비금액 데이터_2020.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/유성구_법정동별 소비금액 데이터_2020.csv"))) {
             String line;
             boolean isFirstLine = true;
 

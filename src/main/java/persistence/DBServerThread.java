@@ -31,7 +31,9 @@ public class DBServerThread implements Runnable {
         try {
             while(true) {
                 protocol = (Protocol<File>) ois.readObject();
+                System.out.println("프로토콜 전달 받음");
                 execute(protocol);
+                System.out.println("명령 수행 완료");
             }
         } catch (SocketException e) {
             //pass
@@ -45,8 +47,11 @@ public class DBServerThread implements Runnable {
         DBControl control = new DBControl();
 
         if (protocol.getQUERY() == ProtocolQuery.insert) {
+            System.out.println("DB INSERT 명령 확인");
             control.DBUpdateRequest(protocol.getDATA());
+            System.out.println("DB INSERT 완료");
         } else {
+            System.out.println("DB SELECT 명령 확인");
             Protocol<List<DTO>> responseProtocol;
             List<DTO> data = null;
 
@@ -66,6 +71,7 @@ public class DBServerThread implements Runnable {
 
             responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, data);
             oos.writeObject(responseProtocol);
+            System.out.println("DTO LIST 반환 완료");
         }
     }
 }
