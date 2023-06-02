@@ -46,7 +46,7 @@ public class LargeCategoryDataAnalysis extends Application {
         Button nextButton = new Button("다음");
         nextButton.setOnAction(event -> {
             // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
-            MonthDataAnalysis anotherClass = new MonthDataAnalysis();
+            MonthDataAnalysis anotherClass = new MonthDataAnalysis(DB);
             try {
                 anotherClass.start(primaryStage);
             } catch (Exception e) {
@@ -121,7 +121,7 @@ public class LargeCategoryDataAnalysis extends Application {
         Scene scene = new Scene(root, 800, 600);
 
         // Stage 설정
-        primaryStage.setTitle("2020년 법정동별 이용 금액");
+        primaryStage.setTitle("법정동별 이용 금액");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
