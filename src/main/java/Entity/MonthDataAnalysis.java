@@ -47,7 +47,7 @@ public class MonthDataAnalysis extends Application {
         Button nextButton = new Button("다음");
         nextButton.setOnAction(event -> {
             // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
-            PriceDataAnalysis anotherClass = new PriceDataAnalysis();
+            PriceDataAnalysis anotherClass = new PriceDataAnalysis(DB);
             try {
                 anotherClass.start(primaryStage);
             } catch (Exception e) {
@@ -66,7 +66,7 @@ public class MonthDataAnalysis extends Application {
         // DB에서 월별 소비금액 데이터 추출
         List<DTO> dtoList = DB.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
-            //대분류명
+            //월
             String month = String.valueOf(((ConsumptionAmountDTO) dto).getMonth());
             // 이용금액
             double amount = ((ConsumptionAmountDTO) dto).getAmount();
