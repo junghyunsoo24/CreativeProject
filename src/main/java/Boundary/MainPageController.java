@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import Enum.Town;
 import Enum.Village;
 import Enum.Sectors;
+import persistence.DBClient;
 
 import java.io.IOException;
 
@@ -33,9 +34,13 @@ public class MainPageController {
     private Button startBtn;
     @FXML
     private Button loginBtn;
+
+    private DBClient db;
+
     public void initialize() {
         initChoiceBox();
         choiceBoxAction();
+        db = new DBClient("localhost", 3000);
     }
     private void initChoiceBox()
     {
@@ -82,7 +87,7 @@ public class MainPageController {
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Choose Page");
 
-        DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors);
+        DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, db, Village.getList().size());
         dongAnalysis.start(primaryStage);
     }
 
