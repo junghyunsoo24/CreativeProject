@@ -16,10 +16,7 @@ import persistence.DTO.ConsumptionAmountDTO;
 import persistence.DTO.DTO;
 import persistence.ProtocolQuery;
 import persistence.ProtocolType;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import Enum.Sectors;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -29,9 +26,6 @@ public class DongDataAnalysis extends Application {
 
     //이용금액 출력 포맷
     DecimalFormat decimalFormat = new DecimalFormat("#,##0");
-
-    private String dongName = ""; // 법정동명
-    private double amount = 0.0; // 이용금액
 
     private XYChart.Series<String, Number> series = new XYChart.Series<>();
     private ObservableList<XYChart.Series<String, Number>> chartData;
@@ -55,7 +49,7 @@ public class DongDataAnalysis extends Application {
         Button nextButton = new Button("다음");
         nextButton.setOnAction(event -> {
             // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
-            LargeCategoryDataAnalysis anotherClass = new LargeCategoryDataAnalysis(checkDivision);
+            LargeCategoryDataAnalysis anotherClass = new LargeCategoryDataAnalysis(checkDivision, DB, Sectors.getList().size());
             try {
                 anotherClass.start(primaryStage);
             } catch (Exception e) {
@@ -72,8 +66,10 @@ public class DongDataAnalysis extends Application {
         // DB에서 법정동별 소비금액 데이터 추출
         List<DTO> dtoList = DB.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
-            dongName = ((ConsumptionAmountDTO) dto).getDong_name();
-            amount = ((ConsumptionAmountDTO) dto).getAmount();
+            // 법정동명
+            String dongName = ((ConsumptionAmountDTO) dto).getDong_name();
+            // 이용금액
+            double amount = ((ConsumptionAmountDTO) dto).getAmount();
 
             // 법정동명이 이미 TreeMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = dongAmountMap.containsKey(dongName) ? dongAmountMap.get(dongName) : 0;
@@ -100,7 +96,7 @@ public class DongDataAnalysis extends Application {
 
         // 동 데이터분석
         int count = 0;
-        for (String currentDongName = entryList.get(count++).getKey(); count < entryList.size() && !currentDongName.equals(selectedDongName); currentDongName = entryList.get(count++).getKey()) {
+        for (String currentDongName = entryList.get(count).getKey(); count < entryList.size() && !currentDongName.equals(selectedDongName); currentDongName = entryList.get(++count).getKey()) {
             //pass
         }
         Label DongCheckLabel = new Label("선택한 동은 " + selectedDongName + "이고 " + DONG_COUNT + "번째 중에서 " + (count + 1) + "째로 많이 소비합니다.");
