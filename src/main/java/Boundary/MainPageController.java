@@ -1,5 +1,6 @@
 package Boundary;
 
+import Entity.DongDataAnalysis;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import Enum.Town;
 import Enum.Village;
 import Enum.Sectors;
+import persistence.DBClient;
 
 import java.io.IOException;
 
@@ -32,9 +34,13 @@ public class MainPageController {
     private Button startBtn;
     @FXML
     private Button loginBtn;
+
+    private DBClient db;
+
     public void initialize() {
         initChoiceBox();
         choiceBoxAction();
+        db = new DBClient("localhost", 3000);
     }
     private void initChoiceBox()
     {
@@ -70,7 +76,7 @@ public class MainPageController {
     }
 
     @FXML
-    private void handleStartBtn() throws IOException
+    private void handleStartBtn() throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
@@ -80,6 +86,8 @@ public class MainPageController {
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Statistics Page");
+        DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, db, Village.getList().size());
+        dongAnalysis.start(primaryStage);
     }
 
     @FXML
@@ -96,6 +104,4 @@ public class MainPageController {
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
     }
-
-
 }

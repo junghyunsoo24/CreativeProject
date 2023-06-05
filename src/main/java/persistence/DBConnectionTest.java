@@ -10,8 +10,8 @@ import java.util.List;
 
 public class DBConnectionTest {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        DBClient client = new DBClient("192.168.0.3", 3000);
-        //client.DBUpdateRequest(new File("src/main/java/유성구_법정동별 소비금액 데이터_2020.csv"));
+        DBClient client = new DBClient("localhost", 3000);
+        //client.DBUpdateRequest(new File("src/main/java/유성구_법정동별 외지인(내국인) 소비 금액 데이터_2020.csv"));
         List<DTO> list = client.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for(DTO e : list) {
             System.out.println(e.toString());
