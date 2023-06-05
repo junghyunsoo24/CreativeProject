@@ -31,7 +31,10 @@ public class LoginPageController
     {
         String id = input_id.getText();
         String pwd = input_pwd.getText();
-        Boolean loginSuccess = false;
+        Boolean loginSuccess = true; // 원래 false여야 함 로그인 기능 미연결로 확인용
+
+        //로그인 모듈 필요 @TODO
+
         //로그인 Control
         if(loginSuccess)
         {
@@ -50,8 +53,8 @@ public class LoginPageController
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("DBupdate Page");
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
+        primaryStage.setWidth(600);
+        primaryStage.setHeight(400);
         //mainPageController.initialize();
     }
 
@@ -67,8 +70,8 @@ public class LoginPageController
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Main Page");
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
+        primaryStage.setWidth(600);
+        primaryStage.setHeight(400);
         //mainPageController.initialize();
     }
 }
