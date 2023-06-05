@@ -79,14 +79,13 @@ public class MainPageController {
     private void handleStartBtn() throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/ChoosePage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
         Parent otherPage = loader.load();
 
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Choose Page");
-
+        primaryStage.setTitle("Statistics Page");
         DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, db, Village.getList().size());
         dongAnalysis.start(primaryStage);
     }
@@ -102,5 +101,8 @@ public class MainPageController {
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Login Page");
+        primaryStage.setWidth(600);
+        primaryStage.setHeight(400);
     }
 }
+

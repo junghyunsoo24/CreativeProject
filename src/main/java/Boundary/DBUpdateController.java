@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 public class DBUpdateController
 {
     @FXML
@@ -19,6 +20,7 @@ public class DBUpdateController
     @FXML
     private TextField input_filePath;
 
+    private String filepath;
     public void initialize() {
 
     }
@@ -35,14 +37,14 @@ public class DBUpdateController
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Main Page");
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
+        primaryStage.setWidth(600);
+        primaryStage.setHeight(400);
         //mainPageController.initialize();
     }
     @FXML
     private void handleUpdateBtn() throws IOException
     {
-
+            filepath = input_filePath.getText();
 
         //파일 업데이트 호출
     }

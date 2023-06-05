@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <Pane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <TextField alignment="CENTER" text="최종판단" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
+   </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="112.0" layoutY="210.0" mnemonicParsing="false" text="처음으로">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Text layoutX="-28.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="해당 동에 해당 업종은 @@ 합니다">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
+
