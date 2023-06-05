@@ -75,4 +75,3 @@ public class LoginPageController
         //mainPageController.initialize();
     }
 }
-
