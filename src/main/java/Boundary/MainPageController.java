@@ -105,3 +105,4 @@ public class MainPageController {
         primaryStage.setHeight(400);
     }
 }
+

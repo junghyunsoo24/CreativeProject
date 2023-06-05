@@ -54,3 +54,4 @@ public class StatisticsPageController
         //mainPageController.initialize();
     }
 }
+
