@@ -18,12 +18,9 @@ public class DBUpdateController
     @FXML
     private Button updateBtn;
     @FXML
-    private TextField input_filePath;
-
-    private String filepath;
-    public void initialize() {
-
-    }
+    private Button uploadBtn;
+    @FXML
+    private TextField fileName;
 
     @FXML
     private void handleBackBtn() throws IOException
@@ -42,10 +39,10 @@ public class DBUpdateController
         //mainPageController.initialize();
     }
     @FXML
-    private void handleUpdateBtn() throws IOException
+    private void handleUpdateBtn()
     {
-            filepath = input_filePath.getText();
 
+            //filepath = input_filePath.getText();
         //파일 업데이트 호출
     }
 }
