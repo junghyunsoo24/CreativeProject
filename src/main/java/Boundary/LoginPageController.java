@@ -1,10 +1,12 @@
 package Boundary;
 
+import Entity.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,7 +19,7 @@ public class LoginPageController
     @FXML
     private TextField input_id;
     @FXML
-    private TextField input_pwd;
+    private PasswordField input_pwd;
     @FXML
     private Button backBtn;
     @FXML
@@ -32,16 +34,10 @@ public class LoginPageController
     {
         String id = input_id.getText();
         String pwd = input_pwd.getText();
-        Boolean loginSuccess = true; // 원래 false여야 함 로그인 기능 미연결로 확인용
 
-        //로그인 모듈 필요 @TODO
-
-        //로그인 Control
-        if(loginSuccess)
-        {
+        if (Admin.idVerification(id) && Admin.passwordVerification(pwd)) {
             moveToDBUpdatePage();
         }
-
     }
     private void moveToDBUpdatePage()throws IOException
     {
