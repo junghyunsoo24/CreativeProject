@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import Enum.Town;
 import Enum.Village;
 import Enum.Sectors;
-import persistence.DBClient;
 
 import java.io.IOException;
 

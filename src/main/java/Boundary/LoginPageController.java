@@ -1,6 +1,6 @@
 package Boundary;
 
-import Entity.Admin;
+import Control.AdminLoginControl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,12 +23,11 @@ public class LoginPageController
     @FXML
     private Button loginBtn;
     @FXML
-    private void handleloginBtn() throws IOException
-    {
+    private void handleloginBtn() throws IOException, ClassNotFoundException {
         String id = input_id.getText();
         String pwd = input_pwd.getText();
 
-        if (Admin.idVerification(id) && Admin.passwordVerification(pwd)) {
+        if (AdminLoginControl.adminVerification(id, pwd)) {
             moveToDBUpdatePage();
         }
     }

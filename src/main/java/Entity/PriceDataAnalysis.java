@@ -7,20 +7,15 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.Main;
-import persistence.DBClient;
 import persistence.DTO.ConsumptionAmountDTO;
 import persistence.DTO.DTO;
-import persistence.ProtocolQuery;
-import persistence.ProtocolType;
+import persistence.Protocol.ProtocolQuery;
+import persistence.Protocol.ProtocolType;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.*;
 
