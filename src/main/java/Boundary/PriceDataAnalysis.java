@@ -1,5 +1,6 @@
-package Entity;
+package Boundary;
 
+import Control.AnalysisControl;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -51,7 +52,7 @@ public class PriceDataAnalysis extends Application {
         double max = 0;
         double min = Integer.MAX_VALUE;
 
-        List<DTO> dtoList = Main.getDB().selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
             // 이용금액
             double amount = ((ConsumptionAmountDTO) dto).getAmount();

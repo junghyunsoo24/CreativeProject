@@ -1,5 +1,6 @@
-package Entity;
+package Boundary;
 
+import Control.AnalysisControl;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -11,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.Main;
 import persistence.DTO.ConsumptionAmountDTO;
 import persistence.DTO.DTO;
 import persistence.Protocol.ProtocolQuery;
@@ -62,7 +62,7 @@ public class DongDataAnalysis extends Application {
         chartData = barChart.getData();
 
         // DB에서 법정동별 소비금액 데이터 추출
-        List<DTO> dtoList = Main.getDB().selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
             // 법정동명
             String dongName = ((ConsumptionAmountDTO) dto).getDong_name();

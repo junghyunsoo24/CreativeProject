@@ -1,9 +1,16 @@
 package Control;
 
+import Entity.Analysis;
 import Entity.Statistics;
 import Enum.Sectors; //업종
 import Enum.Town; //시
 import Enum.Village; //동
+import persistence.DTO.DTO;
+import persistence.Protocol.ProtocolQuery;
+import persistence.Protocol.ProtocolType;
+
+import java.io.IOException;
+import java.util.List;
 
 
 public class AnalysisControl {
@@ -34,4 +41,8 @@ public class AnalysisControl {
         myStatistics.analyzeConsumptionByMonth();
     }
 
+    public static List<DTO> selectRequest(ProtocolQuery query, ProtocolType type) throws IOException, ClassNotFoundException {
+        Analysis analysis = new Analysis();
+        return analysis.select(query, type);
+    }
 }
