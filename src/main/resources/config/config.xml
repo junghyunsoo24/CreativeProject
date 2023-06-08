@@ -29,5 +29,6 @@
         <mapper resource="sqlmapper/consumptionAmountForeigner.xml"/>
         <mapper resource="sqlmapper/consumptionAmountOutsider.xml"/>
         <mapper resource="sqlmapper/dailyFloatingPopulation.xml"/>
+        <mapper resource="sqlmapper/admin.xml"/>
     </mappers>
 </configuration>

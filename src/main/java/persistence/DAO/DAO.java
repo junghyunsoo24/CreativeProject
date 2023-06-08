@@ -22,8 +22,12 @@ public abstract class DAO<T> {
         return list;
     }
     public abstract List<T> selectAll();
-    public abstract List<T> selectOrderByMonth();
-    public abstract List<T> selectOrderByDongName();
+    public List<T> selectOrderByMonth() {
+        return null;
+    }
+    public List<T> selectOrderByDongName() {
+        return null;
+    }
 
     protected void insert(String statement, List<T> list) {
         SqlSession session = sqlSessionFactory.openSession();

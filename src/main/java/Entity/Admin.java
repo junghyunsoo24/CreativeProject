@@ -1,11 +1,10 @@
 package Entity;
 
-public class Admin {
-    public static boolean idVerification(String id) {
-        return "admin".equals(id);
-    }
+import org.example.Main;
+import java.io.IOException;
 
-    public static boolean passwordVerification(String password) {
-        return "admin".equals(password);
+public class Admin {
+    public Boolean adminVerification(String id, String password) throws IOException, ClassNotFoundException {
+        return Main.getDB().adminVerification(id, password);
     }
 }
