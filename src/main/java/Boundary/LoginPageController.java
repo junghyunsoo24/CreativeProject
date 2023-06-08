@@ -14,8 +14,6 @@ import java.io.IOException;
 
 public class LoginPageController
 {
-
-
     @FXML
     private TextField input_id;
     @FXML
@@ -24,11 +22,6 @@ public class LoginPageController
     private Button backBtn;
     @FXML
     private Button loginBtn;
-
-    public void initialize() {
-
-    }
-
     @FXML
     private void handleloginBtn() throws IOException
     {

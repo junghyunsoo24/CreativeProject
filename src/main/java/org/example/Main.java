@@ -6,13 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import persistence.DBClient;
 
 public class Main extends Application {
 
     private static Stage primaryStageObj;
+    private static DBClient db;
+
+    public static DBClient getDB() {
+        return db;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        db = new DBClient("localhost", 3000);
         primaryStageObj = primaryStage;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/MainPage.fxml"));

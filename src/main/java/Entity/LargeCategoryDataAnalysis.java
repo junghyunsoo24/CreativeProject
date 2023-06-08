@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.Main;
 import persistence.DBClient;
 import persistence.DTO.ConsumptionAmountDTO;
 import persistence.DTO.DTO;
@@ -30,13 +31,11 @@ public class LargeCategoryDataAnalysis extends Application {
     private XYChart.Series<String, Number> series = new XYChart.Series<>();
     private ObservableList<XYChart.Series<String, Number>> chartData;
     private String selectedDivision = "";
-    private final DBClient DB;
     private final int CATEGORY_COUNT;
 
 
-    public LargeCategoryDataAnalysis(String division, DBClient db, int categoryCount) {
+    public LargeCategoryDataAnalysis(String division, int categoryCount) {
         selectedDivision = division;
-        DB = db;
         CATEGORY_COUNT = categoryCount;
     }
 
@@ -46,7 +45,7 @@ public class LargeCategoryDataAnalysis extends Application {
         Button nextButton = new Button("다음");
         nextButton.setOnAction(event -> {
             // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
-            MonthDataAnalysis anotherClass = new MonthDataAnalysis(DB);
+            MonthDataAnalysis anotherClass = new MonthDataAnalysis();
             try {
                 anotherClass.start(primaryStage);
             } catch (Exception e) {
@@ -63,7 +62,7 @@ public class LargeCategoryDataAnalysis extends Application {
         chartData = barChart.getData();
 
         // DB에서 표준산업대분류별 소비금액 데이터 추출
-        List<DTO> dtoList = DB.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
+        List<DTO> dtoList = Main.getDB().selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
             //대분류명
             String division = ((ConsumptionAmountDTO) dto).getIndustry_name();

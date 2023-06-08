@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.Main;
 import persistence.DBClient;
 import persistence.DTO.ConsumptionAmountDTO;
 import persistence.DTO.DTO;
@@ -37,11 +38,6 @@ public class PriceDataAnalysis extends Application {
     private double amount = 0.0; // 이용금액
     private final XYChart.Series<String, Number> series = new XYChart.Series<>();
     private ObservableList<XYChart.Series<String, Number>> chartData;
-    private final DBClient DB;
-
-    public PriceDataAnalysis(DBClient db) {
-        DB = db;
-    }
 
     public static void main(String[] args) {
         launch(args);
@@ -60,7 +56,7 @@ public class PriceDataAnalysis extends Application {
         double max = 0;
         double min = Integer.MAX_VALUE;
 
-        List<DTO> dtoList = DB.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
+        List<DTO> dtoList = Main.getDB().selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
             // 이용금액
             double amount = ((ConsumptionAmountDTO) dto).getAmount();
