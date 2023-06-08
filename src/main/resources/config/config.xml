@@ -5,10 +5,10 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias alias="CADTO" type="persistence.DTO.ConsumptionAmountDTO"/>
-        <typeAlias alias="CAFDTO" type="persistence.DTO.ConsumptionAmountForeignerDTO"/>
-        <typeAlias alias="CAODTO" type="persistence.DTO.ConsumptionAmountOutsiderDTO"/>
-        <typeAlias alias="DFPDTO" type="persistence.DTO.DailyFloatingPopulationDTO"/>
+        <typeAlias alias="CADTO" type="backend.DB.DTO.ConsumptionAmountDTO"/>
+        <typeAlias alias="CAFDTO" type="backend.DB.DTO.ConsumptionAmountForeignerDTO"/>
+        <typeAlias alias="CAODTO" type="backend.DB.DTO.ConsumptionAmountOutsiderDTO"/>
+        <typeAlias alias="DFPDTO" type="backend.DB.DTO.DailyFloatingPopulationDTO"/>
     </typeAliases>
 
     <environments default="development">
