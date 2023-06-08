@@ -1,6 +1,7 @@
 package persistence.DTO;
 
 import com.opencsv.exceptions.CsvException;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class ConsumptionAmountForeignerDTO extends DTO implements Serializable {
     private int id;
     private int year;
@@ -27,24 +29,6 @@ public class ConsumptionAmountForeignerDTO extends DTO implements Serializable {
     private String period;
     private double count;
     private double amount;
-
-    public ConsumptionAmountForeignerDTO(int id, int year, int month, String metropolitan_code, String metropolitan_name, String city_code, String city_name, String dong_code, String dong_name, String industry_code, String industry_name, String nationality, String period, double count, double amount) {
-        this.id = id;
-        this.year = year;
-        this.month = month;
-        this.metropolitan_code = metropolitan_code;
-        this.metropolitan_name = metropolitan_name;
-        this.city_code = city_code;
-        this.city_name = city_name;
-        this.dong_code = dong_code;
-        this.dong_name = dong_name;
-        this.industry_code = industry_code;
-        this.industry_name = industry_name;
-        this.nationality = nationality;
-        this.period = period;
-        this.count = count;
-        this.amount = amount;
-    }
 
     public ConsumptionAmountForeignerDTO(String[] line) throws IOException, CsvException {
         super(line);

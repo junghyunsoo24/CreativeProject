@@ -50,6 +50,5 @@ public abstract class DAO<T> {
     }
 
     public abstract void insertAll(List<T> list);
-
     public abstract void insertOne(T element);
 }
