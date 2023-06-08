@@ -4,30 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.DFPMapper">
-    <select id="selectAll" resultType="persistence.DTO.DailyFloatingPopulationDTO">
+    <select id="selectAll" resultType="backend.DB.DTO.DailyFloatingPopulationDTO">
         SELECT *
         FROM daily_floating_population
     </select>
 
-    <select id="selectOrderByMonth" resultType="persistence.DTO.DailyFloatingPopulationDTO">
+    <select id="selectOrderByMonth" resultType="backend.DB.DTO.DailyFloatingPopulationDTO">
         SELECT *
         FROM daily_floating_population
         ORDER BY month
     </select>
 
-    <select id="selectOrderByDongName" resultType="persistence.DTO.DailyFloatingPopulationDTO">
+    <select id="selectOrderByDongName" resultType="backend.DB.DTO.DailyFloatingPopulationDTO">
         SELECT *
         FROM daily_floating_population
         ORDER BY dong_name
     </select>
 
-    <select id="selectOrderByDFP" resultType="persistence.DTO.DailyFloatingPopulationDTO">
+    <select id="selectOrderByDFP" resultType="backend.DB.DTO.DailyFloatingPopulationDTO">
         SELECT *
         FROM daily_floating_population
         ORDER BY daily_floating_population
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="persistence.DTO.DailyFloatingPopulationDTO">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="backend.DB.DTO.DailyFloatingPopulationDTO">
         INSERT INTO daily_floating_population(year, month, dong_code, dong_name, time, daily_floating_population)
         VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{time}, #{daily_floating_population})
     </insert>

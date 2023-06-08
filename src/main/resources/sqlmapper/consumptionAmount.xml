@@ -4,30 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.CAMapper">
-    <select id="selectAll" resultType="persistence.DTO.ConsumptionAmountDTO">
+    <select id="selectAll" resultType="backend.DB.DTO.ConsumptionAmountDTO">
         SELECT *
         FROM consumption_amount
     </select>
 
-    <select id="selectOrderByMonth" resultType="persistence.DTO.ConsumptionAmountDTO">
+    <select id="selectOrderByMonth" resultType="backend.DB.DTO.ConsumptionAmountDTO">
         SELECT *
         FROM consumption_amount
         ORDER BY month
     </select>
 
-    <select id="selectOrderByDongName" resultType="persistence.DTO.ConsumptionAmountDTO">
+    <select id="selectOrderByDongName" resultType="backend.DB.DTO.ConsumptionAmountDTO">
         SELECT *
         FROM consumption_amount
         ORDER BY dong_name
     </select>
 
-    <select id="selectOrderByIndustryCode" resultType="persistence.DTO.ConsumptionAmountDTO">
+    <select id="selectOrderByIndustryCode" resultType="backend.DB.DTO.ConsumptionAmountDTO">
         SELECT *
         FROM consumption_amount
         ORDER BY industry_code
     </select>
 
-    <select id="selectOrderByAmount" resultType="persistence.DTO.ConsumptionAmountDTO">
+    <select id="selectOrderByAmount" resultType="backend.DB.DTO.ConsumptionAmountDTO">
         SELECT *
         FROM consumption_amount
         ORDER BY amount
