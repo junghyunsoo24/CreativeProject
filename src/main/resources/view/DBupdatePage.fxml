@@ -27,7 +27,7 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-               <Button fx:id="uploadBtn" layoutX="83.0" layoutY="27.0" mnemonicParsing="false" text="업로드">
+               <Button fx:id="uploadBtn" layoutX="83.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleUploadBtn" text="업로드">
                   <font>
                      <Font size="14.0" />
                   </font>
