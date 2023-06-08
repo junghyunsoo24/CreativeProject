@@ -1,10 +1,13 @@
 package Control;
 
+
 import Entity.Admin;
 
+import java.io.IOException;
 
 public class AdminLoginControl {
-    public boolean loginRequest(String id, String password) {
-        return Admin.idVerification(id) && Admin.passwordVerification(password);
+    public static Boolean adminVerification(String id, String password) throws IOException, ClassNotFoundException {
+        Admin admin = new Admin();
+        return admin.adminVerification(id, password);
     }
 }

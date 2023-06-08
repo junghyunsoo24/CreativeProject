@@ -1,5 +1,6 @@
 package Boundary;
 
+import Control.DBUpdateControl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class DBUpdateController
     }
     @FXML
     private void handleUpdateBtn() throws IOException {
-        Main.getDB().DBUpdateRequest(file);
+        DBUpdateControl.DBUpdate(file);
     }
 
     @FXML
