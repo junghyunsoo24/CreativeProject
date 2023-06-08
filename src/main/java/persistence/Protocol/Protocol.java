@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Protocol;
 
 import lombok.Getter;
 

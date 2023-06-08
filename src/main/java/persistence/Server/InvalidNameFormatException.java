@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Server;
 
 public class InvalidNameFormatException extends Exception {
     public InvalidNameFormatException() {}

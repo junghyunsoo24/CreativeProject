@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Protocol;
 
 import java.io.Serializable;
 
@@ -10,5 +10,6 @@ public enum ProtocolQuery implements Serializable {
     selectOrderByIndustryCode,
     selectOrderByAmount,
     selectOrderByDFP,
+    findByIdAndPassword,
     response
 }

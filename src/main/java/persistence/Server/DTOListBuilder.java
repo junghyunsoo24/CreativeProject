@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Server;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;

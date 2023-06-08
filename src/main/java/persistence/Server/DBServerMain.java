@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Server;
 
 public class DBServerMain {
     public static void main(String[] args) {

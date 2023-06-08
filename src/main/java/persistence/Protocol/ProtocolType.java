@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Protocol;
 
 import java.io.Serializable;
 
@@ -8,5 +8,6 @@ public enum ProtocolType implements Serializable {
     CAF,
     CAO,
     DFP,
+    admin,
     response
 }
