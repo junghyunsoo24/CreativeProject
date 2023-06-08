@@ -1,16 +1,12 @@
-package Control;
+package persistence.Server;
 
-import Entity.Data;
 import com.opencsv.exceptions.CsvException;
-import persistence.DAO.ConsumptionAmountDAO;
-import persistence.DAO.ConsumptionAmountForeignerDAO;
-import persistence.DAO.ConsumptionAmountOutsiderDAO;
-import persistence.DAO.DailyFloatingPopulationDAO;
+import persistence.DAO.*;
+import persistence.DTO.AdminDTO;
 import persistence.DTO.DTO;
-import persistence.InvalidNameFormatException;
 import persistence.MyBatisConnectionFactory;
-import persistence.Protocol;
-import persistence.ProtocolType;
+import persistence.Protocol.Protocol;
+import persistence.Protocol.ProtocolType;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,20 +17,39 @@ public class DBControl {
     private final ConsumptionAmountForeignerDAO CAFDAO;
     private final ConsumptionAmountOutsiderDAO CAODAO;
     private final DailyFloatingPopulationDAO DFPDAO;
+    private final AdminDAO adminDAO;
 
     public DBControl() {
         CADAO = new ConsumptionAmountDAO(MyBatisConnectionFactory.getSqlSessionFactory());
         CAFDAO = new ConsumptionAmountForeignerDAO(MyBatisConnectionFactory.getSqlSessionFactory());
         CAODAO = new ConsumptionAmountOutsiderDAO(MyBatisConnectionFactory.getSqlSessionFactory());
         DFPDAO = new DailyFloatingPopulationDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+        adminDAO = new AdminDAO(MyBatisConnectionFactory.getSqlSessionFactory());
     }
 
+    @SuppressWarnings("unchecked")
     public void DBUpdateRequest(File csv) throws IOException, CsvException, InvalidNameFormatException {
-        Data data = new Data(csv);
-        data.DBUpdate();
+        List<DTO> list;
+        final String FILE_NAME = csv.getName();
+
+        if (FILE_NAME.contains("유성구_법정동별 소비금액 데이터")) {
+            list = new DTOListBuilder(csv).CAListBuild();
+            CADAO.insertAll(list);
+        } else if (FILE_NAME.contains("유성구_외국인소비정보")) {
+            list = new DTOListBuilder(csv, "EUC-KR").CAFListBuild();
+            CAFDAO.insertAll(list);
+        } else if (FILE_NAME.contains("유성구_법정동별 외지인(내국인) 소비 금액 데이터")) {
+            list = new DTOListBuilder(csv).CAOListBuild();
+            CAODAO.insertAll(list);
+        } else if (FILE_NAME.contains("법정동별 일평균 유동인구 데이터")) {
+            list = new DTOListBuilder(csv).DFPListBuild();
+            DFPDAO.insertAll(list);
+        } else {
+            throw new InvalidNameFormatException("[치명적 오류] 파일 이름 형식이 잘못되었습니다.");
+        }
     }
 
-    public List<DTO> selectAllRequest(Protocol<File> protocol) {
+    public List<DTO> selectAllRequest(Protocol<?> protocol) {
         List<DTO> result = null;
 
         if (protocol.getTYPE() == ProtocolType.CA) {
@@ -50,7 +65,7 @@ public class DBControl {
         return result;
     }
 
-    public List<DTO> selectOrderByMonthRequest(Protocol<File> protocol) {
+    public List<DTO> selectOrderByMonthRequest(Protocol<?> protocol) {
         List<DTO> result = null;
 
         if (protocol.getTYPE() == ProtocolType.CA) {
@@ -66,7 +81,7 @@ public class DBControl {
         return result;
     }
 
-    public List<DTO> selectOrderByDongNameRequest(Protocol<File> protocol) {
+    public List<DTO> selectOrderByDongNameRequest(Protocol<?> protocol) {
         List<DTO> result = null;
 
         if (protocol.getTYPE() == ProtocolType.CA) {
@@ -82,7 +97,7 @@ public class DBControl {
         return result;
     }
 
-    public List<DTO> selectOrderByIndustryCodeRequest(Protocol<File> protocol) {
+    public List<DTO> selectOrderByIndustryCodeRequest(Protocol<?> protocol) {
         List<DTO> result = null;
 
         if (protocol.getTYPE() == ProtocolType.CA) {
@@ -96,7 +111,7 @@ public class DBControl {
         return result;
     }
 
-    public List<DTO> selectOrderByAmountRequest(Protocol<File> protocol) {
+    public List<DTO> selectOrderByAmountRequest(Protocol<?> protocol) {
         List<DTO> result = null;
 
         if (protocol.getTYPE() == ProtocolType.CA) {
@@ -112,5 +127,9 @@ public class DBControl {
 
     public List<DTO> selectOrderByDFPRequest() {
         return DFPDAO.selectOrderByDFP();
+    }
+
+    public Boolean findByIdAndPassword(AdminDTO target) {
+        return adminDAO.findByIdAndPassword(target);
     }
 }

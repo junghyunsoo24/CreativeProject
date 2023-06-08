@@ -1,8 +1,11 @@
-package persistence;
+package persistence.Server;
 
-import Control.DBControl;
 import com.opencsv.exceptions.CsvException;
+import persistence.DTO.AdminDTO;
 import persistence.DTO.DTO;
+import persistence.Protocol.Protocol;
+import persistence.Protocol.ProtocolQuery;
+import persistence.Protocol.ProtocolType;
 
 import java.io.*;
 import java.net.Socket;
@@ -26,30 +29,35 @@ public class DBServerThread implements Runnable {
 
     @Override
     public void run() {
-        Protocol<File> protocol;
-
+        Protocol<?> protocol;
+        
         try {
-            while(true) {
-                protocol = (Protocol<File>) ois.readObject();
+            while (true) {
+                protocol = (Protocol<?>) ois.readObject();
                 System.out.println("프로토콜 전달 받음");
                 execute(protocol);
                 System.out.println("명령 수행 완료");
             }
         } catch (SocketException e) {
             //pass
-        } catch (IOException | ClassNotFoundException | InvalidNameFormatException | CsvException e) {
+        } catch (InvalidNameFormatException | IOException | CsvException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
-    private void execute(Protocol<File> protocol) throws InvalidNameFormatException, IOException, CsvException {
+    private void execute(Protocol<?> protocol) throws InvalidNameFormatException, IOException, CsvException {
         DBControl control = new DBControl();
 
         if (protocol.getQUERY() == ProtocolQuery.insert) {
             System.out.println("DB INSERT 명령 확인");
-            control.DBUpdateRequest(protocol.getDATA());
+            control.DBUpdateRequest((File) protocol.getDATA());
             System.out.println("DB INSERT 완료");
+        } else if (protocol.getQUERY() == ProtocolQuery.findByIdAndPassword) {
+            System.out.println("관리자 검증 명령 확인");
+            Boolean data = control.findByIdAndPassword((AdminDTO) protocol.getDATA());
+            Protocol<Boolean> responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, data);
+            oos.writeObject(responseProtocol);
+            System.out.println("관리자 검증 완료");
         } else {
             System.out.println("DB SELECT 명령 확인");
             Protocol<List<DTO>> responseProtocol;
@@ -71,7 +79,7 @@ public class DBServerThread implements Runnable {
 
             responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, data);
             oos.writeObject(responseProtocol);
-            System.out.println("DTO LIST 반환 완료");
+            System.out.println("SELECT 완료");
         }
     }
 }
