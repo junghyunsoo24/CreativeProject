@@ -5,9 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.Main;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -18,12 +21,11 @@ public class DBUpdateController
     @FXML
     private Button updateBtn;
     @FXML
-    private TextField input_filePath;
-
-    private String filepath;
-    public void initialize() {
-
-    }
+    private Button uploadBtn;
+    @FXML
+    private Text fileName;
+    private Stage primaryStage;
+    private File file;
 
     @FXML
     private void handleBackBtn() throws IOException
@@ -42,10 +44,18 @@ public class DBUpdateController
         //mainPageController.initialize();
     }
     @FXML
-    private void handleUpdateBtn() throws IOException
-    {
-            filepath = input_filePath.getText();
+    private void handleUpdateBtn() throws IOException {
+        Main.getDB().DBUpdateRequest(file);
+    }
 
-        //파일 업데이트 호출
+    @FXML
+    private void handleUploadBtn() {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("csv 파일", "*.csv"));
+        file = fc.showOpenDialog(primaryStage);
+
+        if (file != null) {
+            fileName.setText(file.getName());
+        }
     }
 }

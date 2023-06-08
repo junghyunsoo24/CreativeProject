@@ -35,12 +35,9 @@ public class MainPageController {
     @FXML
     private Button loginBtn;
 
-    private DBClient db;
-
     public void initialize() {
         initChoiceBox();
         choiceBoxAction();
-        db = new DBClient("localhost", 3000);
     }
     private void initChoiceBox()
     {
@@ -86,7 +83,7 @@ public class MainPageController {
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Statistics Page");
-        DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, db, Village.getList().size());
+        DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, Village.getList().size());
         dongAnalysis.start(primaryStage);
     }
 
