@@ -1,9 +1,14 @@
 package frontend.Boundary;
 
+import frontend.Enum.Sectors;
+import frontend.Enum.Town;
+import frontend.Enum.Village;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.Chart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -11,11 +16,24 @@ import java.io.IOException;
 
 public class StatisticsPageController
 {
-
+    public Chart chart;
     @FXML
     private Button backBtn;
     @FXML
     private Button analysisBtn;
+
+    @FXML
+    private Button show1btn;
+    @FXML
+    private Button show2btn;
+    @FXML
+    private Button show3btn;
+    @FXML
+    private Button show4btn;
+
+    private Town town;
+    private Village village;
+    private Sectors sectors;
 
     public void initialize() {
 
@@ -31,7 +49,7 @@ public class StatisticsPageController
         Scene currentScene = analysisBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("DBupdate Page");
+        primaryStage.setTitle("Analysis Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();
@@ -53,4 +71,19 @@ public class StatisticsPageController
         primaryStage.setHeight(400);
         //mainPageController.initialize();
     }
+
+    @FXML
+    private void handleShowChart(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        if (clickedButton.getId().equals("show1btn")) {
+            // 첫 번째 chart 호출
+        } else if (clickedButton.getId().equals("show2btn")) {
+            // 두 번째 chart 호출
+        } else if (clickedButton.getId().equals("show3btn")) {
+            // 세 번째 chart 호출
+        } else if (clickedButton.getId().equals("show4btn")) {
+            // 네 번째 chart 호출
+        }
+    }
+
 }

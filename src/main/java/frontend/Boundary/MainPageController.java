@@ -1,5 +1,6 @@
 package frontend.Boundary;
 
+import frontend.Entity.UserInputData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -77,8 +78,7 @@ public class MainPageController {
         loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
         Parent otherPage = loader.load();
         //정보전달
-        //statisticsController = new StatisticsPageController(choosedTown, choosedVillage, choosedSectors);
-        //loader.setController(statisticsController);
+        inputData();
 
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
@@ -101,5 +101,10 @@ public class MainPageController {
         primaryStage.setTitle("Login Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
+    }
+    private void inputData(){
+        UserInputData.setTown(Town.valueOf(choosedTown));
+        UserInputData.setVillage(Village.valueOf(choosedVillage));
+        UserInputData.setSectors(Sectors.valueOf(choosedSectors));
     }
 }
