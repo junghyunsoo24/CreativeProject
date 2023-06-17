@@ -21,10 +21,11 @@
       <Pane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <TextField alignment="CENTER" prefHeight="50.0" prefWidth="600.0" text="ManagerLogin" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font></TextField>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Manager_Login" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
    </top>
    <center>
       <GridPane BorderPane.alignment="CENTER">
