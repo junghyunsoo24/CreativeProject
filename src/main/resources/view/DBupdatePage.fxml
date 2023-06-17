@@ -35,10 +35,10 @@
             </children></Pane>
    </bottom>
    <top>
-      <TextField alignment="CENTER" prefHeight="50.0" prefWidth="600.0" text="DB Update" BorderPane.alignment="CENTER">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DB update" BorderPane.alignment="CENTER">
          <font>
-            <Font size="24.0" />
-         </font></TextField>
+            <Font size="36.0" />
+         </font></Text>
    </top>
    <center>
       <Pane prefHeight="212.0" prefWidth="231.0" BorderPane.alignment="CENTER">
