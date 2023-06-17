@@ -1,5 +1,7 @@
 package Boundary;
 
+import Control.DBControl;
+import com.opencsv.exceptions.CsvException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import persistence.InvalidNameFormatException;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -24,7 +28,6 @@ public class DBUpdateController
     public void initialize() {
 
     }
-
     @FXML
     private void handleBackBtn() throws IOException
     {
@@ -42,10 +45,11 @@ public class DBUpdateController
         //mainPageController.initialize();
     }
     @FXML
-    private void handleUpdateBtn() throws IOException
-    {
-            filepath = input_filePath.getText();
-
+    private void handleUpdateBtn() throws IOException, CsvException, InvalidNameFormatException {
+        filepath = input_filePath.getText();
+        File input_file = new File(filepath);
         //파일 업데이트 호출
+        DBControl db = new DBControl();
+        db.DBUpdateRequest(input_file);
     }
 }

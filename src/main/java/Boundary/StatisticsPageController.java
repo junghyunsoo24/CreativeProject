@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.Chart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -11,11 +12,22 @@ import java.io.IOException;
 
 public class StatisticsPageController
 {
-
+    private Chart showdChart;
     @FXML
     private Button backBtn;
     @FXML
     private Button analysisBtn;
+
+    private String choosedTown;
+    private String choosedVillage;
+    private String choosedSectors;
+
+    public StatisticsPageController(String town, String village, String sectors) {
+        this.choosedTown = town;
+        this.choosedVillage = village;
+        this.choosedSectors = sectors;
+    }
+
 
     public void initialize() {
 
