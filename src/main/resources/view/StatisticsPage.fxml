@@ -6,7 +6,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="364.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.StatisticsPageController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.StatisticsPageController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="통계" translateX="280.0" BorderPane.alignment="CENTER">
          <font>
@@ -68,4 +69,5 @@
       </children>
    </VBox>
    </children>
+</VBox>
 </VBox>

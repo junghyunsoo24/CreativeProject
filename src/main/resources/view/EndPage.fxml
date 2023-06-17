@@ -15,6 +15,13 @@
    <bottom>
       <Pane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </bottom>
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="최종판단" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+   </top>
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
