@@ -18,11 +18,11 @@
       <Pane prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </bottom>
    <top>
-      <TextField alignment="CENTER" prefHeight="50.0" prefWidth="600.0" text="MainPage" BorderPane.alignment="CENTER">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MainPage" BorderPane.alignment="CENTER">
          <font>
-            <Font size="24.0" />
+            <Font size="36.0" />
          </font>
-      </TextField>
+      </Text>
    </top>
    <center>
       <GridPane BorderPane.alignment="CENTER">
