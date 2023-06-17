@@ -7,16 +7,14 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.StatisticsPageController">
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="통계" translateX="280.0" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
       <children>
-         <SplitPane dividerPositions="0.2842809364548495" prefHeight="346.0" prefWidth="600.0">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="통계" translateX="280.0" BorderPane.alignment="CENTER">
+            <font>
+               <Font size="36.0" />
+            </font>
+         </Text>
+         <SplitPane dividerPositions="0.2842809364548495" prefHeight="350.0" prefWidth="600.0">
             <items>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
                   <children>
@@ -68,6 +66,4 @@
          </SplitPane>
       </children>
    </VBox>
-   </children>
-</VBox>
 </VBox>

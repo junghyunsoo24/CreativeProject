@@ -64,6 +64,7 @@ public class LoginPageController
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/MainPage.fxml"));
         Parent otherPage = loader.load();
+        //MainPageController mainPageController = FXMLLoader.getController();
 
         Scene currentScene = backBtn.getScene();
         currentScene.setRoot(otherPage);

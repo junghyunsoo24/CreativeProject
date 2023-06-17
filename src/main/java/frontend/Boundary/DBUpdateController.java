@@ -1,18 +1,19 @@
 package frontend.Boundary;
 
-
 import frontend.Control.DBUpdateControl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
+
+
 public class DBUpdateController
 {
     @FXML
@@ -20,12 +21,6 @@ public class DBUpdateController
     @FXML
     private Button updateBtn;
     @FXML
-    private TextField input_filePath;
-
-    private String filepath;
-    public void initialize() {
-
-    }
     private Button uploadBtn;
     @FXML
     private Text fileName;
@@ -49,7 +44,6 @@ public class DBUpdateController
         //mainPageController.initialize();
     }
     @FXML
-
     private void handleUpdateBtn() throws IOException {
         DBUpdateControl.DBUpdate(file);
     }

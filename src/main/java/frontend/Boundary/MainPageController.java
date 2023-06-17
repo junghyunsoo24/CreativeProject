@@ -24,8 +24,6 @@ public class MainPageController {
     @FXML
     private ChoiceBox<String> sectorsChoiceBox;
 
-    StatisticsPageController statisticsController;
-
     private String choosedTown;
     private String choosedVillage;
     private String choosedSectors;
@@ -77,21 +75,17 @@ public class MainPageController {
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
-
-        // 정보 전달
-        statisticsController = new StatisticsPageController(choosedTown, choosedVillage, choosedSectors);
-        loader.setController(statisticsController);
-
         Parent otherPage = loader.load();
+        //정보전달
+        //statisticsController = new StatisticsPageController(choosedTown, choosedVillage, choosedSectors);
+        //loader.setController(statisticsController);
+
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Statistics Page");
-
         DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, Village.getList().size());
-
         dongAnalysis.start(primaryStage);
-        //위 코드 추가한사람? 이러면 뭐가 나오나요?
     }
 
     @FXML
@@ -109,4 +103,3 @@ public class MainPageController {
         primaryStage.setHeight(400);
     }
 }
-

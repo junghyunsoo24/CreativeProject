@@ -38,11 +38,4 @@
          </children>
       </Pane>
    </center>
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="최종판단" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-   </top>
 </BorderPane>
