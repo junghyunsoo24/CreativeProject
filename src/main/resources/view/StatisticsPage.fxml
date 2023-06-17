@@ -3,67 +3,69 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.StatisticsPageController">
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.StatisticsPageController">
    <children>
-      <TextField alignment="CENTER" prefHeight="50.0" text="통계">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <SplitPane dividerPositions="0.2842809364548495" prefHeight="350.0" prefWidth="600.0">
-         <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
-               <children>
-                  <Button layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명2">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명3">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명4">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="analysisBtn" layoutY="306.0" mnemonicParsing="false" onAction="#moveToAnalysisPage" prefWidth="83.0" text="분석보기">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="backBtn" layoutX="83.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleBackBtn" prefWidth="83.0" text="뒤로">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="300.0">
-               <children>
-                  <BarChart layoutY="-1.0" prefHeight="354.0" prefWidth="426.0">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </BarChart>
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="통계" translateX="280.0" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <SplitPane dividerPositions="0.2842809364548495" prefHeight="350.0" prefWidth="600.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="shcw1Btn" onAction="#handleShowChart" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="shcw2Btn" onAction="#handleShowChart" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="shcw3Btn" onAction="#handleShowChart" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="shcw4Btn"  onAction="#handleShowChart" layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명4">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="analysisBtn" layoutY="306.0" mnemonicParsing="false" onAction="#moveToAnalysisPage" prefWidth="83.0" text="분석보기">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="backBtn" layoutX="83.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleBackBtn" prefWidth="83.0" text="뒤로">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="300.0">
+                     <children>
+                        <BarChart layoutY="-1.0" prefHeight="354.0" prefWidth="426.0">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </children>
+      </VBox>
    </children>
 </VBox>
-</VBox>
+

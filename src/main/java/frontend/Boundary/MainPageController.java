@@ -1,5 +1,6 @@
 package frontend.Boundary;
 
+import frontend.Entity.UserInputData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -76,6 +77,8 @@ public class MainPageController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
         Parent otherPage = loader.load();
+        //정보전달
+        inputData();
 
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
@@ -99,5 +102,9 @@ public class MainPageController {
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
     }
+    private void inputData(){
+        UserInputData.setTown(Town.valueOf(choosedTown));
+        UserInputData.setVillage(Village.valueOf(choosedVillage));
+        UserInputData.setSectors(Sectors.valueOf(choosedSectors));
+    }
 }
-

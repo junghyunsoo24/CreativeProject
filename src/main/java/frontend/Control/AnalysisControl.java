@@ -21,6 +21,8 @@ public class AnalysisControl {
         // 생성자 로직
         myStatistics = new Statistics(sectors, town, village);
     }
+
+
     // 법정동별 소비 추세 통계 함수
     public void analyzeConsumptionByLegalDong() {
         myStatistics.analyzeConsumptionByLegalDong();

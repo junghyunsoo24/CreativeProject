@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -30,6 +31,16 @@ public class LoginPageController
         if (AdminLoginControl.adminVerification(id, pwd)) {
             moveToDBUpdatePage();
         }
+        else{
+            showLoginFailedAlert();
+        }
+    }
+    private void showLoginFailedAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("로그인 실패");
+        alert.setHeaderText(null);
+        alert.setContentText("아이디 또는 비밀번호가 잘못되었습니다.");
+        alert.showAndWait();
     }
     private void moveToDBUpdatePage()throws IOException
     {

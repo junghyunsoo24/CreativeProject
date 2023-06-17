@@ -9,52 +9,53 @@
 <?import javafx.scene.text.Text?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.DBUpdateController">
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <Pane prefHeight="270.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane prefHeight="270.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <Pane prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <left>
+         <Pane prefHeight="270.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
+      </left>
+      <right>
+         <Pane prefHeight="270.0" prefWidth="75.0" BorderPane.alignment="CENTER" />
+      </right>
+      <bottom>
+         <Pane prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-            <Button fx:id="updateBtn" layoutX="263.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleUpdateBtn" prefHeight="20.0" text="업데이트">
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
-            <Button fx:id="backBtn" layoutX="476.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="20.0" text="뒤로">
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
+               <Button fx:id="updateBtn" layoutX="263.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleUpdateBtn" prefHeight="20.0" text="업데이트">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Button>
+               <Button fx:id="backBtn" layoutX="476.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="20.0" text="뒤로">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Button>
                <Button fx:id="uploadBtn" layoutX="83.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleUploadBtn" text="업로드">
                   <font>
                      <Font size="14.0" />
                   </font>
                </Button>
             </children></Pane>
-   </bottom>
-   <top>
-      <TextField alignment="CENTER" prefHeight="50.0" prefWidth="600.0" text="DB Update" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font></TextField>
-   </top>
-   <center>
-      <Pane prefHeight="212.0" prefWidth="231.0" BorderPane.alignment="CENTER">
-         <children>
-            <Text layoutX="14.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="파일명">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
+      </bottom>
+      <top>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DB update" BorderPane.alignment="CENTER">
+            <font>
+               <Font size="36.0" />
+            </font>
+         </Text>
+      </top>
+      <center>
+         <Pane prefHeight="212.0" prefWidth="231.0" BorderPane.alignment="CENTER">
+            <children>
+               <Text layoutX="14.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="파일명">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
                <Text fx:id="fileName" layoutX="84.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="350.66676330566406">
                   <font>
                      <Font size="18.0" />
                   </font>
                </Text>
-         </children>
-      </Pane>
-   </center>
-</BorderPane>
+            </children>
+         </Pane>
+      </center>
+   </BorderPane>
 </VBox>

@@ -7,63 +7,62 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.AnalysisController">
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TextField alignment="CENTER" prefHeight="50.0" prefWidth="600.0" text="분석결과">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <SplitPane dividerPositions="0.2842809364548495" prefHeight="350.0" prefWidth="600.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="162.0">
-               <children>
-                  <Button layoutY="30.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutY="58.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과2">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutY="86.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과3">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutY="114.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과4">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id = "endingBtn " onAction="#moveToEndPage"   layoutY="306.0" mnemonicParsing="false" prefWidth="83.0" text="최종판단" />
-                  <Button fx:id = "backBtn" onAction="#handleBackBtn" layoutX="84.0" layoutY="306.0" mnemonicParsing="false" prefWidth="83.0" text="뒤로" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="425.0">
-               <children>
-                  <BarChart layoutX="63.0" layoutY="24.0" prefHeight="250.0" prefWidth="300.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-                  <Text layoutX="63.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ㅁㄴㅇㄹㄴㅇㄹ\" wrappingWidth="300.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
+    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="분석결과" translateX="280.0" BorderPane.alignment="CENTER">
+                <font>
+                    <Font size="36.0" />
+                </font>
+            </Text>
+            <SplitPane dividerPositions="0.2842809364548495" prefHeight="350.0" prefWidth="600.0">
+                <items>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="162.0">
+                        <children>
+                            <Button layoutY="30.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과1">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Button>
+                            <Button layoutY="58.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과2">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Button>
+                            <Button layoutY="86.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과3">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Button>
+                            <Button layoutY="114.0" mnemonicParsing="false" prefWidth="166.0" text="분석결과4">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Button>
+                            <Button fx:id = "endingBtn " onAction="#moveToEndPage"   layoutY="306.0" mnemonicParsing="false" prefWidth="83.0" text="최종판단" />
+                            <Button fx:id = "backBtn" onAction="#handleBackBtn" layoutX="84.0" layoutY="306.0" mnemonicParsing="false" prefWidth="83.0" text="뒤로" />
+                        </children>
+                    </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="425.0">
+                        <children>
+                            <BarChart layoutX="63.0" layoutY="24.0" prefHeight="250.0" prefWidth="300.0">
+                                <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                </yAxis>
+                            </BarChart>
+                            <Text layoutX="63.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ㅁㄴㅇㄹㄴㅇㄹ\" wrappingWidth="300.0">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Text>
+                        </children>
+                    </AnchorPane>
+                </items>
+            </SplitPane>
+        </children>
+    </VBox>
 </VBox>
-</VBox>
-
 
 

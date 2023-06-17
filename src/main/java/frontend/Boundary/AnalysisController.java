@@ -1,20 +1,31 @@
 package frontend.Boundary;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.Chart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class AnalysisController {
-
+    public Chart chart;
     @FXML
     private Button backBtn;
     @FXML
     private Button endingBtn;
+
+    @FXML
+    private Button show1btn;
+    @FXML
+    private Button show2btn;
+    @FXML
+    private Button show3btn;
+    @FXML
+    private Button show4btn;
 
     public void initialize() {
 
@@ -51,6 +62,20 @@ public class AnalysisController {
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();
+    }
+
+    @FXML
+    private void handleShowChart(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        if (clickedButton.getId().equals("show1btn")) {
+            //첫번째 chart 호출
+        } else if (clickedButton.getId().equals("show2btn")) {
+            // 두번째 chart 호출
+        }else if (clickedButton.getId().equals("show3btn")) {
+            // 두번째 chart 호출
+        }else if (clickedButton.getId().equals("show4btn")) {
+            // 두번째 chart 호출
+        }
     }
 
 }
