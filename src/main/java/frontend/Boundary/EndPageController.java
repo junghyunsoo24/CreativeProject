@@ -33,15 +33,15 @@ public class EndPageController {
     private String makeMessage(){
         String message = "";
         message += town + " ";  //@@시
-        message += village+ "에 ";     //@@동에
+        message += village+ "에 \n";     //@@동에
         message += sectors + "은 \n" ;    //@@은
 
         if(isSuitable)
         {
-            message += " 적합합니다.";
+            message += "적합합니다.";
         }
         else {
-            message += " 적합하지 않습니다.";
+            message += "적합하지 않습니다.";
         }
         return  message;
     }
