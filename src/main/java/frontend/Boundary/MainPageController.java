@@ -77,9 +77,11 @@ public class MainPageController {
         loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
         Parent otherPage = loader.load();
         //정보전달
-        //inputData();
+        choosedSectors= choosedSectors.replaceAll("\\s", "_");
+        choosedSectors= choosedSectors.replaceAll(",", "_");
         Sectors sectors = Sectors.valueOf(choosedSectors);
         StatisticsPageController controller = loader.getController();
+
 
         controller.initData(Town.valueOf(choosedTown), Village.valueOf(choosedVillage),sectors);
         //controller.initData(Town.valueOf(choosedTown), Village.valueOf(choosedVillage),Sectors.건섭업);
