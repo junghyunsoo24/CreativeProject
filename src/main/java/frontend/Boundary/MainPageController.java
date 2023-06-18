@@ -77,8 +77,8 @@ public class MainPageController {
         loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
         Parent otherPage = loader.load();
         //정보전달
-        choosedSectors= choosedSectors.replaceAll("\\s", "");
-        choosedSectors= choosedSectors.replaceAll(",", "");
+        choosedSectors= choosedSectors.replaceAll("\\s", "_");
+        choosedSectors= choosedSectors.replaceAll(",", "_");
         Sectors sectors = Sectors.valueOf(choosedSectors);
         StatisticsPageController controller = loader.getController();
 
