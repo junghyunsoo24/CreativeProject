@@ -1,5 +1,8 @@
 package frontend.Boundary;
 
+import frontend.Enum.Sectors;
+import frontend.Enum.Town;
+import frontend.Enum.Village;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +30,10 @@ public class AnalysisController {
     @FXML
     private Button show4btn;
 
+    private Town town;
+    private Village village;
+    private Sectors sectors;
+
     public void initialize() {
 
     }
@@ -36,7 +43,9 @@ public class AnalysisController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/EndPage.fxml"));
         Parent otherPage = loader.load();
-        //MainPageController mainPageController = FXMLLoader.getController();
+
+        EndPageController controller = loader.getController();
+        controller.initData(town,village,sectors);
 
         Scene currentScene = endingBtn.getScene();
         currentScene.setRoot(otherPage);
@@ -44,7 +53,8 @@ public class AnalysisController {
         primaryStage.setTitle("Ending Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
-        //mainPageController.initialize();
+
+        System.out.println(town +"ㅂㅈㄷ"+ village + "ㅂㅈㄷ" + sectors);
     }
 
     @FXML
@@ -76,6 +86,11 @@ public class AnalysisController {
         }else if (clickedButton.getId().equals("show4btn")) {
             // 두번째 chart 호출
         }
+    }
+    public void initData(Town town, Village village, Sectors sectors) {
+        this.town = town;
+        this.village = village;
+        this.sectors = sectors;
     }
 
 }

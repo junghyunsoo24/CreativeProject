@@ -1,6 +1,5 @@
 package frontend.Boundary;
 
-import frontend.Entity.UserInputData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -78,14 +77,19 @@ public class MainPageController {
         loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
         Parent otherPage = loader.load();
         //정보전달
-        inputData();
+        //inputData();
+        Sectors sectors = Sectors.valueOf(choosedSectors);
+        StatisticsPageController controller = loader.getController();
 
+        controller.initData(Town.valueOf(choosedTown), Village.valueOf(choosedVillage),sectors);
+        //controller.initData(Town.valueOf(choosedTown), Village.valueOf(choosedVillage),Sectors.건섭업);
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Statistics Page");
-        DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, Village.getList().size());
-        dongAnalysis.start(primaryStage);
+
+        //DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, Village.getList().size());
+        // dongAnalysis.start(primaryStage);
     }
 
     @FXML
@@ -102,9 +106,7 @@ public class MainPageController {
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
     }
-    private void inputData(){
-        UserInputData.setTown(Town.valueOf(choosedTown));
-        UserInputData.setVillage(Village.valueOf(choosedVillage));
-        UserInputData.setSectors(Sectors.valueOf(choosedSectors));
-    }
+//    private void inputData(){
+//        UserInputData userData = UserInputData.getInstance(Town.valueOf(choosedTown), Village.valueOf(choosedVillage), Sectors.valueOf(choosedSectors));
+//    }
 }
