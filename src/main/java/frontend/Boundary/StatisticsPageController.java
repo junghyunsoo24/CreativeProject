@@ -44,7 +44,9 @@ public class StatisticsPageController
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/AnalysisPage.fxml"));
         Parent otherPage = loader.load();
-        //MainPageController mainPageController = FXMLLoader.getController();
+
+        AnalysisController controller = loader.getController();
+        controller.initData(town,village,sectors);
 
         Scene currentScene = analysisBtn.getScene();
         currentScene.setRoot(otherPage);
@@ -53,6 +55,7 @@ public class StatisticsPageController
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();
+        System.out.println(town +"ㅁㄴㅇ"+ village + "ㅁㄴㅇ" + sectors);
     }
 
     @FXML
@@ -86,4 +89,9 @@ public class StatisticsPageController
         }
     }
 
+    public void initData(Town town, Village village, Sectors sectors) {
+        this.town = town;
+        this.village = village;
+        this.sectors = sectors;
+    }
 }
