@@ -19,22 +19,22 @@
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="shcw1Btn" layoutX="216.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석1">
+                        <Button fx:id="totalChartbtn" layoutX="210.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="TotalAnalysis">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw2Btn" layoutX="216.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석2">
+                        <Button fx:id="dongChartbtn" layoutX="210.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="DongAnalysis">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw3Btn" layoutX="216.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석3">
+                        <Button fx:id="largeCategoryChartbtn" layoutX="210.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="LargeCategoryAnalysis">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw4Btn" layoutX="216.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석4">
+                        <Button fx:id="monthChartshow4btn" layoutX="210.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="MonthAnalysis">
                            <font>
                               <Font size="14.0" />
                            </font>

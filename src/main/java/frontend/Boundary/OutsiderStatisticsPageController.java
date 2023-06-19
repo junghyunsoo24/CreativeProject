@@ -24,13 +24,13 @@ public class OutsiderStatisticsPageController
     private Button analysisBtn;
 
     @FXML
-    private Button show1btn;
+    private Button totalChartbtn;
     @FXML
-    private Button show2btn;
+    private Button dongChartbtn;
     @FXML
-    private Button show3btn;
+    private Button largeCategoryChartbtn;
     @FXML
-    private Button show4btn;
+    private Button monthChartshow4btn;
 
 
     private Town town;
@@ -87,7 +87,7 @@ public class OutsiderStatisticsPageController
     private void handleShowChart(ActionEvent event) {
         System.out.println("haha");
         Button clickedButton = (Button) event.getSource();
-        if (clickedButton.getId().equals("show1btn")) {
+        if (clickedButton.getId().equals("totalChartbtn")) {
             try {
                 Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
                 DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
@@ -95,11 +95,11 @@ public class OutsiderStatisticsPageController
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (clickedButton.getId().equals("show2btn")) {
+        } else if (clickedButton.getId().equals("dongChartbtn")) {
             // 두 번째 chart 호출
-        } else if (clickedButton.getId().equals("show3btn")) {
+        } else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             // 세 번째 chart 호출
-        } else if (clickedButton.getId().equals("show4btn")) {
+        } else if (clickedButton.getId().equals("monthChartshow4btn")) {
             // 네 번째 chart 호출
         }
     }

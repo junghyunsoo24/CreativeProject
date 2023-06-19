@@ -20,13 +20,13 @@ public class ForeignerAnalysisController {
     private Button endingBtn;
 
     @FXML
-    private Button show1btn;
+    private Button totalChartbtn;
     @FXML
-    private Button show2btn;
+    private Button dongChartbtn;
     @FXML
-    private Button show3btn;
+    private Button largeCategoryChartbtn;
     @FXML
-    private Button show4btn;
+    private Button monthChartshow4btn;
 
     private Town town;
     private Village village;
