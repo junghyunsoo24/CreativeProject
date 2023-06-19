@@ -1,6 +1,5 @@
 package frontend.Boundary.All;
 
-import frontend.Boundary.PriceDataAnalysis;
 import frontend.Control.AnalysisControl;
 import backend.DB.DTO.ConsumptionAmountDTO;
 import backend.DB.DTO.DTO;

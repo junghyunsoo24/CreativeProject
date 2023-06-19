@@ -1,6 +1,5 @@
 package frontend.Boundary.All;
 
-import frontend.Boundary.MonthDataAnalysis;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -99,9 +98,9 @@ public class LargeCategoryAnalysis extends Application {
 
         // 동 데이터분석
         int count = 0;
-        for (String currentDivision = entryList.get(count).getKey(); count < entryList.size() && !currentDivision.equals(village); currentDivision = entryList.get(++count).getKey()) {
-            //pass
-        }
+//        for (String currentDivision = entryList.get(count).getKey(); count < entryList.size() && !currentDivision.equals(village); currentDivision = entryList.get(++count).getKey()) {
+//            //pass
+//        }
         Label divisionCheckLabel = new Label("선택한 대분류는 " + village + "이고 "  + "번째 중에서 " + (count + 1) + "째로 많이 소비합니다.");
 
         // 최댓값 출력
