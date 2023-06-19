@@ -132,7 +132,7 @@ public class TotalAnalysis extends Application {
 
 
         // Scene 생성
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
         primaryStage.setTitle("법정동별 이용 금액");
