@@ -35,7 +35,7 @@ public class ServerControl {
             list = new DTOListBuilder(csv).CAListBuild();
             CADAO.insertAll(list);
         } else if (FILE_NAME.contains("유성구_외국인소비정보")) {
-            list = new DTOListBuilder(csv, "EUC-KR").CAFListBuild();
+            list = new DTOListBuilder(csv).CAFListBuild();
             CAFDAO.insertAll(list);
         } else if (FILE_NAME.contains("유성구_법정동별 외지인(내국인) 소비 금액 데이터")) {
             list = new DTOListBuilder(csv).CAOListBuild();
