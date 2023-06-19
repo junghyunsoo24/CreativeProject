@@ -1,6 +1,6 @@
 package frontend.Boundary.All;
 
-import frontend.Boundary.StatisticsPageController;
+//import frontend.Boundary.StatisticsPageController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -66,8 +66,8 @@ public class AllAnalysis extends Application {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                StatisticsPageController controller = loader.getController();
-                controller.initData(town, village, sectors);
+                //StatisticsPageController controller = loader.getController();
+                //controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
                 Stage prmaryStage = (Stage) currentScene.getWindow();
