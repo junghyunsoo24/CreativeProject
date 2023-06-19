@@ -21,9 +21,8 @@ public abstract class DAO<T> {
 
         return list;
     }
-    public abstract List<T> selectAll();
 
-    protected Long selectSum(String statement, String params) {
+    protected Long select(String statement, String params) {
         Long sum;
 
         try (SqlSession session = sqlSessionFactory.openSession()) {
@@ -32,6 +31,8 @@ public abstract class DAO<T> {
 
         return sum;
     }
+
+    public abstract List<T> selectAll();
     public List<T> selectOrderByMonth() {
         return null;
     }
