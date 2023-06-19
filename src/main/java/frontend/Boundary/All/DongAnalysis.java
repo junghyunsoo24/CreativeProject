@@ -120,6 +120,7 @@ public class DongAnalysis extends Application {
 
         // root에 컴포넌트 추가
         root.getChildren().addAll(barChart, DongCheckLabel, maxLabel, minLabel);
+        root.getChildren().add(nextButton); // 다음 버튼 추가
 
         // Scene 생성
         Scene scene = new Scene(root, 800, 600);
