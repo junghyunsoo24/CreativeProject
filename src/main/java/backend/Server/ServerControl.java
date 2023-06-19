@@ -128,7 +128,7 @@ public class ServerControl {
         return DFPDAO.selectOrderByDFP();
     }
 
-    public Long selectSumRequest(Protocol<?> protocol) {
+    public Long selectRequest(Protocol<?> protocol) {
         Long sum = null;
 
         if (protocol.getTYPE() == ProtocolType.CA) {

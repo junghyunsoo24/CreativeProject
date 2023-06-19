@@ -63,7 +63,7 @@ public class ServerThread implements Runnable {
             System.out.println(LocalDateTime.now() + " ***** " + "관리자 검증 완료");
         } else if (protocol.getQUERY() == ProtocolQuery.selectSum) {
             System.out.println(LocalDateTime.now() + " ***** " + "SUM 명령 확인");
-            Long sum = control.selectSumRequest(protocol);
+            Long sum = control.selectRequest(protocol);
             Protocol<Long> responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, sum);
             oos.writeObject(responseProtocol);
             System.out.println(LocalDateTime.now() + " ***** " + "SUM 반환 완료");
