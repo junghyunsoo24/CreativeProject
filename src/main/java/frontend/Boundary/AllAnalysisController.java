@@ -1,9 +1,6 @@
 package frontend.Boundary;
 
-import frontend.Boundary.All.DongStats;
-import frontend.Boundary.All.LargeCategoryStats;
-import frontend.Boundary.All.MonthStats;
-import frontend.Boundary.All.TotalStats;
+import frontend.Boundary.All.*;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -43,7 +40,7 @@ public class AllAnalysisController {
     private void moveToForeignerAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerAnalysisPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
         Parent otherPage = loader.load();
 
         ForeignerAnalysisController controller = loader.getController();
@@ -55,8 +52,6 @@ public class AllAnalysisController {
         primaryStage.setTitle("Ending Page");
         primaryStage.setWidth(860);
         primaryStage.setHeight(560);
-
-        System.out.println(town +"ㅂㅈㄷ"+ village + "ㅂㅈㄷ" + sectors);
     }
 
     @FXML
@@ -81,19 +76,19 @@ public class AllAnalysisController {
         Button clickedButton = (Button) event.getSource();
         if (clickedButton.getId().equals("totalChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            TotalStats totalStats = new TotalStats(town, village, sectors);
-            totalStats.start(primaryStage);
+            TotalAnalysis totalAnalysis = new TotalAnalysis(town, village, sectors);
+            totalAnalysis.start(primaryStage);
         } else if (clickedButton.getId().equals("dongChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            DongStats dongStats = new DongStats(town, village, sectors);
+            DongAnalysis dongStats = new DongAnalysis(town, village, sectors);
             dongStats.start(primaryStage);
         }else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            LargeCategoryStats largeCategoryStats = new LargeCategoryStats(town, village, sectors);
+            LargeCategoryAnalysis largeCategoryStats = new LargeCategoryAnalysis(town, village, sectors);
             largeCategoryStats.start(primaryStage);
         }else if (clickedButton.getId().equals("monthChartshow4btn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            MonthStats monthStats = new MonthStats(town, village, sectors);
+            MonthAnalysis monthStats = new MonthAnalysis(town, village, sectors);
             monthStats.start(primaryStage);
         }
     }
