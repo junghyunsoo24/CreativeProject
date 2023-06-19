@@ -47,6 +47,16 @@ public class DBConnector {
     }
 
     @SuppressWarnings("unchecked")
+    public Long selectSumRequest(ProtocolQuery query, ProtocolType type, String params) throws IOException, ClassNotFoundException {
+        Protocol<String> protocol = new Protocol<>(query, type, params);
+        oos.writeObject(protocol);
+        System.out.println("SUM 요청 완료");
+
+        Protocol<Long> response = (Protocol<Long>) ois.readObject();
+        return response.getDATA();
+    }
+
+    @SuppressWarnings("unchecked")
     public Boolean adminVerification(String id, String password) throws IOException, ClassNotFoundException {
         AdminDTO admin = new AdminDTO(id, password);
         Protocol<AdminDTO> protocol = new Protocol<>(ProtocolQuery.findByIdAndPassword, ProtocolType.admin, admin);

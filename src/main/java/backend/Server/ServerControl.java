@@ -128,6 +128,20 @@ public class ServerControl {
         return DFPDAO.selectOrderByDFP();
     }
 
+    public Long selectSumRequest(Protocol<?> protocol) {
+        Long sum = null;
+
+        if (protocol.getTYPE() == ProtocolType.CA) {
+            sum = CADAO.selectSum((String) protocol.getDATA());
+        } else if (protocol.getTYPE() == ProtocolType.CAF) {
+            sum = CAFDAO.selectSum((String) protocol.getDATA());
+        } else if (protocol.getTYPE() == ProtocolType.CAO) {
+            sum = CAODAO.selectSum((String) protocol.getDATA());
+        }
+
+        return sum;
+    }
+
     public Boolean findByIdAndPassword(AdminDTO target) {
         return adminDAO.findByIdAndPassword(target);
     }

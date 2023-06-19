@@ -22,6 +22,16 @@ public abstract class DAO<T> {
         return list;
     }
     public abstract List<T> selectAll();
+
+    protected Long selectSum(String statement, String params) {
+        Long sum;
+
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            sum = session.selectOne(statement, params);
+        }
+
+        return sum;
+    }
     public List<T> selectOrderByMonth() {
         return null;
     }

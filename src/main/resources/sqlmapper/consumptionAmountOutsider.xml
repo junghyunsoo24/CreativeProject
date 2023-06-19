@@ -33,6 +33,18 @@
         ORDER BY amount
     </select>
 
+    <select id="selectSumAmountWithDongName" parameterType="java.lang.String" resultType="java.lang.Long">
+        SELECT SUM(amount)
+        FROM consumption_amount_outsider
+        WHERE dong_name = #{dongName}
+    </select>
+
+    <select id="selectSumAmountWithIndustryCode" parameterType="java.lang.String" resultType="java.lang.Long">
+        SELECT SUM(amount)
+        FROM consumption_amount_outsider
+        WHERE industry_code = #{industryCode}
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="backend.DB.DTO.ConsumptionAmountOutsiderDTO">
         INSERT INTO consumption_amount_outsider(year, month, dong_code, dong_name, industry_code, industry_name, residential_city_code, residential_city_name, amount)
         VALUES (#{year}, #{month}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{residential_city_code}, #{residential_city_name}, #{amount})

@@ -10,6 +10,7 @@ public enum ProtocolQuery implements Serializable {
     selectOrderByIndustryCode,
     selectOrderByAmount,
     selectOrderByDFP,
+    selectSum,
     findByIdAndPassword,
     response
 }
