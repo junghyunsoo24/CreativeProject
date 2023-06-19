@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class DBConnector {
@@ -19,12 +20,12 @@ public class DBConnector {
 
     public DBConnector(String host, int port) {
         try  {
-            System.out.println("DBClient 실행");
+            System.out.println(LocalDateTime.now() + " ***** " + "DBClient 실행");
             Socket socket = new Socket(host, port);
-            System.out.println("소켓 생성됨");
+            System.out.println(LocalDateTime.now() + " ***** " + "소켓 생성됨");
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
-            System.out.println("스트림 생성됨");
+            System.out.println(LocalDateTime.now() + " ***** " + "스트림 생성됨");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,14 +34,14 @@ public class DBConnector {
     public void DBUpdateRequest(File csv) throws IOException {
         Protocol<File> protocol = new Protocol<>(ProtocolQuery.insert, ProtocolType.insert, csv);
         oos.writeObject(protocol);
-        System.out.println("업데이트 요청 완료");
+        System.out.println(LocalDateTime.now() + " ***** " + "업데이트 요청 완료");
     }
 
     @SuppressWarnings("unchecked")
     public List<DTO> selectRequest(ProtocolQuery query, ProtocolType type) throws IOException, ClassNotFoundException {
         Protocol<File> protocol = new Protocol<>(query, type, null);
         oos.writeObject(protocol);
-        System.out.println("SELECT 요청 완료");
+        System.out.println(LocalDateTime.now() + " ***** " + "SELECT 요청 완료");
 
         Protocol<List<DTO>> response = (Protocol<List<DTO>>) ois.readObject();
         return response.getDATA();
@@ -50,7 +51,7 @@ public class DBConnector {
     public Long selectSumRequest(ProtocolQuery query, ProtocolType type, String params) throws IOException, ClassNotFoundException {
         Protocol<String> protocol = new Protocol<>(query, type, params);
         oos.writeObject(protocol);
-        System.out.println("SUM 요청 완료");
+        System.out.println(LocalDateTime.now() + " ***** " + "SUM 요청 완료");
 
         Protocol<Long> response = (Protocol<Long>) ois.readObject();
         return response.getDATA();
@@ -61,7 +62,7 @@ public class DBConnector {
         AdminDTO admin = new AdminDTO(id, password);
         Protocol<AdminDTO> protocol = new Protocol<>(ProtocolQuery.findByIdAndPassword, ProtocolType.admin, admin);
         oos.writeObject(protocol);
-        System.out.println("관리자 검증 요청 완료");
+        System.out.println(LocalDateTime.now() + " ***** " + "관리자 검증 요청 완료");
 
         Protocol<Boolean> response = (Protocol<Boolean>) ois.readObject();
         return response.getDATA();

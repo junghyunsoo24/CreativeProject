@@ -10,6 +10,7 @@ import backend.DB.Protocol.ProtocolType;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ServerThread implements Runnable {
@@ -34,9 +35,9 @@ public class ServerThread implements Runnable {
         try {
             while (true) {
                 protocol = (Protocol<?>) ois.readObject();
-                System.out.println("프로토콜 전달 받음");
+                System.out.println(LocalDateTime.now() + " ***** " + "프로토콜 전달 받음");
                 execute(protocol);
-                System.out.println("명령 수행 완료");
+                System.out.println(LocalDateTime.now() + " ***** " + "명령 수행 완료");
             }
         } catch (SocketException e) {
             //pass
@@ -49,23 +50,23 @@ public class ServerThread implements Runnable {
         ServerControl control = new ServerControl();
 
         if (protocol.getQUERY() == ProtocolQuery.insert) {
-            System.out.println("DB INSERT 명령 확인");
+            System.out.println(LocalDateTime.now() + " ***** " + "DB INSERT 명령 확인");
             control.DBUpdateRequest((File) protocol.getDATA());
-            System.out.println("DB INSERT 완료");
+            System.out.println(LocalDateTime.now() + " ***** " + "DB INSERT 완료");
         } else if (protocol.getQUERY() == ProtocolQuery.findByIdAndPassword) {
-            System.out.println("관리자 검증 명령 확인");
+            System.out.println(LocalDateTime.now() + " ***** " + "관리자 검증 명령 확인");
             Boolean data = control.findByIdAndPassword((AdminDTO) protocol.getDATA());
             Protocol<Boolean> responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, data);
             oos.writeObject(responseProtocol);
-            System.out.println("관리자 검증 완료");
+            System.out.println(LocalDateTime.now() + " ***** " + "관리자 검증 완료");
         } else if (protocol.getQUERY() == ProtocolQuery.selectSum) {
-            System.out.println("SUM 명령 확인");
+            System.out.println(LocalDateTime.now() + " ***** " + "SUM 명령 확인");
             Long sum = control.selectSumRequest(protocol);
             Protocol<Long> responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, sum);
             oos.writeObject(responseProtocol);
-            System.out.println("SUM 반환 완료");
+            System.out.println(LocalDateTime.now() + " ***** " + "SUM 반환 완료");
         } else {
-            System.out.println("DB SELECT 명령 확인");
+            System.out.println(LocalDateTime.now() + " ***** " + "DB SELECT 명령 확인");
             Protocol<List<DTO>> responseProtocol;
             List<DTO> data = null;
 
@@ -85,7 +86,7 @@ public class ServerThread implements Runnable {
 
             responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, data);
             oos.writeObject(responseProtocol);
-            System.out.println("SELECT 완료");
+            System.out.println(LocalDateTime.now() + " ***** " + "SELECT 완료");
         }
     }
 }
