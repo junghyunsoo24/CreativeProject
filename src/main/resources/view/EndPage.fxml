@@ -4,39 +4,42 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.EndPageController">
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <Pane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <Pane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </bottom>
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="최종판단" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-   </top>
-   <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id = "backBtn" onAction = "#handleBackBtn" layoutX="112.0" layoutY="210.0" mnemonicParsing="false" text="처음으로">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Text fx:id="messageText" layoutX="-28.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-   </center>
-</BorderPane>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="frontend.Boundary.EndPageController">
+   <children>
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <left>
+         <Pane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+      </left>
+      <right>
+         <Pane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+      </right>
+      <bottom>
+         <Pane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      </bottom>
+      <top>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="최종판단" BorderPane.alignment="CENTER">
+            <font>
+               <Font size="36.0" />
+            </font>
+         </Text>
+      </top>
+      <center>
+         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+               <Button fx:id="backBtn" layoutX="242.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleBackBtn" text="처음으로">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Button>
+               <Text fx:id="messageText" layoutX="166.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="초기값입니다.">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Text>
+            </children>
+         </Pane>
+      </center>
+   </BorderPane>
+   </children>
 </VBox>

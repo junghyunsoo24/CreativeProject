@@ -7,53 +7,53 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.OutsiderAnalysisController">
-   <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="외지인 분석" translateX="230.0" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <SplitPane prefHeight="350.0" prefWidth="600.0">
-               <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
-                     <children>
-                        <Button fx:id="totalChartbtn" layoutX="210.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="TotalAnalysis">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="dongChartbtn" layoutX="210.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="DongAnalysis">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="largeCategoryChartbtn" layoutX="210.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="LargeCategoryAnalysis">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="monthChartshow4btn" layoutX="210.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="MonthAnalysis">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="endingBtn" layoutX="175.0" layoutY="261.0" mnemonicParsing="false" onAction="#moveToEndPage" prefWidth="83.0" text="최종판단">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="backBtn" layoutX="341.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleBackBtn" prefWidth="83.0" text="뒤로">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </items>
-            </SplitPane>
-         </children>
-      </VBox>
-   </children>
+    <children>
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="외지인 분석" translateX="380.0" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Text>
+                <SplitPane prefHeight="531.0" prefWidth="859.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
+                            <children>
+                                <Button fx:id="totalChartbtn" layoutX="339.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="TotalAnalysis">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="dongChartbtn" layoutX="339.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="DongAnalysis">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="largeCategoryChartbtn" layoutX="339.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="LargeCategoryAnalysis">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="monthChartshow4btn" layoutX="339.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="180.0" text="MonthAnalysis">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="endingBtn" layoutX="300.0" layoutY="261.0" mnemonicParsing="false" onAction="#moveToEndPage" prefWidth="83.0" text="최종판단">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="backBtn" layoutX="478.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleBackBtn" prefWidth="83.0" text="뒤로">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </VBox>
+    </children>
 </VBox>
