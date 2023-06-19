@@ -60,12 +60,12 @@ public class OutsiderStatisticsPageController
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Analysis Page");
+        primaryStage.setWidth(860);
+        primaryStage.setHeight(560);
 
 //        //버튼을 누르면 내 그래프가 나오도록 코드 수정하고 싶음
 //        DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
 //        dongAnalysis.start(primaryStage);
-
-
 
     }
 
