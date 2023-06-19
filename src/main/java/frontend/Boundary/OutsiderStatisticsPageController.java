@@ -1,9 +1,9 @@
 package frontend.Boundary;
 
-import frontend.Boundary.Outsider.DongAnalysis;
-import frontend.Boundary.Outsider.LargeCategoryAnalysis;
-import frontend.Boundary.Outsider.MonthAnalysis;
-import frontend.Boundary.Outsider.TotalAnalysis;
+import frontend.Boundary.Outsider.DongStats;
+import frontend.Boundary.Outsider.LargeCategoryStats;
+import frontend.Boundary.Outsider.MonthStats;
+import frontend.Boundary.Outsider.TotalStats;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -62,7 +62,7 @@ public class OutsiderStatisticsPageController
         primaryStage.setTitle("Analysis Page");
 
 //        //버튼을 누르면 내 그래프가 나오도록 코드 수정하고 싶음
-//        DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
+//        DongStats dongAnalysis = new DongStats(town, village, sectors);
 //        dongAnalysis.start(primaryStage);
 
 
@@ -91,20 +91,20 @@ public class OutsiderStatisticsPageController
         Button clickedButton = (Button) event.getSource();
         if (clickedButton.getId().equals("totalChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            TotalAnalysis totalAnalysis = new TotalAnalysis(town, village, sectors);
-            totalAnalysis.start(primaryStage);
+            TotalStats totalStats = new TotalStats(town, village, sectors);
+            totalStats.start(primaryStage);
         } else if (clickedButton.getId().equals("dongChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
-            dongAnalysis.start(primaryStage);
+            DongStats dongStats = new DongStats(town, village, sectors);
+            dongStats.start(primaryStage);
         } else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            LargeCategoryAnalysis largeCategoryAnalysis = new LargeCategoryAnalysis(town, village, sectors);
-            largeCategoryAnalysis.start(primaryStage);
+            LargeCategoryStats largeCategoryStats = new LargeCategoryStats(town, village, sectors);
+            largeCategoryStats.start(primaryStage);
         } else if (clickedButton.getId().equals("monthChartshow4btn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            MonthAnalysis monthAnalysis = new MonthAnalysis(town, village, sectors);
-            monthAnalysis.start(primaryStage);
+            MonthStats monthStats = new MonthStats(town, village, sectors);
+            monthStats.start(primaryStage);
         }
     }
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/DongAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/LargeCategoryAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/MonthAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/TotalAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/DongAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/LargeCategoryAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/MonthAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/TotalAnalysis.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/DongStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/LargeCategoryStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/MonthStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/All/TotalStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/DongStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/LargeCategoryStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/MonthStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Foreigner/TotalStats.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/ForeignerStatisticsPageController.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/DongAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/LargeCategoryAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/MonthAnalysis.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/TotalAnalysis.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/DongStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/LargeCategoryStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/MonthStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/TotalStats.java" charset="UTF-8" />
     <file url="PROJECT" charset="x-windows-949" />
   </component>
 </project>

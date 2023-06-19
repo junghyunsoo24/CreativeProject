@@ -33,8 +33,8 @@ public class ClientApp extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> Platform.exit());
-        primaryStage.setWidth(600);
-        primaryStage.setHeight(400);
+        primaryStage.setWidth(1000);
+        primaryStage.setHeight(1000);
     }
 
     public static void main(String[] args) {
