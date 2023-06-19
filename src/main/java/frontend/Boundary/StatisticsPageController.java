@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class StatisticsPageController
 {
-    public Chart chart;
+
     @FXML
     private Button backBtn;
     @FXML
