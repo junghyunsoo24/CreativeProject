@@ -13,20 +13,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Analysis2Controller {
+public class AllAnalysisController {
     @FXML
     private Button backBtn;
     @FXML
-    private Button endingBtn;
+    private Button foreginAnalysisBtn;
 
     @FXML
-    private Button show1btn;
+    private Button totalChartbtn;
     @FXML
-    private Button show2btn;
+    private Button dongChartbtn;
     @FXML
-    private Button show3btn;
+    private Button largeCategoryChartbtn;
     @FXML
-    private Button show4btn;
+    private Button monthChartshow4btn;
 
     private Town town;
     private Village village;
@@ -36,16 +36,16 @@ public class Analysis2Controller {
 
     }
     @FXML
-    private void moveToEndPage()throws IOException
+    private void moveToForeignerAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/EndPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerAnalysisPage.fxml"));
         Parent otherPage = loader.load();
 
-        EndPageController controller = loader.getController();
+        ForeignerAnalysisController controller = loader.getController();
         controller.initData(town,village,sectors);
 
-        Scene currentScene = endingBtn.getScene();
+        Scene currentScene = foreginAnalysisBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Ending Page");
@@ -75,13 +75,13 @@ public class Analysis2Controller {
     @FXML
     private void handleShowChart(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
-        if (clickedButton.getId().equals("show1btn")) {
+        if (clickedButton.getId().equals("totalChartbtn")) {
             //첫번째 chart 호출
-        } else if (clickedButton.getId().equals("show2btn")) {
+        } else if (clickedButton.getId().equals("dongChartbtn")) {
             // 두번째 chart 호출
-        }else if (clickedButton.getId().equals("show3btn")) {
+        }else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             // 두번째 chart 호출
-        }else if (clickedButton.getId().equals("show4btn")) {
+        }else if (clickedButton.getId().equals("monthChartshow4btn")) {
             // 두번째 chart 호출
         }
     }

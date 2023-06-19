@@ -74,17 +74,15 @@ public class MainPageController {
     private void handleStartBtn() throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
         Parent otherPage = loader.load();
         //정보전달
         choosedSectors= choosedSectors.replaceAll("\\s", "_");
         choosedSectors= choosedSectors.replaceAll(",", "_");
         Sectors sectors = Sectors.valueOf(choosedSectors);
-        StatisticsPageController controller = loader.getController();
-
-
+        AllStatisticsPageController controller = loader.getController();
         controller.initData(Town.valueOf(choosedTown), Village.valueOf(choosedVillage),sectors);
-        //controller.initData(Town.valueOf(choosedTown), Village.valueOf(choosedVillage),Sectors.건섭업);
+
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();

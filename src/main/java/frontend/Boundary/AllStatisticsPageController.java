@@ -1,6 +1,5 @@
 package frontend.Boundary;
 
-import frontend.Boundary.All.DongAnalysis;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -9,62 +8,52 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.Chart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StatisticsPageController
+public class AllStatisticsPageController
 {
-//    public Chart chart;
-
     @FXML
     private Button backBtn;
     @FXML
-    private Button analysisBtn;
+    private Button foreginerBtn;
 
     @FXML
-    private Button show1btn;
+    private Button totalChartbtn;
     @FXML
-    private Button show2btn;
+    private Button dongChartbtn;
     @FXML
-    private Button show3btn;
+    private Button largeCategoryChartbtn;
     @FXML
-    private Button show4btn;
-
+    private Button monthChartshow4btn;
 
     private Town town;
     private Village village;
     private Sectors sectors;
 
-
-
     public void initialize() {
 
     }
     @FXML
-    private void moveToAnalysisPage() throws Exception
+    private void moveToForeginerStatisticsPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/AnalysisPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
         Parent otherPage = loader.load();
 
-        AnalysisController controller = loader.getController();
+        ForeignerStatisticsPageController controller = loader.getController();
         controller.initData(town,village,sectors);
 
-        Scene currentScene = analysisBtn.getScene();
-
+        Scene currentScene = foreginerBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Analysis Page");
-
-//        //버튼을 누르면 내 그래프가 나오도록 코드 수정하고 싶음
-//        DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
-//        dongAnalysis.start(primaryStage);
-
-
-
+        primaryStage.setWidth(600);
+        primaryStage.setHeight(400);
+        //mainPageController.initialize();
+        System.out.println(town +"ㅁㄴㅇ"+ village + "ㅁㄴㅇ" + sectors);
     }
 
     @FXML
@@ -86,21 +75,14 @@ public class StatisticsPageController
 
     @FXML
     private void handleShowChart(ActionEvent event) {
-        System.out.println("haha");
         Button clickedButton = (Button) event.getSource();
-        if (clickedButton.getId().equals("show1btn")) {
-            try {
-                Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-                DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
-                dongAnalysis.start(primaryStage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (clickedButton.getId().equals("show2btn")) {
+        if (clickedButton.getId().equals("totalChartbtn")) {
+            // 첫 번째 chart 호출
+        } else if (clickedButton.getId().equals("dongChartbtn")) {
             // 두 번째 chart 호출
-        } else if (clickedButton.getId().equals("show3btn")) {
+        } else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             // 세 번째 chart 호출
-        } else if (clickedButton.getId().equals("show4btn")) {
+        } else if (clickedButton.getId().equals("monthChartshow4btn")) {
             // 네 번째 chart 호출
         }
     }

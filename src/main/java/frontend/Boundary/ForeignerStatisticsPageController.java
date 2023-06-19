@@ -13,20 +13,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Statistics3PageController {
+public class ForeignerStatisticsPageController {
     @FXML
     private Button backBtn;
     @FXML
-    private Button analysisBtn;
+    private Button outsiderStatisticsBtn;
 
     @FXML
-    private Button show1btn;
+    private Button totalChartbtn;
     @FXML
-    private Button show2btn;
+    private Button dongChartbtn;
     @FXML
-    private Button show3btn;
+    private Button largeCategoryChartbtn;
     @FXML
-    private Button show4btn;
+    private Button monthChartshow4btn;
 
     private Town town;
     private Village village;
@@ -36,16 +36,16 @@ public class Statistics3PageController {
 
     }
     @FXML
-    private void moveToAnalysisPage()throws IOException
+    private void moveToOutsiderStatisticsPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/AnalysisPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderStatisticsPage.fxml"));
         Parent otherPage = loader.load();
 
-        AnalysisController controller = loader.getController();
+        OutsiderStatisticsPageController controller = loader.getController();
         controller.initData(town,village,sectors);
 
-        Scene currentScene = analysisBtn.getScene();
+        Scene currentScene = outsiderStatisticsBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Analysis Page");
@@ -75,13 +75,13 @@ public class Statistics3PageController {
     @FXML
     private void handleShowChart(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
-        if (clickedButton.getId().equals("show1btn")) {
+        if (clickedButton.getId().equals("totalChartbtn")) {
             // 첫 번째 chart 호출
-        } else if (clickedButton.getId().equals("show2btn")) {
+        } else if (clickedButton.getId().equals("dongChartbtn")) {
             // 두 번째 chart 호출
-        } else if (clickedButton.getId().equals("show3btn")) {
+        } else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             // 세 번째 chart 호출
-        } else if (clickedButton.getId().equals("show4btn")) {
+        } else if (clickedButton.getId().equals("monthChartshow4btn")) {
             // 네 번째 chart 호출
         }
     }

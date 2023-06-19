@@ -13,20 +13,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Analysis3Controller {
+public class ForeignerAnalysisController {
     @FXML
     private Button backBtn;
     @FXML
-    private Button endingBtn;
+    private Button outsiderAnalysisBtn;
 
     @FXML
-    private Button show1btn;
+    private Button totalChartbtn;
     @FXML
-    private Button show2btn;
+    private Button dongChartbtn;
     @FXML
-    private Button show3btn;
+    private Button largeCategoryChartbtn;
     @FXML
-    private Button show4btn;
+    private Button monthChartshow4btn;
 
     private Town town;
     private Village village;
@@ -36,16 +36,16 @@ public class Analysis3Controller {
 
     }
     @FXML
-    private void moveToEndPage()throws IOException
+    private void moveToOutsiderAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/EndPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderAnalysisPage.fxml"));
         Parent otherPage = loader.load();
 
-        EndPageController controller = loader.getController();
+        OutsiderAnalysisController controller = loader.getController();
         controller.initData(town,village,sectors);
 
-        Scene currentScene = endingBtn.getScene();
+        Scene currentScene = outsiderAnalysisBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Ending Page");
