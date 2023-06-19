@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Statistics3PageController {
+public class AllStatisticsPageController
+{
     @FXML
     private Button backBtn;
     @FXML
@@ -39,10 +40,10 @@ public class Statistics3PageController {
     private void moveToAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/AnalysisPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
         Parent otherPage = loader.load();
 
-        AnalysisController controller = loader.getController();
+        ForeignerStatisticsPageController controller = loader.getController();
         controller.initData(town,village,sectors);
 
         Scene currentScene = analysisBtn.getScene();

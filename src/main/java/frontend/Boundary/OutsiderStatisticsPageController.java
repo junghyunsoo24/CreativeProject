@@ -8,13 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.Chart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StatisticsPageController
+public class OutsiderStatisticsPageController
 {
 
     @FXML
@@ -42,10 +41,10 @@ public class StatisticsPageController
     private void moveToAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/AnalysisPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
         Parent otherPage = loader.load();
 
-        AnalysisController controller = loader.getController();
+        AllAnalysisController controller = loader.getController();
         controller.initData(town,village,sectors);
 
         Scene currentScene = analysisBtn.getScene();

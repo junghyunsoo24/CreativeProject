@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Analysis3Controller {
+public class ForeignerStatisticsPageController {
     @FXML
     private Button backBtn;
     @FXML
-    private Button endingBtn;
+    private Button analysisBtn;
 
     @FXML
     private Button show1btn;
@@ -36,23 +36,23 @@ public class Analysis3Controller {
 
     }
     @FXML
-    private void moveToEndPage()throws IOException
+    private void moveToAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/EndPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderStatisticsPage.fxml"));
         Parent otherPage = loader.load();
 
-        EndPageController controller = loader.getController();
+        OutsiderStatisticsPageController controller = loader.getController();
         controller.initData(town,village,sectors);
 
-        Scene currentScene = endingBtn.getScene();
+        Scene currentScene = analysisBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Ending Page");
+        primaryStage.setTitle("Analysis Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
-
-        System.out.println(town +"ㅂㅈㄷ"+ village + "ㅂㅈㄷ" + sectors);
+        //mainPageController.initialize();
+        System.out.println(town +"ㅁㄴㅇ"+ village + "ㅁㄴㅇ" + sectors);
     }
 
     @FXML
@@ -76,19 +76,19 @@ public class Analysis3Controller {
     private void handleShowChart(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
         if (clickedButton.getId().equals("show1btn")) {
-            //첫번째 chart 호출
+            // 첫 번째 chart 호출
         } else if (clickedButton.getId().equals("show2btn")) {
-            // 두번째 chart 호출
-        }else if (clickedButton.getId().equals("show3btn")) {
-            // 두번째 chart 호출
-        }else if (clickedButton.getId().equals("show4btn")) {
-            // 두번째 chart 호출
+            // 두 번째 chart 호출
+        } else if (clickedButton.getId().equals("show3btn")) {
+            // 세 번째 chart 호출
+        } else if (clickedButton.getId().equals("show4btn")) {
+            // 네 번째 chart 호출
         }
     }
+
     public void initData(Town town, Village village, Sectors sectors) {
         this.town = town;
         this.village = village;
         this.sectors = sectors;
     }
-
 }

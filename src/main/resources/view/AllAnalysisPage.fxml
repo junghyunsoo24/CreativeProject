@@ -6,11 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.Analysis3Controller">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.AllAnalysisController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="분석3" translateX="280.0" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All_Analysis" translateX="230.0" BorderPane.alignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -39,7 +39,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="endingBtn" layoutX="175.0" layoutY="261.0" mnemonicParsing="false" onAction="#moveToEndPage" prefWidth="83.0" text="최종판단">
+                        <Button fx:id="endingBtn" layoutX="175.0" layoutY="261.0" mnemonicParsing="false" onAction="#moveToEndPage" prefHeight="28.0" prefWidth="110.0" text="외국인 분석">
                            <font>
                               <Font size="14.0" />
                            </font>
