@@ -10,57 +10,45 @@
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="분석" translateX="280.0" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="분석1" translateX="280.0" BorderPane.alignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <SplitPane dividerPositions="0.2842809364548495" prefHeight="350.0" prefWidth="600.0">
+            <SplitPane prefHeight="350.0" prefWidth="600.0">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="shcw1Btn" layoutY="30.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석1">
+                        <Button fx:id="shcw1Btn" layoutX="216.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw2Btn" layoutY="58.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석2">
+                        <Button fx:id="shcw2Btn" layoutX="216.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw3Btn" layoutY="86.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석3">
+                        <Button fx:id="shcw3Btn" layoutX="216.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석3">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw4Btn" layoutY="114.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석4">
+                        <Button fx:id="shcw4Btn" layoutX="216.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="분석4">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="endingBtn" layoutY="306.0" mnemonicParsing="false" onAction="#moveToEndPage" prefWidth="83.0" text="최종판단">
+                        <Button fx:id="endingBtn" layoutX="175.0" layoutY="261.0" mnemonicParsing="false" onAction="#moveToEndPage" prefWidth="83.0" text="최종판단">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="backBtn" layoutX="83.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleBackBtn" prefWidth="83.0" text="뒤로">
+                        <Button fx:id="backBtn" layoutX="341.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleBackBtn" prefWidth="83.0" text="뒤로">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="300.0">
-                     <children>
-                        <BarChart layoutY="-1.0" prefHeight="354.0" prefWidth="426.0">
-                           <xAxis>
-                              <CategoryAxis side="BOTTOM" />
-                           </xAxis>
-                           <yAxis>
-                              <NumberAxis side="LEFT" />
-                           </yAxis>
-                        </BarChart>
                      </children>
                   </AnchorPane>
                </items>
