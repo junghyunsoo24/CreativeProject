@@ -33,6 +33,14 @@ public class ConsumptionAmountDAO extends DAO<DTO>{
         return select("mapper.CAMapper.selectOrderByAmount");
     }
 
+    public Long selectSum(String params) {
+        if ('A' <= params.charAt(0) && params.charAt(0) <= 'Z') {
+            return selectSum("mapper.CAMapper.selectSumAmountWithIndustryCode", params);
+        }
+
+        return selectSum("mapper.CAMapper.selectSumAmountWithDongName", params);
+    }
+
     @Override
     public void insertAll(List<DTO> list) {
         insert("mapper.CAMapper.insert", list);

@@ -33,6 +33,18 @@
         ORDER BY amount
     </select>
 
+    <select id="selectSumAmountWithDongName" parameterType="java.lang.String" resultType="java.lang.Long">
+        SELECT SUM(amount)
+        FROM consumption_amount_foreigner
+        WHERE dong_name = #{dongName}
+    </select>
+
+    <select id="selectSumAmountWithIndustryCode" parameterType="java.lang.String" resultType="java.lang.Long">
+        SELECT SUM(amount)
+        FROM consumption_amount_foreigner
+        WHERE industry_code = #{industryCode}
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO consumption_amount_foreigner(year, month, metropolitan_code, metropolitan_name, city_code, city_name, dong_code, dong_name, industry_code, industry_name, nationality, period, count, amount)
         VALUES (#{year}, #{month}, #{metropolitan_code}, #{metropolitan_name}, #{city_code}, #{city_name}, #{dong_code}, #{dong_name}, #{industry_code}, #{industry_name}, #{nationality}, #{period}, #{count}, #{amount})

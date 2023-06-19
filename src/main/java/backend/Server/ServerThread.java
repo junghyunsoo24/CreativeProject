@@ -58,6 +58,12 @@ public class ServerThread implements Runnable {
             Protocol<Boolean> responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, data);
             oos.writeObject(responseProtocol);
             System.out.println("관리자 검증 완료");
+        } else if (protocol.getQUERY() == ProtocolQuery.selectSum) {
+            System.out.println("SUM 명령 확인");
+            Long sum = control.selectSumRequest(protocol);
+            Protocol<Long> responseProtocol = new Protocol<>(ProtocolQuery.response, ProtocolType.response, sum);
+            oos.writeObject(responseProtocol);
+            System.out.println("SUM 반환 완료");
         } else {
             System.out.println("DB SELECT 명령 확인");
             Protocol<List<DTO>> responseProtocol;

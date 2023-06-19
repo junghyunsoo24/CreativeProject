@@ -33,6 +33,14 @@ public class ConsumptionAmountForeignerDAO extends DAO<DTO> {
         return select("mapper.CAFMapper.selectOrderByAmount");
     }
 
+    public Long selectSum(String params) {
+        if ('A' <= params.charAt(0) && params.charAt(0) <= 'Z') {
+            return selectSum("mapper.CAFMapper.selectSumAmountWithIndustryCode", params);
+        }
+
+        return selectSum("mapper.CAFMapper.selectSumAmountWithDongName", params);
+    }
+
     @Override
     public void insertAll(List<DTO> list) {
         insert("mapper.CAFMapper.insert", list);
