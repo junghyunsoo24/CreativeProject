@@ -18,22 +18,22 @@
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="shcw1Btn" onAction="#handleShowChart" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명1">
+                        <Button fx:id="show1btn" onAction="#handleShowChart" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw2Btn" onAction="#handleShowChart" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명2">
+                        <Button fx:id="show2btn" onAction="#handleShowChart" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw3Btn" onAction="#handleShowChart" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명3">
+                        <Button fx:id="show3btn" onAction="#handleShowChart" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명3">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw4Btn"  onAction="#handleShowChart" layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명4">
+                        <Button fx:id="show4btn"  onAction="#handleShowChart" layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="통계명4">
                            <font>
                               <Font size="14.0" />
                            </font>

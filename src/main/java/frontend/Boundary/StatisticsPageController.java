@@ -58,9 +58,9 @@ public class StatisticsPageController
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Analysis Page");
 
-        //버튼을 누르면 내 그래프가 나오도록 코드 수정하고 싶음
-        DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
-        dongAnalysis.start(primaryStage);
+//        //버튼을 누르면 내 그래프가 나오도록 코드 수정하고 싶음
+//        DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
+//        dongAnalysis.start(primaryStage);
 
 
 
@@ -85,9 +85,16 @@ public class StatisticsPageController
 
     @FXML
     private void handleShowChart(ActionEvent event) {
+        System.out.println("haha");
         Button clickedButton = (Button) event.getSource();
         if (clickedButton.getId().equals("show1btn")) {
-            // 첫 번째 chart 호출
+            try {
+                Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
+                DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
+                dongAnalysis.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (clickedButton.getId().equals("show2btn")) {
             // 두 번째 chart 호출
         } else if (clickedButton.getId().equals("show3btn")) {
