@@ -17,6 +17,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import backend.DB.DTO.ConsumptionAmountDTO;
 import backend.DB.DTO.DTO;
@@ -72,9 +74,12 @@ public class LargeCategoryAnalysis extends Application {
 
         // 데이터셋 생성
         CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setTickLabelFont(Font.font("Arial", FontWeight.NORMAL, 8)); // 글꼴 크기 조정
+
         NumberAxis yAxis = new NumberAxis();
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
         chartData = barChart.getData();
+
 
         // DB에서 표준산업대분류별 소비금액 데이터 추출
         List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
@@ -112,27 +117,25 @@ public class LargeCategoryAnalysis extends Application {
 //        for (String currentDivision = entryList.get(count).getKey(); count < entryList.size() && !currentDivision.equals(village); currentDivision = entryList.get(++count).getKey()) {
 //            //pass
 //        }
-        Label divisionCheckLabel = new Label("선택한 대분류는 " + village + "이고 "  + "번째 중에서 " + (count + 1) + "째로 많이 소비합니다.");
-
+        //Label divisionCheckLabel = new Label("선택한 대분류는 " + village + "이고 "  + "번째 중에서 " + (count + 1) + "째로 많이 소비합니다.");
         // 최댓값 출력
         Map.Entry<String, Double> maxEntry = entryList.get(0);
         String maxDivision = maxEntry.getKey();
         double maxAmount = maxEntry.getValue();
         String formattedMaxAmount = decimalFormat.format(maxAmount);
-        Label maxLabel = new Label("가장 많이 소비한 대분류는 " + maxDivision + "에 " + formattedMaxAmount + "원 입니다.");
+        //Label maxLabel = new Label("가장 많이 소비한 대분류는 " + maxDivision + "에 " + formattedMaxAmount + "원 입니다.");
 
         // 최솟값 출력
         Map.Entry<String, Double> minEntry = entryList.get(entryList.size() - 1);
         String minDivision = minEntry.getKey();
         double minAmount = minEntry.getValue();
         String formattedMinAmount = decimalFormat.format(minAmount);
-        Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
-
+        //Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
         // root에 컴포넌트 추가
-        root.getChildren().addAll(barChart, divisionCheckLabel, maxLabel, minLabel, backButton);
+        root.getChildren().addAll(barChart, backButton);
 
         // Scene 생성
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
         primaryStage.setTitle("법정동별 이용 금액");
