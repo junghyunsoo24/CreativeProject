@@ -108,7 +108,7 @@ public class DongStats extends Application {
         // 엔트리를 금액을 기준으로 내림차순 정렬
         entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
 
-        Long sum = ClientApp.getDB().selectSumRequest(ProtocolQuery.selectSum, ProtocolType.CAO, village.getName());
+        Long sum = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAO, village.getName());
         String formattedSum = decimalFormat.format(sum);
         Label DongCheckLabel = new Label("선택한 동은 " + village + "에 "  + formattedSum + "원 입니다.");
 

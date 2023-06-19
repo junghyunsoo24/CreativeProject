@@ -1,6 +1,7 @@
 package frontend.Boundary.Foreigner;
 
 import backend.DB.DTO.*;
+import frontend.Boundary.ForeignerAnalysisController;
 import frontend.Boundary.ForeignerStatisticsPageController;
 import frontend.Control.AnalysisControl;
 import backend.DB.Protocol.ProtocolQuery;

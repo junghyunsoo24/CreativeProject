@@ -113,7 +113,7 @@ public class LargeCategoryStats extends Application {
         // 엔트리를 금액을 기준으로 내림차순 정렬
         entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
 
-        Long sum = ClientApp.getDB().selectSumRequest(ProtocolQuery.selectSum, ProtocolType.CAF, sectors.getCode());
+        Long sum = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAF, sectors.getCode());
         String formattedMaxSum = decimalFormat.format(sum);
 
         Label divisionCheckSum = new Label("선택한 대분류는 " + sectors + "에 "  +formattedMaxSum+ "원입니다." );

@@ -1,5 +1,6 @@
 package frontend.Boundary.All;
 
+import frontend.Boundary.AllAnalysisController;
 import frontend.Boundary.AllStatisticsPageController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
