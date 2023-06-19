@@ -39,7 +39,7 @@ public class DBConnector {
 
     @SuppressWarnings("unchecked")
     public List<DTO> selectRequest(ProtocolQuery query, ProtocolType type) throws IOException, ClassNotFoundException {
-        Protocol<File> protocol = new Protocol<>(query, type, null);
+        Protocol<?> protocol = new Protocol<>(query, type, null);
         oos.writeObject(protocol);
         System.out.println(LocalDateTime.now() + " ***** " + "SELECT 요청 완료");
 
@@ -48,7 +48,7 @@ public class DBConnector {
     }
 
     @SuppressWarnings("unchecked")
-    public Long selectSumRequest(ProtocolQuery query, ProtocolType type, String params) throws IOException, ClassNotFoundException {
+    public Long selectRequest(ProtocolQuery query, ProtocolType type, String params) throws IOException, ClassNotFoundException {
         Protocol<String> protocol = new Protocol<>(query, type, params);
         oos.writeObject(protocol);
         System.out.println(LocalDateTime.now() + " ***** " + "SUM 요청 완료");
