@@ -53,8 +53,8 @@ public class ForeignerStatisticsPageController {
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Analysis Page");
-        primaryStage.setWidth(600);
-        primaryStage.setHeight(400);
+        primaryStage.setWidth(860);
+        primaryStage.setHeight(560);
         //mainPageController.initialize();
         System.out.println(town +"ㅁㄴㅇ"+ village + "ㅁㄴㅇ" + sectors);
     }

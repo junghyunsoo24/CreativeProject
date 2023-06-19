@@ -53,8 +53,8 @@ public class AllAnalysisController {
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Ending Page");
-        primaryStage.setWidth(600);
-        primaryStage.setHeight(400);
+        primaryStage.setWidth(860);
+        primaryStage.setHeight(560);
 
         System.out.println(town +"ㅂㅈㄷ"+ village + "ㅂㅈㄷ" + sectors);
     }
