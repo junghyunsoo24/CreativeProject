@@ -1,8 +1,8 @@
-package frontend.Boundary.Foreigner;
+package frontend.Boundary.Outsider;
 
 
-import backend.DB.DTO.ConsumptionAmountForeignerDTO;
-import frontend.Boundary.ForeignerStatisticsPageController;
+import backend.DB.DTO.ConsumptionAmountOutsiderDTO;
+import frontend.Boundary.OutsiderStatisticsPageController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -20,11 +20,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import backend.DB.DTO.ConsumptionAmountDTO;
 import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
 
-import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -57,9 +57,9 @@ public class DongAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                ForeignerStatisticsPageController controller = loader.getController();
+                OutsiderStatisticsPageController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
@@ -78,12 +78,12 @@ public class DongAnalysis extends Application {
         chartData = barChart.getData();
 
         // DB에서 법정동별 소비금액 데이터 추출
-        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAF);
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAO);
         for (DTO dto : dtoList) {
             // 법정동명
-            String dongName = ((ConsumptionAmountForeignerDTO) dto).getDong_name();
+            String dongName = ((ConsumptionAmountOutsiderDTO) dto).getDong_name();
             // 이용금액
-            double amount = ((ConsumptionAmountForeignerDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountOutsiderDTO) dto).getAmount();
 
             // 법정동명이 이미 TreeMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = dongAmountMap.containsKey(dongName) ? dongAmountMap.get(dongName) : 0;

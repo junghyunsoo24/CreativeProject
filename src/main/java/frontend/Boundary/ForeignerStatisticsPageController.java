@@ -1,5 +1,9 @@
 package frontend.Boundary;
 
+import frontend.Boundary.Foreigner.DongAnalysis;
+import frontend.Boundary.Foreigner.LargeCategoryAnalysis;
+import frontend.Boundary.Foreigner.MonthAnalysis;
+import frontend.Boundary.Foreigner.TotalAnalysis;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -73,16 +77,24 @@ public class ForeignerStatisticsPageController {
     }
 
     @FXML
-    private void handleShowChart(ActionEvent event) {
+    private void handleShowChart(ActionEvent event) throws Exception {
         Button clickedButton = (Button) event.getSource();
         if (clickedButton.getId().equals("totalChartbtn")) {
-            // 첫 번째 chart 호출
+            Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
+            TotalAnalysis totalAnalysis = new TotalAnalysis(town, village, sectors);
+            totalAnalysis.start(primaryStage);
         } else if (clickedButton.getId().equals("dongChartbtn")) {
-            // 두 번째 chart 호출
+            Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
+            DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
+            dongAnalysis.start(primaryStage);
         } else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
-            // 세 번째 chart 호출
+            Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
+            LargeCategoryAnalysis largeCategoryAnalysis = new LargeCategoryAnalysis(town, village, sectors);
+            largeCategoryAnalysis.start(primaryStage);
         } else if (clickedButton.getId().equals("monthChartshow4btn")) {
-            // 네 번째 chart 호출
+            Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
+            MonthAnalysis monthAnalysis = new MonthAnalysis(town, village, sectors);
+            monthAnalysis.start(primaryStage);
         }
     }
 
