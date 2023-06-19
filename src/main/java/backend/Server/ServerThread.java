@@ -35,9 +35,11 @@ public class ServerThread implements Runnable {
         try {
             while (true) {
                 protocol = (Protocol<?>) ois.readObject();
+                System.out.println("======================================================");
                 System.out.println(LocalDateTime.now() + " ***** " + "프로토콜 전달 받음");
                 execute(protocol);
                 System.out.println(LocalDateTime.now() + " ***** " + "명령 수행 완료");
+                System.out.println("======================================================");
             }
         } catch (SocketException e) {
             //pass
