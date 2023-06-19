@@ -1,13 +1,20 @@
-package frontend.Boundary;
+package frontend.Boundary.All;
 
+import frontend.Boundary.AllStatisticsPageController;
 import frontend.Control.AnalysisControl;
+import frontend.Enum.Sectors;
+import frontend.Enum.Town;
+import frontend.Enum.Village;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -19,7 +26,7 @@ import backend.DB.Protocol.ProtocolType;
 import java.text.DecimalFormat;
 import java.util.*;
 
-public class PriceDataAnalysis extends Application {
+public class TotalAnalysis extends Application {
     //법정동과 이용금액을 저장
     TreeMap<String, Double> monthAmountMap = new TreeMap<>();
     //이용금액 출력 포맷
@@ -34,6 +41,16 @@ public class PriceDataAnalysis extends Application {
     private final XYChart.Series<String, Number> series = new XYChart.Series<>();
     private ObservableList<XYChart.Series<String, Number>> chartData;
 
+    private Town town;
+    private Village village;
+    private Sectors sectors;
+
+    public TotalAnalysis(Town town, Village village, Sectors sectors){
+        this.town = town;
+        this.village = village;
+        this.sectors = sectors;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -42,6 +59,24 @@ public class PriceDataAnalysis extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox root = new VBox();
 
+                // "이전" 버튼 생성
+        Button backButton = new Button("되돌아가기");
+        backButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
+                Parent statisticsPage = loader.load();
+                AllStatisticsPageController controller = loader.getController();
+                controller.initData(town, village, sectors);
+                Scene currentScene = backButton.getScene();
+                currentScene.setRoot(statisticsPage);
+                Stage prmaryStage = (Stage) currentScene.getWindow();
+                prmaryStage.setTitle("Statistics Page");
+                prmaryStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         // 데이터셋 생성
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -93,7 +128,8 @@ public class PriceDataAnalysis extends Application {
         Label minLabel = new Label("가장 적게 쓴 금액의 정보는: " + minDongName + ", " + minLargeCategory + ", " + minMonth + "월, " + formattedMinAmount + "원");
 
         // root에 컴포넌트 추가
-        root.getChildren().addAll(barChart, maxLabel, minLabel);
+        root.getChildren().addAll(barChart, maxLabel, minLabel,backButton);
+
 
         // Scene 생성
         Scene scene = new Scene(root, 800, 600);

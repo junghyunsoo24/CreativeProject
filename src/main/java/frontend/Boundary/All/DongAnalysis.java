@@ -1,12 +1,14 @@
 package frontend.Boundary.All;
 
-import frontend.Boundary.LargeCategoryDataAnalysis;
+import frontend.Boundary.AllStatisticsPageController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -48,15 +50,22 @@ public class DongAnalysis extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox root = new VBox();
 
-        // "다음" 버튼 생성
-        Button nextButton = new Button("다음");
-        nextButton.setOnAction(event -> {
-            // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
-            LargeCategoryAnalysis anotherClass = new LargeCategoryAnalysis(town, village, sectors);
+        // "이전" 버튼 생성
+        Button backButton = new Button("되돌아가기");
+        backButton.setOnAction(event -> {
             try {
-                anotherClass.start(primaryStage);
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
+                Parent statisticsPage = loader.load();
+                AllStatisticsPageController controller = loader.getController();
+                controller.initData(town, village, sectors);
+                Scene currentScene = backButton.getScene();
+                currentScene.setRoot(statisticsPage);
+                Stage prmaryStage = (Stage) currentScene.getWindow();
+                prmaryStage.setTitle("Statistics Page");
+                prmaryStage.show();
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
 
@@ -99,9 +108,9 @@ public class DongAnalysis extends Application {
 
         // 동 데이터분석
         int count = 0;
-        for (String currentDongName = entryList.get(count).getKey(); count < entryList.size() && !currentDongName.equals(village); currentDongName = entryList.get(++count).getKey()) {
-            //pass
-        }
+//        for (String currentDongName = entryList.get(count).getKey(); count < entryList.size() && !currentDongName.equals(village); currentDongName = entryList.get(++count).getKey()) {
+//            //pass
+//        }
         Label DongCheckLabel = new Label("선택한 동은 " + village + "이고 "  + "번째 중에서 " + (count + 1) + "째로 많이 소비합니다.");
 
         // 최댓값 출력
@@ -120,7 +129,7 @@ public class DongAnalysis extends Application {
 
         // root에 컴포넌트 추가
         root.getChildren().addAll(barChart, DongCheckLabel, maxLabel, minLabel);
-        root.getChildren().add(nextButton); // 다음 버튼 추가
+        root.getChildren().add(backButton); // 다음 버튼 추가
 
         // Scene 생성
         Scene scene = new Scene(root, 800, 600);
