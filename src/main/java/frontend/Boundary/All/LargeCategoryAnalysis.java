@@ -1,11 +1,14 @@
 package frontend.Boundary.All;
 
+import frontend.Boundary.AllStatisticsPageController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -45,19 +48,27 @@ public class LargeCategoryAnalysis extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // "다음" 버튼 생성
-        Button nextButton = new Button("다음");
-        nextButton.setOnAction(event -> {
-            // 다른 클래스를 여기에 호출하고 원하는 동작을 수행
-            MonthAnalysis anotherClass = new MonthAnalysis(town, village, sectors);
+        VBox root = new VBox();
+        // "이전" 버튼 생성
+        Button backButton = new Button("되돌아가기");
+        backButton.setOnAction(event -> {
             try {
-                anotherClass.start(primaryStage);
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
+                Parent statisticsPage = loader.load();
+                AllStatisticsPageController controller = loader.getController();
+                controller.initData(town, village, sectors);
+                Scene currentScene = backButton.getScene();
+                currentScene.setRoot(statisticsPage);
+                Stage prmaryStage = (Stage) currentScene.getWindow();
+                prmaryStage.setTitle("Statistics Page");
+                prmaryStage.show();
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
 
-        VBox root = new VBox();
+
 
         // 데이터셋 생성
         CategoryAxis xAxis = new CategoryAxis();
@@ -118,7 +129,7 @@ public class LargeCategoryAnalysis extends Application {
         Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
 
         // root에 컴포넌트 추가
-        root.getChildren().addAll(barChart, divisionCheckLabel, maxLabel, minLabel, nextButton);
+        root.getChildren().addAll(barChart, divisionCheckLabel, maxLabel, minLabel, backButton);
 
         // Scene 생성
         Scene scene = new Scene(root, 800, 600);

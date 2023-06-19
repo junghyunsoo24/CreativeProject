@@ -1,6 +1,6 @@
 package frontend.Boundary.All;
 
-//import frontend.Boundary.StatisticsPageController;
+import frontend.Boundary.AllStatisticsPageController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -26,7 +26,7 @@ import backend.DB.Protocol.ProtocolType;
 import java.text.DecimalFormat;
 import java.util.*;
 
-public class AllAnalysis extends Application {
+public class TotalAnalysis extends Application {
     //법정동과 이용금액을 저장
     TreeMap<String, Double> monthAmountMap = new TreeMap<>();
     //이용금액 출력 포맷
@@ -45,7 +45,7 @@ public class AllAnalysis extends Application {
     private Village village;
     private Sectors sectors;
 
-    public AllAnalysis(Town town, Village village, Sectors sectors){
+    public TotalAnalysis(Town town, Village village, Sectors sectors){
         this.town = town;
         this.village = village;
         this.sectors = sectors;
@@ -64,10 +64,10 @@ public class AllAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/StatisticsPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                //StatisticsPageController controller = loader.getController();
-                //controller.initData(town, village, sectors);
+                AllStatisticsPageController controller = loader.getController();
+                controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
                 Stage prmaryStage = (Stage) currentScene.getWindow();
