@@ -1,6 +1,5 @@
 package frontend.Boundary.All;
 
-import frontend.Boundary.LargeCategoryDataAnalysis;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -99,9 +98,9 @@ public class DongAnalysis extends Application {
 
         // 동 데이터분석
         int count = 0;
-        for (String currentDongName = entryList.get(count).getKey(); count < entryList.size() && !currentDongName.equals(village); currentDongName = entryList.get(++count).getKey()) {
-            //pass
-        }
+//        for (String currentDongName = entryList.get(count).getKey(); count < entryList.size() && !currentDongName.equals(village); currentDongName = entryList.get(++count).getKey()) {
+//            //pass
+//        }
         Label DongCheckLabel = new Label("선택한 동은 " + village + "이고 "  + "번째 중에서 " + (count + 1) + "째로 많이 소비합니다.");
 
         // 최댓값 출력

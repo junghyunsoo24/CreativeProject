@@ -19,22 +19,22 @@
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="322.0" prefWidth="598.0">
                      <children>
-                        <Button fx:id="shcw1Btn" layoutX="216.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명1">
+                        <Button fx:id="show1btn" layoutX="216.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw2Btn" layoutX="216.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명2">
+                        <Button fx:id="show2btn" layoutX="216.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw3Btn" layoutX="216.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명3">
+                        <Button fx:id="show3btn" layoutX="216.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명3">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="shcw4Btn" layoutX="216.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명4">
+                        <Button fx:id="show4btn" layoutX="216.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleShowChart" prefHeight="25.0" prefWidth="166.0" text="통계명4">
                            <font>
                               <Font size="14.0" />
                            </font>
