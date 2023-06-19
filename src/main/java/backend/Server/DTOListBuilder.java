@@ -7,20 +7,23 @@ import backend.DB.DTO.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DTOListBuilder {
+    private File csv;
     private CSVReader csvReader;
     private List<String[]> csvVal;
 
     public DTOListBuilder(File csv) throws IOException, CsvException {
+        this.csv = csv;
         csvReader = new CSVReader(new FileReader(csv));
         csvVal = csvReader.readAll();
-    }
 
-    public DTOListBuilder(File csv, String encoding) throws IOException, CsvException {
-        csvReader = new CSVReader(new InputStreamReader(Files.newInputStream(csv.toPath()), encoding));
-        csvVal = csvReader.readAll();
+        if (!csvVal.get(0)[0].contains("기준")) {
+            csvReader = new CSVReader(new InputStreamReader(Files.newInputStream(csv.toPath()), "EUC-KR"));
+            csvVal = csvReader.readAll();
+        }
     }
 
 
