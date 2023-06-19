@@ -34,11 +34,7 @@ public class ConsumptionAmountDAO extends DAO<DTO>{
     }
 
     public Long selectSum(String params) {
-        if ('A' <= params.charAt(0) && params.charAt(0) <= 'Z') {
-            return selectSum("mapper.CAMapper.selectSumAmountWithIndustryCode", params);
-        }
-
-        return selectSum("mapper.CAMapper.selectSumAmountWithDongName", params);
+        return 'A' <= params.charAt(0) && params.charAt(0) <= 'Z' ? select("mapper.CAMapper.selectSumAmountWithIndustryCode", params) : select("mapper.CAMapper.selectSumAmountWithDongName", params);
     }
 
     @Override
