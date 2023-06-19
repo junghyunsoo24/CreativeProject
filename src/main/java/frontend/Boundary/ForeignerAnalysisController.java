@@ -17,7 +17,7 @@ public class ForeignerAnalysisController {
     @FXML
     private Button backBtn;
     @FXML
-    private Button endingBtn;
+    private Button outsiderAnalysisBtn;
 
     @FXML
     private Button totalChartbtn;
@@ -36,7 +36,7 @@ public class ForeignerAnalysisController {
 
     }
     @FXML
-    private void moveToEndPage()throws IOException
+    private void moveToOutsiderAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderAnalysisPage.fxml"));
@@ -45,7 +45,7 @@ public class ForeignerAnalysisController {
         OutsiderAnalysisController controller = loader.getController();
         controller.initData(town,village,sectors);
 
-        Scene currentScene = endingBtn.getScene();
+        Scene currentScene = outsiderAnalysisBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Ending Page");

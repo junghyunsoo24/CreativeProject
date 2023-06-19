@@ -39,7 +39,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="analysisBtn" layoutX="175.0" layoutY="261.0" mnemonicParsing="false" onAction="#moveToAnalysisPage" prefWidth="110.0" text="외지인 통계">
+                        <Button fx:id="outsiderStatisticsBtn" layoutX="175.0" layoutY="261.0" mnemonicParsing="false" onAction="#moveToOutsiderStatisticsPage" prefWidth="110.0" text="외지인 통계">
                            <font>
                               <Font size="14.0" />
                            </font>

@@ -18,7 +18,7 @@ public class AllStatisticsPageController
     @FXML
     private Button backBtn;
     @FXML
-    private Button analysisBtn;
+    private Button foreginerBtn;
 
     @FXML
     private Button totalChartbtn;
@@ -37,7 +37,7 @@ public class AllStatisticsPageController
 
     }
     @FXML
-    private void moveToAnalysisPage()throws IOException
+    private void moveToForeginerStatisticsPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
@@ -46,7 +46,7 @@ public class AllStatisticsPageController
         ForeignerStatisticsPageController controller = loader.getController();
         controller.initData(town,village,sectors);
 
-        Scene currentScene = analysisBtn.getScene();
+        Scene currentScene = foreginerBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
         primaryStage.setTitle("Analysis Page");
