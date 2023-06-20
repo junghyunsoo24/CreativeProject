@@ -34,6 +34,7 @@ import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +123,15 @@ public class DongAnalysis extends Application {
         Label minLabel = new Label("가장 적게 소비한 동은 " + minDongName + "에 " + formattedMinAmount + "원 입니다.");
 
         Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAO, village.getName());
+
+//        double bigNum = maxAmount - sum;
+//        double smallNum = sum - minAmount;
+//        if(bigNum > smallNum){
+//            String message = village + " 분석결과 최댓값과 가까이 있으므로 고려해볼만하다!";
+//        }
+//        else{
+//            String message = village + " 분석결과 최솟값과 가까이 있으므로 적절하지 않을 거라 생각된다.";
+//        }
 
         // 데이터 생성
         series.getData().add(new XYChart.Data<>(maxDongName, maxAmount));
