@@ -65,9 +65,9 @@ public class TotalStats extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerAnalysisPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                ForeignerAnalysisController controller = loader.getController();
+                ForeignerStatisticsPageController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
