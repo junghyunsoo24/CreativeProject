@@ -67,7 +67,7 @@ public class TotalAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/OutStandingAnalysis.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderAnalysisPage.fxml"));
                 Parent statisticsPage = loader.load();
                 OutsiderAnalysisController controller = loader.getController();
                 controller.initData(town, village, sectors);

@@ -78,19 +78,19 @@ public class ForeignerAnalysisController {
     @FXML
     private void handleShowChart(ActionEvent event) throws Exception {
         Button clickedButton = (Button) event.getSource();
-        if (clickedButton.getId().equals("show1btn")) {
+        if (clickedButton.getId().equals("totalChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
             TotalAnalysis totalAnalysis = new TotalAnalysis(town, village, sectors);
             totalAnalysis.start(primaryStage);
-        } else if (clickedButton.getId().equals("show2btn")) {
+        } else if (clickedButton.getId().equals("dongChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
             DongAnalysis dongStats = new DongAnalysis(town, village, sectors);
             dongStats.start(primaryStage);
-        }else if (clickedButton.getId().equals("show3btn")) {
+        }else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
             LargeCategoryAnalysis largeCategoryStats = new LargeCategoryAnalysis(town, village, sectors);
             largeCategoryStats.start(primaryStage);
-        }else if (clickedButton.getId().equals("show4btn")) {
+        }else if (clickedButton.getId().equals("monthChartshow4btn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
             MonthAnalysis monthStats = new MonthAnalysis(town, village, sectors);
             monthStats.start(primaryStage);

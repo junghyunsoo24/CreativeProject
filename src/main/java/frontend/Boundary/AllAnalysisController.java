@@ -40,7 +40,7 @@ public class AllAnalysisController {
     private void moveToForeignerAnalysisPage()throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
+        loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerAnalysisPage.fxml"));
         Parent otherPage = loader.load();
 
         ForeignerAnalysisController controller = loader.getController();
