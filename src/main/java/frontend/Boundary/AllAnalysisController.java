@@ -1,9 +1,6 @@
 package frontend.Boundary;
 
-import frontend.Boundary.All.DongAnalysis;
-import frontend.Boundary.All.LargeCategoryAnalysis;
-import frontend.Boundary.All.MonthAnalysis;
-import frontend.Boundary.All.TotalAnalysis;
+import frontend.Boundary.All.*;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -55,8 +52,6 @@ public class AllAnalysisController {
         primaryStage.setTitle("Ending Page");
         primaryStage.setWidth(860);
         primaryStage.setHeight(560);
-
-        System.out.println(town +"ㅂㅈㄷ"+ village + "ㅂㅈㄷ" + sectors);
     }
 
     @FXML
@@ -85,16 +80,16 @@ public class AllAnalysisController {
             totalAnalysis.start(primaryStage);
         } else if (clickedButton.getId().equals("dongChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
-            dongAnalysis.start(primaryStage);
+            DongAnalysis dongStats = new DongAnalysis(town, village, sectors);
+            dongStats.start(primaryStage);
         }else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            LargeCategoryAnalysis largeCategoryAnalysis = new LargeCategoryAnalysis(town, village, sectors);
-            largeCategoryAnalysis.start(primaryStage);
+            LargeCategoryAnalysis largeCategoryStats = new LargeCategoryAnalysis(town, village, sectors);
+            largeCategoryStats.start(primaryStage);
         }else if (clickedButton.getId().equals("monthChartshow4btn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            MonthAnalysis monthAnalysis = new MonthAnalysis(town, village, sectors);
-            monthAnalysis.start(primaryStage);
+            MonthAnalysis monthStats = new MonthAnalysis(town, village, sectors);
+            monthStats.start(primaryStage);
         }
     }
     public void initData(Town town, Village village, Sectors sectors) {

@@ -1,8 +1,7 @@
-package frontend.Boundary.Foreigner;
+package frontend.Boundary.All;
 
 import frontend.Boundary.AllAnalysisController;
 import frontend.Boundary.AllStatisticsPageController;
-import frontend.Boundary.ForeignerAnalysisController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -28,7 +27,7 @@ import backend.DB.Protocol.ProtocolType;
 import java.text.DecimalFormat;
 import java.util.*;
 
-public class TotalAnalysis extends Application {
+public class TotalStats extends Application {
     //법정동과 이용금액을 저장
     TreeMap<String, Double> monthAmountMap = new TreeMap<>();
     //이용금액 출력 포맷
@@ -47,7 +46,7 @@ public class TotalAnalysis extends Application {
     private Village village;
     private Sectors sectors;
 
-    public TotalAnalysis(Town town, Village village, Sectors sectors){
+    public TotalStats(Town town, Village village, Sectors sectors){
         this.town = town;
         this.village = village;
         this.sectors = sectors;
@@ -61,14 +60,14 @@ public class TotalAnalysis extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox root = new VBox();
 
-        // "이전" 버튼 생성
+                // "이전" 버튼 생성
         Button backButton = new Button("되돌아가기");
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerAnalysisPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                ForeignerAnalysisController controller = loader.getController();
+                AllStatisticsPageController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);

@@ -1,7 +1,9 @@
 package frontend.Boundary.Outsider;
 
-import backend.DB.DTO.ConsumptionAmountOutsiderDTO;
-import frontend.Boundary.OutsiderStatisticsPageController;
+import frontend.Boundary.AllAnalysisController;
+import frontend.Boundary.AllStatisticsPageController;
+import frontend.Boundary.ForeignerAnalysisController;
+import frontend.Boundary.OutsiderAnalysisController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -19,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import backend.DB.DTO.ConsumptionAmountDTO;
 import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
@@ -64,9 +67,9 @@ public class TotalAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderStatisticsPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderAnalysisPage.fxml"));
                 Parent statisticsPage = loader.load();
-                OutsiderStatisticsPageController controller = loader.getController();
+                OutsiderAnalysisController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
@@ -86,23 +89,23 @@ public class TotalAnalysis extends Application {
         double max = 0;
         double min = Integer.MAX_VALUE;
 
-        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAO);
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
             // 이용금액
-            double amount = ((ConsumptionAmountOutsiderDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountDTO) dto).getAmount();
 
             //최댓값 최솟값 변경
             if (min > amount) {
                 min = amount;
-                minDongName = ((ConsumptionAmountOutsiderDTO) dto).getDong_name();
-                minLargeCategory = ((ConsumptionAmountOutsiderDTO) dto).getIndustry_name();
-                minMonth = String.valueOf(((ConsumptionAmountOutsiderDTO) dto).getMonth());
+                minDongName = ((ConsumptionAmountDTO) dto).getDong_name();
+                minLargeCategory = ((ConsumptionAmountDTO) dto).getIndustry_name();
+                minMonth = String.valueOf(((ConsumptionAmountDTO) dto).getMonth());
             }
             if (max < amount) {
                 max = amount;
-                maxDongName = ((ConsumptionAmountOutsiderDTO) dto).getDong_name();
-                maxLargeCategory = ((ConsumptionAmountOutsiderDTO) dto).getIndustry_name();
-                maxMonth = String.valueOf(((ConsumptionAmountOutsiderDTO) dto).getMonth());
+                maxDongName = ((ConsumptionAmountDTO) dto).getDong_name();
+                maxLargeCategory = ((ConsumptionAmountDTO) dto).getIndustry_name();
+                maxMonth = String.valueOf(((ConsumptionAmountDTO) dto).getMonth());
             }
         }
 
@@ -140,4 +143,3 @@ public class TotalAnalysis extends Application {
         primaryStage.show();
     }
 }
-

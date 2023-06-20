@@ -1,6 +1,8 @@
 package frontend.Boundary.All;
 
+import frontend.Boundary.AllAnalysisController;
 import frontend.Boundary.AllStatisticsPageController;
+import frontend.ClientApp;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
@@ -25,6 +27,7 @@ import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -42,6 +45,8 @@ public class LargeCategoryAnalysis extends Application {
     private Village village;
     private Sectors sectors;
 
+    // 데이터셋을 차트에 추가
+
     public LargeCategoryAnalysis(Town town, Village village, Sectors sectors) {
         this.town = town;
         this.village = village;
@@ -56,9 +61,9 @@ public class LargeCategoryAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
                 Parent statisticsPage = loader.load();
-                AllStatisticsPageController controller = loader.getController();
+                AllAnalysisController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
@@ -69,16 +74,6 @@ public class LargeCategoryAnalysis extends Application {
                 e.printStackTrace();
             }
         });
-
-
-
-        // 데이터셋 생성
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setTickLabelFont(Font.font("Arial", FontWeight.NORMAL, 8)); // 글꼴 크기 조정
-
-        NumberAxis yAxis = new NumberAxis();
-        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-        chartData = barChart.getData();
 
 
         // DB에서 표준산업대분류별 소비금액 데이터 추출
@@ -94,45 +89,47 @@ public class LargeCategoryAnalysis extends Application {
             divisionAmountMap.put(division, currentAmount + amount);
         }
 
-        // TreeMap의 엔트리를 순회하며 데이터셋에 값을 추가
-        for (Map.Entry<String, Double> entry : divisionAmountMap.entrySet()) {
-            String division = entry.getKey();
-            double amount = entry.getValue();
-
-            // 데이터셋에 값 추가
-            series.getData().add(new XYChart.Data<>(division, amount));
-        }
-
-        // 데이터셋을 차트에 추가
-        chartData.add(series);
 
         // 엔트리를 List에 저장
         List<Map.Entry<String, Double>> entryList = new ArrayList<>(divisionAmountMap.entrySet());
 
         // 엔트리를 금액을 기준으로 내림차순 정렬
         entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
+        Long sum = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CA, sectors.getCode());
+        String formattedMaxSum = decimalFormat.format(sum);
 
-        // 동 데이터분석
-        int count = 0;
-//        for (String currentDivision = entryList.get(count).getKey(); count < entryList.size() && !currentDivision.equals(village); currentDivision = entryList.get(++count).getKey()) {
-//            //pass
-//        }
-        //Label divisionCheckLabel = new Label("선택한 대분류는 " + village + "이고 "  + "번째 중에서 " + (count + 1) + "째로 많이 소비합니다.");
+        Label divisionCheckSum = new Label("선택한 대분류는 " + sectors + " 에 "  +formattedMaxSum+ "원입니다." );
         // 최댓값 출력
         Map.Entry<String, Double> maxEntry = entryList.get(0);
         String maxDivision = maxEntry.getKey();
         double maxAmount = maxEntry.getValue();
         String formattedMaxAmount = decimalFormat.format(maxAmount);
-        //Label maxLabel = new Label("가장 많이 소비한 대분류는 " + maxDivision + "에 " + formattedMaxAmount + "원 입니다.");
+        Label maxLabel = new Label("가장 많이 소비한 대분류는 " + maxDivision + "에 " + formattedMaxAmount + "원 입니다.");
 
         // 최솟값 출력
         Map.Entry<String, Double> minEntry = entryList.get(entryList.size() - 1);
         String minDivision = minEntry.getKey();
         double minAmount = minEntry.getValue();
         String formattedMinAmount = decimalFormat.format(minAmount);
-        //Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
+        Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
+
+        Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CA, village.getName());
+
+        // 데이터 생성
+        series.getData().add(new XYChart.Data<>(maxDivision, maxAmount));
+        series.getData().add(new XYChart.Data<>(minDivision, minAmount));
+        series.getData().add(new XYChart.Data<>(sectors.getCode(), sums));
+
+        // 그래프 생성 및 데이터 설정
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.getData().add(series);
+
         // root에 컴포넌트 추가
-        root.getChildren().addAll(barChart, backButton);
+        root.getChildren().addAll(barChart,divisionCheckSum, maxLabel,minLabel);
+        root.getChildren().add(backButton); // 다음 버튼 추가
 
         // Scene 생성
         Scene scene = new Scene(root, 600, 400);

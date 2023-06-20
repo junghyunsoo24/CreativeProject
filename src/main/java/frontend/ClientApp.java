@@ -20,7 +20,7 @@ public class ClientApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         db = new DBConnector("119.56.139.127", 3000);
-        //db = new DBConnector("localhost", 3000);
+//        db = new DBConnector("localhost", 3000);
         primaryStageObj = primaryStage;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/MainPage.fxml"));
@@ -33,8 +33,8 @@ public class ClientApp extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> Platform.exit());
-        primaryStage.setWidth(600);
-        primaryStage.setHeight(400);
+        primaryStage.setWidth(1000);
+        primaryStage.setHeight(1000);
     }
 
     public static void main(String[] args) {

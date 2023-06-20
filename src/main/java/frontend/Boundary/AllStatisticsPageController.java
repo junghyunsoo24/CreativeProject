@@ -1,9 +1,9 @@
 package frontend.Boundary;
 
-import frontend.Boundary.All.DongAnalysis;
-import frontend.Boundary.All.LargeCategoryAnalysis;
-import frontend.Boundary.All.MonthAnalysis;
-import frontend.Boundary.All.TotalAnalysis;
+import frontend.Boundary.All.DongStats;
+import frontend.Boundary.All.LargeCategoryStats;
+import frontend.Boundary.All.MonthStats;
+import frontend.Boundary.All.TotalStats;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -82,20 +82,20 @@ public class AllStatisticsPageController
         Button clickedButton = (Button) event.getSource();
         if (clickedButton.getId().equals("totalChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            TotalAnalysis totalAnalysis = new TotalAnalysis(town, village, sectors);
-            totalAnalysis.start(primaryStage);
+            TotalStats totalStats = new TotalStats(town, village, sectors);
+            totalStats.start(primaryStage);
         } else if (clickedButton.getId().equals("dongChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            DongAnalysis dongAnalysis = new DongAnalysis(town, village, sectors);
-            dongAnalysis.start(primaryStage);
+            DongStats dongStats = new DongStats(town, village, sectors);
+            dongStats.start(primaryStage);
         }else if (clickedButton.getId().equals("largeCategoryChartbtn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            LargeCategoryAnalysis largeCategoryAnalysis = new LargeCategoryAnalysis(town, village, sectors);
-            largeCategoryAnalysis.start(primaryStage);
+            LargeCategoryStats largeCategoryStats = new LargeCategoryStats(town, village, sectors);
+            largeCategoryStats.start(primaryStage);
         }else if (clickedButton.getId().equals("monthChartshow4btn")) {
             Stage primaryStage = (Stage) clickedButton.getScene().getWindow();
-            MonthAnalysis monthAnalysis = new MonthAnalysis(town, village, sectors);
-            monthAnalysis.start(primaryStage);
+            MonthStats monthStats = new MonthStats(town, village, sectors);
+            monthStats.start(primaryStage);
         }
     }
 

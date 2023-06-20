@@ -1,8 +1,6 @@
 package frontend.Boundary.All;
 
-import frontend.Boundary.AllAnalysisController;
 import frontend.Boundary.AllStatisticsPageController;
-import frontend.Boundary.ForeignerAnalysisController;
 import frontend.Control.AnalysisControl;
 import backend.DB.DTO.ConsumptionAmountDTO;
 import backend.DB.DTO.DTO;
@@ -29,7 +27,7 @@ import java.util.*;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 
-public class MonthAnalysis extends Application {
+public class MonthStats extends Application {
     //법정동과 이용금액을 저장
     TreeMap<String, Double> monthAmountMap = new TreeMap<>();
 
@@ -47,7 +45,7 @@ public class MonthAnalysis extends Application {
     private ObservableList<XYChart.Series<String, Number>> chartData;
 
 
-    public MonthAnalysis(Town town, Village village, Sectors sectors){
+    public MonthStats(Town town, Village village, Sectors sectors){
         this.town = town;
         this.village = village;
         this.sectors = sectors;
@@ -60,9 +58,9 @@ public class MonthAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                AllAnalysisController controller = loader.getController();
+                AllStatisticsPageController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);

@@ -1,5 +1,6 @@
 package frontend.Boundary.All;
 
+import frontend.Boundary.AllAnalysisController;
 import frontend.Boundary.AllStatisticsPageController;
 import frontend.Control.AnalysisControl;
 import frontend.Enum.Sectors;
@@ -59,14 +60,14 @@ public class TotalAnalysis extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox root = new VBox();
 
-                // "이전" 버튼 생성
+        // "이전" 버튼 생성
         Button backButton = new Button("되돌아가기");
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/AllStatisticsPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
                 Parent statisticsPage = loader.load();
-                AllStatisticsPageController controller = loader.getController();
+                AllAnalysisController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);

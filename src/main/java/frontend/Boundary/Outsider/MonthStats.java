@@ -1,11 +1,8 @@
-package frontend.Boundary.All;
+package frontend.Boundary.Outsider;
 
-import frontend.Boundary.AllAnalysisController;
-import frontend.Boundary.AllStatisticsPageController;
-import frontend.Boundary.ForeignerAnalysisController;
+import backend.DB.DTO.ConsumptionAmountOutsiderDTO;
+import frontend.Boundary.OutsiderStatisticsPageController;
 import frontend.Control.AnalysisControl;
-import backend.DB.DTO.ConsumptionAmountDTO;
-import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
 import frontend.Enum.Sectors;
@@ -25,11 +22,11 @@ import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
 import java.util.*;
-
 import javafx.application.Application;
 import javafx.scene.control.Button;
+import backend.DB.DTO.DTO;
 
-public class MonthAnalysis extends Application {
+public class MonthStats extends Application {
     //법정동과 이용금액을 저장
     TreeMap<String, Double> monthAmountMap = new TreeMap<>();
 
@@ -47,7 +44,7 @@ public class MonthAnalysis extends Application {
     private ObservableList<XYChart.Series<String, Number>> chartData;
 
 
-    public MonthAnalysis(Town town, Village village, Sectors sectors){
+    public MonthStats(Town town, Village village, Sectors sectors){
         this.town = town;
         this.village = village;
         this.sectors = sectors;
@@ -60,9 +57,9 @@ public class MonthAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/OutsiderStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                AllAnalysisController controller = loader.getController();
+                OutsiderStatisticsPageController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
@@ -83,12 +80,12 @@ public class MonthAnalysis extends Application {
         chartData = barChart.getData();
 
         // DB에서 월별 소비금액 데이터 추출
-        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAO);
         for (DTO dto : dtoList) {
             //월
-            String month = String.valueOf(((ConsumptionAmountDTO) dto).getMonth());
+            String month = String.valueOf(((ConsumptionAmountOutsiderDTO) dto).getMonth());
             // 이용금액
-            double amount = ((ConsumptionAmountDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountOutsiderDTO) dto).getAmount();
 
             // 해당 월이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = monthAmountMap.containsKey(month) ? monthAmountMap.get(month) : 0;
@@ -143,3 +140,4 @@ public class MonthAnalysis extends Application {
         launch(args);
     }
 }
+

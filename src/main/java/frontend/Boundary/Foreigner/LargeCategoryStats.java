@@ -1,16 +1,13 @@
-package frontend.Boundary.All;
+package frontend.Boundary.Foreigner;
 
-import frontend.Boundary.AllAnalysisController;
-import frontend.Boundary.AllStatisticsPageController;
-import frontend.Boundary.ForeignerAnalysisController;
+import backend.DB.DTO.ConsumptionAmountForeignerDTO;
+import frontend.Boundary.ForeignerStatisticsPageController;
+import frontend.ClientApp;
 import frontend.Control.AnalysisControl;
-import backend.DB.DTO.ConsumptionAmountDTO;
-import backend.DB.DTO.DTO;
-import backend.DB.Protocol.ProtocolQuery;
-import backend.DB.Protocol.ProtocolType;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
+import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,39 +16,39 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import backend.DB.DTO.DTO;
+import backend.DB.Protocol.ProtocolQuery;
+import backend.DB.Protocol.ProtocolType;
 
 import java.text.DecimalFormat;
 import java.util.*;
 
-import javafx.application.Application;
-import javafx.scene.control.Button;
-
-public class MonthAnalysis extends Application {
+public class LargeCategoryStats extends Application {
     //법정동과 이용금액을 저장
-    TreeMap<String, Double> monthAmountMap = new TreeMap<>();
+    TreeMap<String, Double> divisionAmountMap = new TreeMap<>();
 
     //이용금액 출력 포맷
     DecimalFormat decimalFormat = new DecimalFormat("#,##0");
 
-    private String month = "";//달
-    private double amount = 0.0; // 이용금액
+    private XYChart.Series<String, Number> series = new XYChart.Series<>();
+    private ObservableList<XYChart.Series<String, Number>> chartData;
 
     private Town town;
     private Village village;
     private Sectors sectors;
 
-    private XYChart.Series<String, Number> series = new XYChart.Series<>();
-    private ObservableList<XYChart.Series<String, Number>> chartData;
-
-
-    public MonthAnalysis(Town town, Village village, Sectors sectors){
+    public LargeCategoryStats(Town town, Village village, Sectors sectors) {
         this.town = town;
         this.village = village;
         this.sectors = sectors;
     }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         VBox root = new VBox();
@@ -60,9 +57,9 @@ public class MonthAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/AllAnalysisPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                AllAnalysisController controller = loader.getController();
+                ForeignerStatisticsPageController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
@@ -78,57 +75,63 @@ public class MonthAnalysis extends Application {
 
         // 데이터셋 생성
         CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setTickLabelFont(Font.font("Arial", FontWeight.NORMAL, 8)); // 글꼴 크기 조정
+
         NumberAxis yAxis = new NumberAxis();
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
         chartData = barChart.getData();
 
-        // DB에서 월별 소비금액 데이터 추출
-        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
-        for (DTO dto : dtoList) {
-            //월
-            String month = String.valueOf(((ConsumptionAmountDTO) dto).getMonth());
-            // 이용금액
-            double amount = ((ConsumptionAmountDTO) dto).getAmount();
 
-            // 해당 월이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
-            double currentAmount = monthAmountMap.containsKey(month) ? monthAmountMap.get(month) : 0;
-            monthAmountMap.put(month, currentAmount + amount);
+        // DB에서 표준산업대분류별 소비금액 데이터 추출
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAF);
+        for (DTO dto : dtoList) {
+            //대분류명
+            String division = ((ConsumptionAmountForeignerDTO) dto).getIndustry_name();
+            // 이용금액
+            double amount = ((ConsumptionAmountForeignerDTO) dto).getAmount();
+
+            // 대분류명이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
+            double currentAmount = divisionAmountMap.containsKey(division) ? divisionAmountMap.get(division) : 0;
+            divisionAmountMap.put(division, currentAmount + amount);
         }
 
         // TreeMap의 엔트리를 순회하며 데이터셋에 값을 추가
-        for (Map.Entry<String, Double> entry : monthAmountMap.entrySet()) {
-            String month = entry.getKey();
+        for (Map.Entry<String, Double> entry : divisionAmountMap.entrySet()) {
+            String division = entry.getKey();
             double amount = entry.getValue();
 
             // 데이터셋에 값 추가
-            series.getData().add(new XYChart.Data<>(month, amount));
+            series.getData().add(new XYChart.Data<>(division, amount));
         }
 
         // 데이터셋을 차트에 추가
         chartData.add(series);
 
         // 엔트리를 List에 저장
-        List<Map.Entry<String, Double>> entryList = new ArrayList<>(monthAmountMap.entrySet());
+        List<Map.Entry<String, Double>> entryList = new ArrayList<>(divisionAmountMap.entrySet());
 
         // 엔트리를 금액을 기준으로 내림차순 정렬
         entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
 
+        Long sum = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAF, sectors.getCode());
+        String formattedMaxSum = decimalFormat.format(sum);
+
+        Label divisionCheckSum = new Label("선택한 대분류는 " + sectors + "에 "  +formattedMaxSum+ "원입니다." );
         // 최댓값 출력
         Map.Entry<String, Double> maxEntry = entryList.get(0);
-        String maxMonth = maxEntry.getKey();
+        String maxDivision = maxEntry.getKey();
         double maxAmount = maxEntry.getValue();
         String formattedMaxAmount = decimalFormat.format(maxAmount);
-        Label maxLabel = new Label("가장 많이 소비한 달은 " + maxMonth + "월에 " + formattedMaxAmount + "원 입니다.");
+        Label maxLabel = new Label("가장 많이 소비한 대분류는 " + maxDivision + "에 " + formattedMaxAmount + "원 입니다.");
 
         // 최솟값 출력
         Map.Entry<String, Double> minEntry = entryList.get(entryList.size() - 1);
-        String minMonth = minEntry.getKey();
+        String minDivision = minEntry.getKey();
         double minAmount = minEntry.getValue();
         String formattedMinAmount = decimalFormat.format(minAmount);
-        Label minLabel = new Label("가장 적게 소비한 달은 " + minMonth + "월에 " + formattedMinAmount + "원 입니다.");
-
+        Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
         // root에 컴포넌트 추가
-        root.getChildren().addAll(barChart, maxLabel, minLabel, backButton);
+        root.getChildren().addAll(barChart, divisionCheckSum, maxLabel, minLabel, backButton);
 
         // Scene 생성
         Scene scene = new Scene(root, 600, 400);
@@ -143,3 +146,4 @@ public class MonthAnalysis extends Application {
         launch(args);
     }
 }
+

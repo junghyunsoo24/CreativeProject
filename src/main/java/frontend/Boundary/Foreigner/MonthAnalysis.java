@@ -1,14 +1,15 @@
 package frontend.Boundary.Foreigner;
 
-import backend.DB.DTO.*;
-import frontend.Boundary.ForeignerStatisticsPageController;
+import frontend.Boundary.AllStatisticsPageController;
+import frontend.Boundary.ForeignerAnalysisController;
 import frontend.Control.AnalysisControl;
+import backend.DB.DTO.ConsumptionAmountDTO;
+import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,9 +24,9 @@ import javafx.stage.Stage;
 
 import java.text.DecimalFormat;
 import java.util.*;
+
 import javafx.application.Application;
 import javafx.scene.control.Button;
-import backend.DB.DTO.DTO;
 
 public class MonthAnalysis extends Application {
     //법정동과 이용금액을 저장
@@ -58,9 +59,9 @@ public class MonthAnalysis extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerAnalysisPage.fxml"));
                 Parent statisticsPage = loader.load();
-                ForeignerStatisticsPageController controller = loader.getController();
+                ForeignerAnalysisController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
@@ -81,12 +82,12 @@ public class MonthAnalysis extends Application {
         chartData = barChart.getData();
 
         // DB에서 월별 소비금액 데이터 추출
-        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAF);
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
         for (DTO dto : dtoList) {
             //월
-            String month = String.valueOf(((ConsumptionAmountForeignerDTO) dto).getMonth());
+            String month = String.valueOf(((ConsumptionAmountDTO) dto).getMonth());
             // 이용금액
-            double amount = ((ConsumptionAmountForeignerDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountDTO) dto).getAmount();
 
             // 해당 월이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = monthAmountMap.containsKey(month) ? monthAmountMap.get(month) : 0;
@@ -116,14 +117,14 @@ public class MonthAnalysis extends Application {
         String maxMonth = maxEntry.getKey();
         double maxAmount = maxEntry.getValue();
         String formattedMaxAmount = decimalFormat.format(maxAmount);
-        Label maxLabel = new Label("가장 많이 소비한 달은 " + maxMonth + "달에 " + formattedMaxAmount + "원 입니다.");
+        Label maxLabel = new Label("가장 많이 소비한 달은 " + maxMonth + "월에 " + formattedMaxAmount + "원 입니다.");
 
         // 최솟값 출력
         Map.Entry<String, Double> minEntry = entryList.get(entryList.size() - 1);
         String minMonth = minEntry.getKey();
         double minAmount = minEntry.getValue();
         String formattedMinAmount = decimalFormat.format(minAmount);
-        Label minLabel = new Label("가장 적게 소비한 달은 " + minMonth + "달에 " + formattedMinAmount + "원 입니다.");
+        Label minLabel = new Label("가장 적게 소비한 달은 " + minMonth + "월에 " + formattedMinAmount + "원 입니다.");
 
         // root에 컴포넌트 추가
         root.getChildren().addAll(barChart, maxLabel, minLabel, backButton);
