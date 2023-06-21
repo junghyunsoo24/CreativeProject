@@ -1,5 +1,7 @@
 package frontend.Boundary;
 
+import frontend.Boundary.Outsider.LargeCategoryAnalysis;
+import frontend.ClientApp;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -26,6 +28,8 @@ public class EndPageController {
     private Town town;
     private Village village;
     private Sectors sectors;
+
+
 
     public void initialize() {
 
@@ -65,7 +69,7 @@ public class EndPageController {
         this.town = town;
         this.village = village;
         this.sectors = sectors;
-        String message = makeMessage();
-        messageText.setText(message);
+        String message = null;
+        messageText.setText(ClientApp.text + "\n" + ClientApp.text2);
     }
 }

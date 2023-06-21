@@ -114,6 +114,15 @@ public class LargeCategoryAnalysis extends Application {
         Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
 
         Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CA, village.getName());
+        double bigNum = maxAmount - sum;
+        double smallNum = minAmount - sum;
+        System.out.println("들어옴");
+        if(bigNum > sum){
+            ClientApp.text = sectors.getIndustry() + " 분석결과 대분류에서\n 사용하는 비용이 최댓값과 가까이 있어서\n 고려해볼만하다!";
+        }
+        else{
+            ClientApp.text = sectors.getIndustry() + " 분석결과 대분류에서\n 사용하는 비용이 최솟값과 가까이 있어서\n 적절하지 않을 거라 생각된다.";
+        }
 
         // 데이터 생성
         series.getData().add(new XYChart.Data<>(maxDivision, maxAmount));

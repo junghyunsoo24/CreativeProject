@@ -122,6 +122,16 @@ public class DongAnalysis extends Application {
 
         Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CA, village.getName());
 
+        double bigNum = maxAmount - sum;
+        double smallNum = minAmount - sum;
+        System.out.println("들어옴");
+        if(bigNum > sum){
+            ClientApp.text2 = " 분석결과 " + village.getName() + "\n에서 사용하는 비용이 최댓값과 가까이 있어서 \n고려해볼만하다!";
+        }
+        else{
+            ClientApp.text2 = " 분석결과 " + village.getName() + "\n는 비용이 최솟값과 가까이 있어서 \n적절하지 않을 거라 생각된다.";
+        }
+
         // 데이터 생성
         series.getData().add(new XYChart.Data<>(maxDongName, maxAmount));
         series.getData().add(new XYChart.Data<>(minDongName, minAmount));
