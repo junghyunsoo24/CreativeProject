@@ -14,6 +14,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/LargeCategoryStats.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/MonthStats.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/frontend/Boundary/Outsider/TotalStats.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/frontend/ClientApp.java" charset="UTF-8" />
     <file url="PROJECT" charset="x-windows-949" />
   </component>
 </project>

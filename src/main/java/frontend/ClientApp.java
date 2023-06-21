@@ -13,6 +13,9 @@ public class ClientApp extends Application {
     private static Stage primaryStageObj;
     private static DBConnector db;
 
+    public static String text; //대분류
+    public static String text2; //동
+
     public static DBConnector getDB() {
         return db;
     }
@@ -33,8 +36,8 @@ public class ClientApp extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> Platform.exit());
-        primaryStage.setWidth(1000);
-        primaryStage.setHeight(1000);
+        primaryStage.setWidth(600);
+        primaryStage.setHeight(400);
     }
 
     public static void main(String[] args) {

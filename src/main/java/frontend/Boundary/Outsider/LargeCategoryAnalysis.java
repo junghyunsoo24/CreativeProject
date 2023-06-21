@@ -2,6 +2,7 @@ package frontend.Boundary.Outsider;
 
 import frontend.Boundary.AllAnalysisController;
 import frontend.Boundary.AllStatisticsPageController;
+import frontend.Boundary.EndPageController;
 import frontend.Boundary.OutsiderAnalysisController;
 import frontend.ClientApp;
 import frontend.Control.AnalysisControl;
@@ -22,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import backend.DB.DTO.ConsumptionAmountDTO;
 import backend.DB.DTO.DTO;
@@ -45,6 +47,9 @@ public class LargeCategoryAnalysis extends Application {
     private Town town;
     private Village village;
     private Sectors sectors;
+
+    Text text = new Text();
+
 
     // 데이터셋을 차트에 추가
 
@@ -116,14 +121,6 @@ public class LargeCategoryAnalysis extends Application {
 
         Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAF, village.getName());
 
-//        double bigNum = maxAmount - sum;
-//        double smallNum = minAmount - sum;
-//        if(bigNum > sum){
-//            String message = sectors + " 분석결과 대분류에서 사용하는 비용이 최댓값과 가까이 있어서 고려해볼만하다!";
-//        }
-//        else{
-//            String message = sectors + " 분석결과 대분류에서 사용하는 비용이 최솟값과 가까이 있어서 적절하지 않을 거라 생각된다.";
-//        }
         // 데이터 생성
         series.getData().add(new XYChart.Data<>(maxDivision, maxAmount));
         series.getData().add(new XYChart.Data<>(minDivision, minAmount));

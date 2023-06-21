@@ -1,5 +1,6 @@
 package frontend.Boundary;
 
+import frontend.ClientApp;
 import frontend.Control.DBUpdateControl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +50,7 @@ public class DBUpdateController
     }
 
     @FXML
-    private void handleUploadBtn() {
+    private void handleUploadBtn() throws IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("csv 파일", "*.csv"));
         file = fc.showOpenDialog(primaryStage);

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="frontend.Boundary.EndPageController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.Boundary.EndPageController">
    <children>
    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
       <left>
@@ -27,7 +26,7 @@
       <center>
          <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button fx:id="backBtn" layoutX="242.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleBackBtn" text="처음으로">
+               <Button fx:id="backBtn" layoutX="242.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleBackBtn" text="처음으로">
                   <font>
                      <Font size="14.0" />
                   </font>
