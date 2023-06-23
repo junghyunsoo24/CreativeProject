@@ -1,6 +1,6 @@
 package frontend.Boundary.Foreigner;
 
-import backend.DB.DTO.ConsumptionAmountDTO;
+import backend.DB.DTO.ConsumptionAmountForeignerDTO;
 import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
@@ -87,9 +87,9 @@ public class DongAnalysis extends Application {
         List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAF);
         for (DTO dto : dtoList) {
             // 법정동명
-            String dongName = ((ConsumptionAmountDTO) dto).getDong_name();
+            String dongName = ((ConsumptionAmountForeignerDTO) dto).getDong_name();
             // 이용금액
-            double amount = ((ConsumptionAmountDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountForeignerDTO) dto).getAmount();
 
             // 법정동명이 이미 TreeMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = dongAmountMap.containsKey(dongName) ? dongAmountMap.get(dongName) : 0;
@@ -140,6 +140,7 @@ public class DongAnalysis extends Application {
         root.getChildren().add(backButton); // 다음 버튼 추가
 
         // 윈도우 설정 및 표시
+        primaryStage.setTitle("외국인 동별 분석");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }

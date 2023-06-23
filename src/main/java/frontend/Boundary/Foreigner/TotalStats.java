@@ -65,9 +65,9 @@ public class TotalStats extends Application {
         backButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerAnalysisPage.fxml"));
+                loader.setLocation(getClass().getClassLoader().getResource("view/ForeignerStatisticsPage.fxml"));
                 Parent statisticsPage = loader.load();
-                ForeignerAnalysisController controller = loader.getController();
+                ForeignerStatisticsPageController controller = loader.getController();
                 controller.initData(town, village, sectors);
                 Scene currentScene = backButton.getScene();
                 currentScene.setRoot(statisticsPage);
@@ -136,7 +136,7 @@ public class TotalStats extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
-        primaryStage.setTitle("법정동별 이용 금액");
+        primaryStage.setTitle("외국인 통계/분석");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

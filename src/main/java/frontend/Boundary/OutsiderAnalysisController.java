@@ -1,9 +1,9 @@
 package frontend.Boundary;
 
-import frontend.Boundary.All.DongAnalysis;
-import frontend.Boundary.All.LargeCategoryAnalysis;
-import frontend.Boundary.All.MonthAnalysis;
-import frontend.Boundary.All.TotalAnalysis;
+import frontend.Boundary.Outsider.DongAnalysis;
+import frontend.Boundary.Outsider.LargeCategoryAnalysis;
+import frontend.Boundary.Outsider.MonthAnalysis;
+import frontend.Boundary.Outsider.TotalAnalysis;
 import frontend.Enum.Sectors;
 import frontend.Enum.Town;
 import frontend.Enum.Village;
@@ -52,11 +52,11 @@ public class OutsiderAnalysisController {
         Scene currentScene = endingBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Ending Page");
+        primaryStage.setTitle("최종 분석 결과 페이지");
         primaryStage.setWidth(860);
         primaryStage.setHeight(560);
 
-        System.out.println(town +"ㅂㅈㄷ"+ village + "ㅂㅈㄷ" + sectors);
+        //System.out.println(town +"ㅂㅈㄷ"+ village + "ㅂㅈㄷ" + sectors);
     }
 
     @FXML
@@ -70,7 +70,6 @@ public class OutsiderAnalysisController {
         Scene currentScene = backBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Main Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();

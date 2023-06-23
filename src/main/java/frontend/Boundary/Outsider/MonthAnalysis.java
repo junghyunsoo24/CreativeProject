@@ -4,7 +4,7 @@ import frontend.Boundary.AllStatisticsPageController;
 import frontend.Boundary.ForeignerAnalysisController;
 import frontend.Boundary.OutsiderAnalysisController;
 import frontend.Control.AnalysisControl;
-import backend.DB.DTO.ConsumptionAmountDTO;
+import backend.DB.DTO.ConsumptionAmountOutsiderDTO;
 import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
@@ -74,38 +74,18 @@ public class MonthAnalysis extends Application {
             }
         });
 
-
-
-        // 데이터셋 생성
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-        chartData = barChart.getData();
-
         // DB에서 월별 소비금액 데이터 추출
-        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CA);
+        List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAO);
         for (DTO dto : dtoList) {
             //월
-            String month = String.valueOf(((ConsumptionAmountDTO) dto).getMonth());
+            String month = String.valueOf(((ConsumptionAmountOutsiderDTO) dto).getMonth());
             // 이용금액
-            double amount = ((ConsumptionAmountDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountOutsiderDTO) dto).getAmount();
 
             // 해당 월이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = monthAmountMap.containsKey(month) ? monthAmountMap.get(month) : 0;
             monthAmountMap.put(month, currentAmount + amount);
         }
-
-        // TreeMap의 엔트리를 순회하며 데이터셋에 값을 추가
-        for (Map.Entry<String, Double> entry : monthAmountMap.entrySet()) {
-            String month = entry.getKey();
-            double amount = entry.getValue();
-
-            // 데이터셋에 값 추가
-            series.getData().add(new XYChart.Data<>(month, amount));
-        }
-
-        // 데이터셋을 차트에 추가
-        chartData.add(series);
 
         // 엔트리를 List에 저장
         List<Map.Entry<String, Double>> entryList = new ArrayList<>(monthAmountMap.entrySet());
@@ -127,6 +107,17 @@ public class MonthAnalysis extends Application {
         String formattedMinAmount = decimalFormat.format(minAmount);
         Label minLabel = new Label("가장 적게 소비한 달은 " + minMonth + "월에 " + formattedMinAmount + "원 입니다.");
 
+        // 데이터 생성
+        series.getData().add(new XYChart.Data<>(maxMonth, maxAmount));
+        series.getData().add(new XYChart.Data<>(minMonth, minAmount));
+
+        // 그래프 생성 및 데이터 설정
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.getData().add(series);
+
         // root에 컴포넌트 추가
         root.getChildren().addAll(barChart, maxLabel, minLabel, backButton);
 
@@ -134,7 +125,7 @@ public class MonthAnalysis extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
-        primaryStage.setTitle("법정동별 이용 금액");
+        primaryStage.setTitle("외지인 달별 분석");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -69,7 +69,6 @@ public class LoginPageController
         Scene currentScene = backBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Main Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();

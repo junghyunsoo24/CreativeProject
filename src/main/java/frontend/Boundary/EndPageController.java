@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class EndPageController {
+    //전체 인원에 동별/대분류별을 통해 분석하는 것이기 때문에 전체 분석 페이지에 동별 분석, 대분류별 분석을 통해 그래프를 확인해야 최종 결과가 나오는 형태임
 
     @FXML
     private Button backBtn;
@@ -60,7 +61,7 @@ public class EndPageController {
         Scene currentScene = backBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Main Page");
+        primaryStage.setTitle("최종 결과 분석 페이지");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();

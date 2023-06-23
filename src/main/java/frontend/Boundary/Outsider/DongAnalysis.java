@@ -1,6 +1,6 @@
 package frontend.Boundary.Outsider;
 
-import backend.DB.DTO.ConsumptionAmountDTO;
+import backend.DB.DTO.ConsumptionAmountOutsiderDTO;
 import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
@@ -88,9 +88,9 @@ public class DongAnalysis extends Application {
         List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAO);
         for (DTO dto : dtoList) {
             // 법정동명
-            String dongName = ((ConsumptionAmountDTO) dto).getDong_name();
+            String dongName = ((ConsumptionAmountOutsiderDTO) dto).getDong_name();
             // 이용금액
-            double amount = ((ConsumptionAmountDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountOutsiderDTO) dto).getAmount();
 
             // 법정동명이 이미 TreeMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = dongAmountMap.containsKey(dongName) ? dongAmountMap.get(dongName) : 0;
@@ -124,15 +124,6 @@ public class DongAnalysis extends Application {
 
         Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAO, village.getName());
 
-//        double bigNum = maxAmount - sum;
-//        double smallNum = sum - minAmount;
-//        if(bigNum > smallNum){
-//            String message = village + " 분석결과 최댓값과 가까이 있으므로 고려해볼만하다!";
-//        }
-//        else{
-//            String message = village + " 분석결과 최솟값과 가까이 있으므로 적절하지 않을 거라 생각된다.";
-//        }
-
         // 데이터 생성
         series.getData().add(new XYChart.Data<>(maxDongName, maxAmount));
         series.getData().add(new XYChart.Data<>(minDongName, minAmount));
@@ -150,6 +141,7 @@ public class DongAnalysis extends Application {
         root.getChildren().add(backButton); // 다음 버튼 추가
 
         // 윈도우 설정 및 표시
+        primaryStage.setTitle("외지인 동별 분석");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
