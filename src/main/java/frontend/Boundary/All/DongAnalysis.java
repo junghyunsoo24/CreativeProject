@@ -124,7 +124,7 @@ public class DongAnalysis extends Application {
 
         double bigNum = maxAmount - sum;
         double smallNum = minAmount - sum;
-        if(bigNum > sum){
+        if(bigNum > smallNum){
             ClientApp.text2 = " 분석결과 " + village.getName() + "\n에서 사용하는 비용이 최댓값과 가까이 있어서 \n고려해볼만하다!";
         }
         else{

@@ -116,7 +116,7 @@ public class LargeCategoryAnalysis extends Application {
         Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CA, village.getName());
         double bigNum = maxAmount - sum;
         double smallNum = minAmount - sum;
-        if(bigNum > sum){
+        if(bigNum > smallNum){
             ClientApp.text = sectors.getIndustry() + " 분석결과 대분류에서\n 사용하는 비용이 최댓값과 가까이 있어서\n 고려해볼만하다!";
         }
         else{
