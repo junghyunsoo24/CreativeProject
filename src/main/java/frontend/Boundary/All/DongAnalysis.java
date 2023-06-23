@@ -33,6 +33,7 @@ import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,11 +121,9 @@ public class DongAnalysis extends Application {
         String formattedMinAmount = decimalFormat.format(minAmount);
         Label minLabel = new Label("가장 적게 소비한 동은 " + minDongName + "에 " + formattedMinAmount + "원 입니다.");
 
-        Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CA, village.getName());
-
         double bigNum = maxAmount - sum;
-        double smallNum = minAmount - sum;
-        if(bigNum > smallNum){
+        double smallNum = sum - minAmount;
+        if(bigNum < smallNum){
             ClientApp.text2 = " 분석결과 " + village.getName() + "\n에서 사용하는 비용이 최댓값과 가까이 있어서 \n고려해볼만하다!";
         }
         else{
@@ -134,7 +133,7 @@ public class DongAnalysis extends Application {
         // 데이터 생성
         series.getData().add(new XYChart.Data<>(maxDongName, maxAmount));
         series.getData().add(new XYChart.Data<>(minDongName, minAmount));
-        series.getData().add(new XYChart.Data<>(village.getName(), sums));
+        series.getData().add(new XYChart.Data<>(village.getName(), sum));
 
         // 그래프 생성 및 데이터 설정
         CategoryAxis xAxis = new CategoryAxis();
