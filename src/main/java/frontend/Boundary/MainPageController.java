@@ -86,7 +86,6 @@ public class MainPageController {
         Scene currentScene = startBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Statistics Page");
         primaryStage.setWidth(860);
         primaryStage.setHeight(560);
         //DongDataAnalysis dongAnalysis = new DongDataAnalysis(choosedVillage, choosedSectors, Village.getList().size());

@@ -25,7 +25,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import backend.DB.DTO.ConsumptionAmountDTO;
+import backend.DB.DTO.ConsumptionAmountOutsiderDTO;
 import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
@@ -86,9 +86,9 @@ public class LargeCategoryAnalysis extends Application {
         List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAO);
         for (DTO dto : dtoList) {
             //대분류명
-            String division = ((ConsumptionAmountDTO) dto).getIndustry_name();
+            String division = ((ConsumptionAmountOutsiderDTO) dto).getIndustry_name();
             // 이용금액
-            double amount = ((ConsumptionAmountDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountOutsiderDTO) dto).getAmount();
 
             // 대분류명이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = divisionAmountMap.containsKey(division) ? divisionAmountMap.get(division) : 0;
@@ -101,7 +101,7 @@ public class LargeCategoryAnalysis extends Application {
 
         // 엔트리를 금액을 기준으로 내림차순 정렬
         entryList.sort((entry1, entry2) -> Double.compare(entry2.getValue(), entry1.getValue()));
-        Long sum = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAF, sectors.getCode());
+        Long sum = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAO, sectors.getCode());
         String formattedMaxSum = decimalFormat.format(sum);
 
         Label divisionCheckSum = new Label("선택한 대분류는 " + sectors + " 에 "  +formattedMaxSum+ "원입니다." );
@@ -119,7 +119,7 @@ public class LargeCategoryAnalysis extends Application {
         String formattedMinAmount = decimalFormat.format(minAmount);
         Label minLabel = new Label("가장 적게 소비한 대분류는 " + minDivision + "에 " + formattedMinAmount + "원 입니다.");
 
-        Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAF, village.getName());
+        Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CAO, village.getName());
 
         // 데이터 생성
         series.getData().add(new XYChart.Data<>(maxDivision, maxAmount));
@@ -141,7 +141,7 @@ public class LargeCategoryAnalysis extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
-        primaryStage.setTitle("법정동별 이용 금액");
+        primaryStage.setTitle("외지인 대분류별 분석");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

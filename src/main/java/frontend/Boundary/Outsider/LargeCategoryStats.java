@@ -137,7 +137,7 @@ public class LargeCategoryStats extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
-        primaryStage.setTitle("법정동별 이용 금액");
+        primaryStage.setTitle("외지인 대분류별 통계");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

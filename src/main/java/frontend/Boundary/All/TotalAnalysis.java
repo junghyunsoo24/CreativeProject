@@ -136,7 +136,7 @@ public class TotalAnalysis extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
-        primaryStage.setTitle("법정동별 이용 금액");
+        primaryStage.setTitle("모든인원 통계/분석");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

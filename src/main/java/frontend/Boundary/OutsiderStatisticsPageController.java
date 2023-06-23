@@ -59,7 +59,7 @@ public class OutsiderStatisticsPageController
 
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Analysis Page");
+        primaryStage.setTitle("전체 분석 페이지");
         primaryStage.setWidth(860);
         primaryStage.setHeight(560);
 
@@ -80,7 +80,6 @@ public class OutsiderStatisticsPageController
         Scene currentScene = backBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Main Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();

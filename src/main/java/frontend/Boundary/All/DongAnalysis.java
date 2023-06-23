@@ -124,7 +124,6 @@ public class DongAnalysis extends Application {
 
         double bigNum = maxAmount - sum;
         double smallNum = minAmount - sum;
-        System.out.println("들어옴");
         if(bigNum > sum){
             ClientApp.text2 = " 분석결과 " + village.getName() + "\n에서 사용하는 비용이 최댓값과 가까이 있어서 \n고려해볼만하다!";
         }
@@ -149,6 +148,7 @@ public class DongAnalysis extends Application {
         root.getChildren().add(backButton); // 다음 버튼 추가
 
         // 윈도우 설정 및 표시
+        primaryStage.setTitle("모든인원 동별 분석");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }

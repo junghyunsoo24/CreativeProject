@@ -52,11 +52,11 @@ public class ForeignerStatisticsPageController {
         Scene currentScene = outsiderStatisticsBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Analysis Page");
+        primaryStage.setTitle("외지인 통계 페이지");
         primaryStage.setWidth(860);
         primaryStage.setHeight(560);
         //mainPageController.initialize();
-        System.out.println(town +"ㅁㄴㅇ"+ village + "ㅁㄴㅇ" + sectors);
+        //System.out.println(town +"ㅁㄴㅇ"+ village + "ㅁㄴㅇ" + sectors);
     }
 
     @FXML
@@ -70,7 +70,6 @@ public class ForeignerStatisticsPageController {
         Scene currentScene = backBtn.getScene();
         currentScene.setRoot(otherPage);
         Stage primaryStage = (Stage) currentScene.getWindow();
-        primaryStage.setTitle("Main Page");
         primaryStage.setWidth(600);
         primaryStage.setHeight(400);
         //mainPageController.initialize();

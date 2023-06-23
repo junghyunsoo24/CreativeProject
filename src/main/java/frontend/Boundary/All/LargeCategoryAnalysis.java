@@ -116,7 +116,6 @@ public class LargeCategoryAnalysis extends Application {
         Long sums = ClientApp.getDB().selectRequest(ProtocolQuery.selectSum, ProtocolType.CA, village.getName());
         double bigNum = maxAmount - sum;
         double smallNum = minAmount - sum;
-        System.out.println("들어옴");
         if(bigNum > sum){
             ClientApp.text = sectors.getIndustry() + " 분석결과 대분류에서\n 사용하는 비용이 최댓값과 가까이 있어서\n 고려해볼만하다!";
         }
@@ -144,7 +143,7 @@ public class LargeCategoryAnalysis extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
-        primaryStage.setTitle("법정동별 이용 금액");
+        primaryStage.setTitle("모든인원 대분류별 분석");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

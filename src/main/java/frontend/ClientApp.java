@@ -22,8 +22,8 @@ public class ClientApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        db = new DBConnector("119.56.139.127", 3000);
-//        db = new DBConnector("localhost", 3000);
+        //db = new DBConnector("119.56.139.127", 3000);//개인 장비로 실행할려면 localhost를 쓰면됨
+        db = new DBConnector("localhost", 3000);
         primaryStageObj = primaryStage;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("view/MainPage.fxml"));
@@ -32,7 +32,7 @@ public class ClientApp extends Application {
         Scene mainScene = new Scene(root, 600,400);
         primaryStage.setResizable(false);
 
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("대전광역시 유성구 자영업자 맞춤형 시스템");
         primaryStage.setScene(mainScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> Platform.exit());

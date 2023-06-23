@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import backend.DB.DTO.ConsumptionAmountDTO;
+import backend.DB.DTO.ConsumptionAmountForeignerDTO;
 import backend.DB.DTO.DTO;
 import backend.DB.Protocol.ProtocolQuery;
 import backend.DB.Protocol.ProtocolType;
@@ -56,6 +56,7 @@ public class LargeCategoryAnalysis extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("뭐지??1");
         VBox root = new VBox();
         // "이전" 버튼 생성
         Button backButton = new Button("되돌아가기");
@@ -81,9 +82,9 @@ public class LargeCategoryAnalysis extends Application {
         List<DTO> dtoList = AnalysisControl.selectRequest(ProtocolQuery.selectAll, ProtocolType.CAF);
         for (DTO dto : dtoList) {
             //대분류명
-            String division = ((ConsumptionAmountDTO) dto).getIndustry_name();
+            String division = ((ConsumptionAmountForeignerDTO) dto).getIndustry_name();
             // 이용금액
-            double amount = ((ConsumptionAmountDTO) dto).getAmount();
+            double amount = ((ConsumptionAmountForeignerDTO) dto).getAmount();
 
             // 대분류명이 이미 HashMap에 저장되어 있는 경우, 이용금액을 누적하여 합산
             double currentAmount = divisionAmountMap.containsKey(division) ? divisionAmountMap.get(division) : 0;
@@ -136,7 +137,7 @@ public class LargeCategoryAnalysis extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         // Stage 설정
-        primaryStage.setTitle("법정동별 이용 금액");
+        primaryStage.setTitle("외국인 대분류별 분석");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
