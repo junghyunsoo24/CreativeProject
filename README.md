@@ -5,11 +5,7 @@
 | -- | -- | -- |
 | ![JavaFX_Logo](https://github.com/winteeeee/CreativeProject/assets/102248077/e99697fc-daa5-479a-822e-0f0c669f2329) | ![mybatis](https://github.com/winteeeee/CreativeProject/assets/102248077/9de9109e-3f8c-44b8-ad2c-72b6dc39e90b) | ![1024px-MySQL ff87215b43fd7292af172e2a5d9b844217262571](https://github.com/winteeeee/CreativeProject/assets/102248077/fa1f0082-dbda-44a8-a864-c01043e0332e) |
 
-## 팀 구성
-| 인원 | 역할 |
-| -- | -- |
-| 한성민 | 백엔드, 관리자 기능 |
-| 이상호 | 프론트엔드, 통계 기능 |
+## 역할
 | 정현수 | 프론트엔드, 데이터 분석 기능 |
 
 ## 1. 문제 정의
@@ -58,7 +54,12 @@
 ### 3.3 자동 업데이트
 * CSV 파일을 DB에 자동화하여 INSERT
 
+## 3. 프로그램 구조
+![image](https://github.com/junghyunsoo24/CreativeProject/assets/117528532/441b41bf-733f-41c3-9e0a-4a25cc03dc7d)
 
-
-
-
+## 4. UI
+![image](https://github.com/junghyunsoo24/CreativeProject/assets/117528532/f2f6b362-3cf6-40a4-a0e9-599d17902cb6)
+![image](https://github.com/junghyunsoo24/CreativeProject/assets/117528532/734e738f-71d8-4e16-9c7f-7e715a09eff4)
+![image](https://github.com/junghyunsoo24/CreativeProject/assets/117528532/73140f06-98ea-48d4-a9ca-54bb96bd8fe3)
+![image](https://github.com/junghyunsoo24/CreativeProject/assets/117528532/0dc7b570-956a-44bb-969b-4358c27e3f39)
+![image](https://github.com/junghyunsoo24/CreativeProject/assets/117528532/a99989eb-64f5-45cc-83a2-7bb0e7bdf9a1)
